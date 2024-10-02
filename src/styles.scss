@@ -75,7 +75,7 @@
   }
 
   .btn-square {
-    @apply border bg-background hover:bg-foreground/10 py-1 px-3 w-10 h-10 min-w-10 text-foreground text-lg truncate;
+    @apply border bg-card/95 hover:bg-card/60 hover:border-foreground/30 p-1 w-10 h-10 min-w-10 text-foreground text-lg truncate;
   }
 
   .btn-white {

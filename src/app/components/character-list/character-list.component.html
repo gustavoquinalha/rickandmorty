@@ -1,125 +1,156 @@
-<div class="w-full flex flex-col gap-8" *ngIf="characters; else loading">
+<div class="w-full flex flex-col" *ngIf="characters; else loading">
   <div
     id="filtro"
-    class="border-b backdrop-blur-sm bg-background/95 z-40 sticky top-16 left-0 w-full py-4 flex items-center gap-4 h-20"
+    class="border-b backdrop-blur-sm bg-background/95 z-40 sticky top-0 left-0 w-full py-4 flex items-center gap-4 h-20 overflow-x-auto overflow-y-hidden"
   >
-    <div class="container flex items-center gap-4">
-      <input
-        type="text"
-        [(ngModel)]="searchTerm"
-        (ngModelChange)="onSearchChange()"
-        placeholder="Pesquisar por nome..."
-        class="input w-full h-14"
-      />
+    <div class="container flex items-center gap-2">
+      <div class="relative w-full">
+        <div class="absolute top-3 left-3 text-xl">🔎</div>
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange()"
+          placeholder="Pesquisar por nome..."
+          class="input w-full h-14 min-w-56 pl-12 bg-transparent"
+        />
+      </div>
 
-      <div class="flex gap-1 items-center">
+      <div class="flex gap-1 items-center border bg-transparent rounded-xl p-1">
         <button
-          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          class="!block btn btn-square w-12 h-12 min-w-12 truncate border-none bg-transparent rounded-lg"
           title="female"
           (click)="selectGender('female')"
           [ngClass]="{
-            '!bg-foreground !text-background': selectedGender === 'female'
+            '!bg-input !text-foreground !border-foreground':
+              selectedGender === 'female'
           }"
         >
-          <span class="leading-none">♀️</span>
-          <span class="text-xs font-thin leading-none truncate">Female</span>
+          <div class="leading-none block w-full mb-1">♀️</div>
+          <div class="text-xs font-thin leading-none truncate block w-full">
+            Female
+          </div>
         </button>
         <button
-          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          class="!block btn btn-square w-12 h-12 min-w-12 truncate border-none bg-transparent rounded-lg"
           title="male"
           [ngClass]="{
-            '!bg-foreground !text-background': selectedGender === 'male'
+            '!bg-input !text-foreground !border-foreground':
+              selectedGender === 'male'
           }"
           (click)="selectGender('male')"
         >
-          <span class="leading-none">♂️</span>
-          <span class="text-xs font-thin leading-none truncate">Male</span>
+          <div class="leading-none block w-full mb-1">♂️</div>
+          <div class="text-xs font-thin leading-none truncate block w-full">
+            Male
+          </div>
         </button>
         <button
-          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          class="!block btn btn-square w-12 h-12 min-w-12 truncate border-none bg-transparent rounded-lg"
           title="genderless "
           [ngClass]="{
-            '!bg-foreground !text-background': selectedGender === 'genderless'
+            '!bg-input !text-foreground !border-foreground':
+              selectedGender === 'genderless'
           }"
           (click)="selectGender('genderless')"
         >
-          <span class="leading-none">🌳</span>
-          <span class="text-xs font-thin leading-none truncate"
-            >Genderless</span
-          >
+          <div class="leading-none block w-full mb-1">🌳</div>
+          <div class="text-xs font-thin leading-none truncate block w-full">
+            Genderless
+          </div>
         </button>
         <button
-          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          class="!block btn btn-square w-12 h-12 min-w-12 truncate border-none bg-transparent rounded-lg"
           title="gender unknown"
           [ngClass]="{
-            '!bg-foreground !text-background': selectedGender === 'unknown'
+            '!bg-input !text-foreground !border-foreground':
+              selectedGender === 'unknown'
           }"
           (click)="selectGender('unknown')"
         >
-          <span class="leading-none">⁉️</span>
-          <span class="text-xs font-thin leading-none truncate">Unknown</span>
+          <div class="leading-none block w-full mb-1">❔</div>
+          <div class="text-xs font-thin leading-none truncate block w-full">
+            Unknown
+          </div>
         </button>
       </div>
 
-      <div class="flex gap-1 items-center">
+      <div class="flex gap-1 items-center border bg-transparent rounded-xl p-1">
         <button
-          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          class="!block btn btn-square w-12 h-12 min-w-12 truncate border-none bg-transparent rounded-lg"
           title="Human"
           [ngClass]="{
-            '!bg-foreground !text-background': selectedSpecies === 'Human'
+            '!bg-input !text-foreground !border-foreground':
+              selectedSpecies === 'Human'
           }"
           (click)="selectSpecie('Human')"
         >
-          🧑
+          <div class="leading-none block w-full mb-1">🧑</div>
+          <div class="text-xs font-thin leading-none truncate block w-full">
+            Human
+          </div>
         </button>
         <button
-          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          class="!block btn btn-square w-12 h-12 min-w-12 truncate border-none bg-transparent rounded-lg"
           title="Alien"
           [ngClass]="{
-            '!bg-foreground !text-background': selectedSpecies === 'Alien'
+            '!bg-input !text-foreground !border-foreground':
+              selectedSpecies === 'Alien'
           }"
           (click)="selectSpecie('Alien')"
         >
-          👽
+          <div class="leading-none block w-full mb-1">👽</div>
+          <div class="text-xs font-thin leading-none truncate block w-full">
+            Alien
+          </div>
         </button>
         <button
-          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          class="!block btn btn-square w-12 h-12 min-w-12 truncate border-none bg-transparent rounded-lg"
           title="Humanoid"
           [ngClass]="{
-            '!bg-foreground !text-background': selectedSpecies === 'Humanoid'
+            '!bg-input !text-foreground !border-foreground':
+              selectedSpecies === 'Humanoid'
           }"
           (click)="selectSpecie('Humanoid')"
         >
-          🐲
+          <div class="leading-none block w-full mb-1">🐲</div>
+          <div class="text-xs font-thin leading-none truncate block w-full">
+            Humanoid
+          </div>
         </button>
 
         <button
-          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          class="!block btn btn-square w-12 h-12 min-w-12 truncate border-none bg-transparent rounded-lg"
           title="Poopybutthole"
           [ngClass]="{
-            '!bg-foreground !text-background':
+            '!bg-input !text-foreground !border-foreground':
               selectedSpecies === 'Poopybutthole'
           }"
           (click)="selectSpecie('Poopybutthole')"
         >
-          🥒
+          <div class="leading-none block w-full mb-1">🥒</div>
+          <div class="text-xs font-thin leading-none truncate block w-full">
+            Poopybutthole
+          </div>
         </button>
         <button
-          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          class="!block btn btn-square w-12 h-12 min-w-12 truncate border-none bg-transparent rounded-lg"
           title="Mythological Creature"
           [ngClass]="{
-            '!bg-foreground !text-background':
+            '!bg-input !text-foreground !border-foreground':
               selectedSpecies === 'Mythological Creature'
           }"
           (click)="selectSpecie('Mythological Creature')"
         >
-          🪄
+          <div class="leading-none block w-full mb-1">🪄</div>
+          <div class="text-xs font-thin leading-none truncate block w-full">
+            Mythological Creature
+          </div>
         </button>
       </div>
     </div>
   </div>
 
-  <div class="container py-8">
+  <div class="container py-4">
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
     >
@@ -130,34 +161,45 @@
         <img
           [src]="character?.image"
           alt="{{ character?.name }}"
-          class="w-full h-auto group-hover:invert"
+          class="w-full h-auto"
         />
         <div
-          class="absolute truncate p-4 left-0 bottom-0 w-full bg-gradient-to-t from-background from-0% via-background/50 via-40% to-transparent to-100% transition-all h-full flex flex-col justify-end"
+          class="overflow-hidden absolute truncate p-4 left-0 bottom-0 w-full bg-gradient-to-t from-background from-0% via-background/50 via-70% hover:via-40% to-background/50 hover:to-background/0 to-100% transition-all h-full flex flex-col justify-end"
         >
           <h3 class="text-2xl font-bold truncate">{{ character?.name }}</h3>
           <div class="flex flex-wrap gap-1">
-            <span class="badge" *ngIf="character?.species">{{
-              character?.species
-            }}</span>
-            <span class="badge" *ngIf="character?.gender">{{
-              character?.gender
-            }}</span>
-            <span class="badge" *ngIf="character?.type">{{
-              character?.type
-            }}</span>
-            <span class="badge" *ngIf="character?.status">{{
-              character?.status
-            }}</span>
-            <span class="badge" *ngIf="character?.location?.name">{{
-              character?.location?.name
-            }}</span>
+            <div class="badge" title="Species" *ngIf="character?.species">
+              {{ character?.species }}
+            </div>
+            <div class="badge" title="Gender" *ngIf="character?.gender">
+              {{ character?.gender }}
+            </div>
+            <div class="badge" title="Type" *ngIf="character?.type">
+              {{ character?.type }}
+            </div>
+            <div class="badge" title="Status" *ngIf="character?.status">
+              {{ character?.status }}
+            </div>
+            <div
+              class="badge"
+              title="Location"
+              *ngIf="character?.location?.name"
+            >
+              {{ character?.location?.name }}
+            </div>
+            <div class="badge" title="Origin" *ngIf="character?.origin?.name">
+              {{ character?.origin?.name }}
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="flex justify-between mt-4">
+  <div
+    class="border-t backdrop-blur-sm bg-background/95 z-40 sticky bottom-0 left-0 w-full"
+  >
+    <div class="container flex justify-between items-center h-16">
       <button
         (click)="previousPage()"
         [disabled]="currentPage === 1"
@@ -165,13 +207,15 @@
       >
         Anterior
       </button>
-      <span>Página {{ currentPage }} de {{ totalPages }}</span>
+      <div class="text-xs text-muted-foreground">
+        Página <b>{{ currentPage }}</b> de <b>{{ totalPages }}</b>
+      </div>
       <button
         (click)="nextPage()"
         [disabled]="currentPage === totalPages"
         class="btn btn-white"
       >
-        Próxima
+        Próximo
       </button>
     </div>
   </div>
