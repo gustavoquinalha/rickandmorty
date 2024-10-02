@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "rickyandmorty": {
+    "rickandmorty": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/rickyandmorty",
+            "outputPath": "dist/rickandmorty",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "rickyandmorty:build:production"
+              "buildTarget": "rickandmorty:build:production"
             },
             "development": {
-              "buildTarget": "rickyandmorty:build:development"
+              "buildTarget": "rickandmorty:build:development"
             }
           },
           "defaultConfiguration": "development"
