@@ -11,11 +11,12 @@ export class RickAndMortyService {
 
   constructor(private http: HttpClient) { }
 
-  getCharacters(page: number = 1, name: string = '', specie: string = '', gender: string = ''): Observable<ApiResponse> {
+  getCharacters(page: number = 1, name: string = '', specie: string = '', gender: string = '', status: string = ''): Observable<ApiResponse> {
     const nameQuery = name ? `&name=${name}` : '';
     const specieQuery = specie ? `&species=${specie}` : '';
     const genderQuery = gender ? `&gender=${gender}` : '';
+    const statusQuery = status ? `&status=${status}` : '';
 
-    return this.http.get<ApiResponse>(`${this.baseUrl}?page=${page}${nameQuery}${specieQuery}${genderQuery}`);
+    return this.http.get<ApiResponse>(`${this.baseUrl}?page=${page}${nameQuery}${specieQuery}${genderQuery}${statusQuery}`);
   }
 }

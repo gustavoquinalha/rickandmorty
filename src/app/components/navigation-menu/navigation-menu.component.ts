@@ -8,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrl: './navigation-menu.component.scss'
 })
 export class NavigationMenuComponent {
+  onThemeSelect(event: Event): void {
+    const selectedTheme = (event.target as HTMLSelectElement).value;
+    const htmlElement = document.documentElement;
 
+    if (selectedTheme === 'light') {
+      htmlElement.classList.remove('dark');
+      htmlElement.classList.add('light');
+    } else if (selectedTheme === 'dark') {
+      htmlElement.classList.remove('light');
+      htmlElement.classList.add('dark');
+    }
+  }
 }

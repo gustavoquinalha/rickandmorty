@@ -1,12 +1,27 @@
-<div
-  class="w-full h-16 backdrop-blur-sm bg-background/95 border-b"
->
+<div class="w-full h-16 backdrop-blur-sm bg-background/95 border-b">
   <div class="container flex items-center justify-between">
     <img src="./logo.png" width="114" alt="Logo Rick And Morty" />
 
-    <div class="rounded-xl border bg-background/95 h-10 p-1 gap-1 flex items-center">
-      <button class="btn !bg-input h-full rounded-lg font-normal">Início</button>
-      <button class="btn bg-background/95 h-full rounded-lg font-normal">Favoritos</button>
+    <div class="flex items-center gap-2">
+      <select
+        (change)="onThemeSelect($event)"
+        title="Theme"
+        class="input w-14 pl-1.5 h-12 p-0 text-lg"
+      >
+        <option value="dark" title="Dark" selected>🌑</option>
+        <option value="light" title="Light">☀️</option>
+      </select>
+
+      <!-- <div
+        class="rounded-xl border bg-background/95 h-10 p-1 gap-1 flex items-center"
+      >
+        <button class="btn !bg-input h-full rounded-lg font-normal">
+          Início
+        </button>
+        <button class="btn bg-background/95 h-full rounded-lg font-normal">
+          Favoritos
+        </button>
+      </div> -->
     </div>
   </div>
 </div>
