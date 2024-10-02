@@ -13,6 +13,7 @@ import { RickAndMortyService } from '../../services/rick-and-morty.service';
 })
 export class CharacterDetailComponent implements OnInit {
   character: any;
+  characterId: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,8 +21,8 @@ export class CharacterDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.rickAndMortyService.getCharacterById(id!).subscribe((character) => {
+    this.characterId = this.route.snapshot.paramMap.get('id');
+    this.rickAndMortyService.getCharacterById(this.characterId!).subscribe((character) => {
       this.character = character;
     });
   }

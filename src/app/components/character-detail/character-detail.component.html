@@ -1,150 +1,216 @@
 <div class="container py-4">
   <div
-    *ngIf="character"
-    class="flex flex-col gap-4 justify-center items-center"
+    class="max-w-xl mx-auto flex w-full justify-between items-center gap-4 sticky top-2 left-2 z-50"
   >
-    <div class="max-w-lg flex w-full justify-start sticky top-2 left-2 z-50">
-      <a
-        routerLink="/"
-        class="btn border text-base text-muted-foreground hover:text-foreground transition-all flex items-center gap-2"
-      >
-        👈 Voltar</a
-      >
-    </div>
-
-    <div
-      class="group w-full max-w-lg relative border rounded-xl overflow-hidden bg-card transition-all p-4 flex flex-col gap-4"
+    <a
+      routerLink="/"
+      class="btn border text-base text-muted-foreground hover:text-foreground transition-all flex items-center gap-2"
     >
-      <button
-        class="btn bg-background/60 backdrop-blur-sm h-10 w-10 text-lg border absolute top-5 right-5 z-10 border-none"
-      >
-        <!-- ❤️ -->
-        🤍
-      </button>
+      👈 List</a
+    >
 
-      <img
-        [src]="character?.image"
-        alt="{{ character?.name }}"
-        class="w-full h-auto rounded-xl"
-      />
-      <div
-        class="overflow-hidden truncate w-full h-full flex gap-4 flex-col justify-end"
-      >
-        <h3 class="text-2xl font-bold truncate text-white">
-          {{ character?.name }}
-        </h3>
-        <div class="flex flex-wrap gap-1">
-          <div
-            class="w-full flex gap-2 items-center"
-            [title]="character?.status"
-            *ngIf="character?.status"
-          >
-            <span class="text-muted-foreground">Status:</span>
-            <span class="text-lg">{{
-              character?.status === "Alive" ? "😄" : "😵"
-            }}</span>
-            <span class="">{{ character?.status }}</span>
-          </div>
+    <div class="text-lg font-semibold">Character {{ characterId }}</div>
+  </div>
 
-          <div
-            class="w-full flex gap-2 items-center"
-            [title]="character?.gender"
-            *ngIf="character?.gender"
-          >
-            <span class="text-muted-foreground">Gender:</span>
-            <span>{{
-              character?.gender === "Female"
-                ? "♀️"
-                : character?.gender === "Male"
-                ? "♂️"
-                : character?.gender === "Genderless"
-                ? "🌳"
-                : "❔"
-            }}</span>
-            <span>{{ character?.gender }}</span>
-          </div>
-
-          <div
-            class="w-full flex gap-2 items-center"
-            [title]="character?.species"
-            *ngIf="character?.species"
-          >
-            <span class="text-muted-foreground">Specie:</span>
-            <span>{{
-              character?.species === "Human"
-                ? "🌎"
-                : character?.species === "Alien"
-                ? "👽"
-                : character?.species === "Humanoid"
-                ? "🐲"
-                : character?.species === "Poopybutthole"
-                ? "🥒"
-                : character?.species === "Mythological Creature"
-                ? "🪄"
-                : character?.species
-            }}</span>
-            <span>{{ character?.species }}</span>
-          </div>
-
-          <div
-            class="w-full flex gap-2 items-center"
-            title="Type"
-            *ngIf="character?.type"
-          >
-            <span class="text-muted-foreground">Type:</span>
-            <span>🔎</span>
-            <span>{{ character?.type }}</span>
-          </div>
-
-          <div
-            class="w-full flex gap-2 items-center"
-            title="Location"
-            *ngIf="character?.location?.name"
-          >
-            <span class="text-muted-foreground">Location:</span>
-            📍
-            <span>{{ character?.location?.name }}</span>
-            <a [href]="character?.location?.url" class="ml-2"> 🔗 </a>
-          </div>
-          <div
-            class="w-full flex gap-2 items-center"
-            title="Origin"
-            *ngIf="character?.origin?.name"
-          >
-            <span class="text-muted-foreground">Origin:</span>
-            <span>🍼</span>
-            <span>{{ character?.origin?.name }}</span>
-          </div>
-        </div>
-        <ul class="max-h-80 overflow-auto border rounded-lg p-4 bg-background">
-          <li *ngFor="let episode of character?.episode">
-            <a
-              class="text-muted-foreground hover:text-foreground transition-all"
-              [href]="episode"
-              >📽️ {{ episode }}</a
-            >
-          </li>
-        </ul>
+  <div
+    *ngIf="character"
+    class="flex flex-col gap-4 justify-center items-center my-4"
+  >
+    <div
+      class="group w-full max-w-xl relative border rounded-xl overflow-hidden bg-background text-foreground transition-all p-6 flex flex-col gap-6"
+    >
+      <div class="flex gap-6 items-start flex-col md:flex-row">
+        <img
+          [src]="character?.image"
+          alt="{{ character?.name }}"
+          class="w-full h-auto md:w-48 min-w-48 md:h-48 rounded-xl border"
+        />
 
         <div
-          class="text-muted-foreground"
+          class="overflow-hidden truncate w-full h-full flex gap-2 flex-col justify-end"
+        >
+          <div class="w-full flex items-center gap-2 justify-between">
+            <h3 class="text-3xl font-bold truncate text-white">
+              {{ character?.name }}
+            </h3>
+            <button
+              class="btn bg-background/60 backdrop-blur-sm h-10 w-10 text-lg border"
+            >
+              <!-- ❤️ -->
+              🤍
+            </button>
+          </div>
+
+          <div class="flex flex-wrap gap-0">
+            <div
+              class="w-full flex gap-2 items-center"
+              [title]="character?.status"
+              *ngIf="character?.status"
+            >
+              <span class="text-muted-foreground min-w-16 text-sm"
+                >Status:</span
+              >
+              <span class="text-lg min-w-6 text-center">{{
+                character?.status === "Alive"
+                  ? "😄"
+                  : character?.status === "Dead"
+                  ? "😵"
+                  : "🤔"
+              }}</span>
+              <span class="text-sm truncate capitalize">{{
+                character?.status
+              }}</span>
+            </div>
+
+            <div
+              class="w-full flex gap-2 items-center"
+              [title]="character?.gender"
+              *ngIf="character?.gender"
+            >
+              <span class="text-muted-foreground min-w-16 text-sm"
+                >Gender:</span
+              >
+              <span class="text-lg min-w-6 text-center">{{
+                character?.gender === "Female"
+                  ? "♀️"
+                  : character?.gender === "Male"
+                  ? "♂️"
+                  : character?.gender === "Genderless"
+                  ? "🌳"
+                  : "❔"
+              }}</span>
+              <span class="text-sm truncate capitalize">{{
+                character?.gender
+              }}</span>
+            </div>
+
+            <div
+              class="w-full flex gap-2 items-center"
+              [title]="character?.species"
+              *ngIf="character?.species"
+            >
+              <span class="text-muted-foreground min-w-16 text-sm"
+                >Specie:</span
+              >
+              <span class="text-lg min-w-6 text-center">{{
+                character?.species === "Human"
+                  ? "🌎"
+                  : character?.species === "Alien"
+                  ? "👽"
+                  : character?.species === "Robot"
+                  ? "🤖"
+                  : character?.species === "Animal"
+                  ? "🐶"
+                  : character?.species === "Cronenberg"
+                  ? "🐙"
+                  : character?.species === "Humanoid"
+                  ? "🐲"
+                  : character?.species === "Poopybutthole"
+                  ? "🥒"
+                  : character?.species === "Mythological Creature"
+                  ? "🪄"
+                  : character?.species === "unknown"
+                  ? "⁉️"
+                  : character?.species
+              }}</span>
+              <span class="text-sm truncate capitalize">{{
+                character?.species
+              }}</span>
+            </div>
+
+            <div
+              class="w-full flex gap-2 items-center"
+              title="Type"
+              *ngIf="character?.type"
+            >
+              <span class="text-muted-foreground min-w-16 text-sm">Type:</span>
+              <span class="text-lg min-w-6 text-center">🔎</span>
+              <span class="text-sm truncate capitalize">{{
+                character?.type
+              }}</span>
+            </div>
+
+            <div
+              class="w-full flex gap-2 items-center"
+              title="Location"
+              *ngIf="character?.location?.name"
+            >
+              <span class="text-muted-foreground min-w-16 text-sm"
+                >Location:</span
+              >
+              <span class="text-lg min-w-6 text-center">📍</span>
+              <span class="text-sm truncate capitalize">{{
+                character?.location?.name
+              }}</span>
+              <a [href]="character?.location?.url"> 🔗 </a>
+            </div>
+            <div
+              class="w-full flex gap-2 items-center"
+              title="Origin"
+              *ngIf="character?.origin?.name"
+            >
+              <span class="text-muted-foreground min-w-16 text-sm"
+                >Origin:</span
+              >
+              <span class="text-lg min-w-6 text-center">🍼</span>
+              <span class="text-sm truncate capitalize">{{
+                character?.origin?.name
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4 w-full">
+        <div class="border rounded-lg overflow-hidden">
+          <div
+            class="text-sm text-foreground rounded-t-lg sticky -top-0 left-0 bg-background/80 backdrop-blur-sm border-b py-3 px-4 flex items-center gap-2"
+          >
+            <span class="">📽️</span>
+            <span class="">Episodes</span>
+            <span class="text-xs text-muted-foreground w-full text-right"
+              >({{ character?.episode?.length }})</span
+            >
+          </div>
+          <div class="max-h-80 overflow-auto grid grid-cols-3 gap-3 p-4">
+            <a
+              *ngFor="let episode of character?.episode"
+              [title]="episode"
+              class="group text-muted-foreground rounded-lg bg-card/50 text-xs hover:text-foreground hover:border-foreground/30 transition-all truncate leading-7 p-4 flex flex-col border overflow-hidden"
+              [href]="episode"
+            >
+              <span class="text-center text-xl">🎞️</span>
+              <span class="text-xs truncate">{{ episode }}</span>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="text-muted-foreground min-w-16 text-sm w-full text-center"
           title="Created"
           *ngIf="character?.created"
         >
           ⏰
-          <span class="text-xs">
+          <span class="text-xs truncate">
             Created: {{ formatDate(character?.created) }}</span
           >
         </div>
       </div>
     </div>
+  </div>
 
-    <div
-      class="w-full flex gap-2 items-center"
-      title="Location"
-      *ngIf="character?.location?.name"
-    ></div>
-
-    <!-- {{ character | json }} -->
+  <div class="max-w-xl mx-auto flex w-full justify-between items-center gap-4">
+    <a
+      routerLink="/"
+      class="btn border text-base text-muted-foreground hover:text-foreground transition-all flex items-center gap-2"
+    >
+      👈 Previous character
+    </a>
+    <a
+      routerLink="/"
+      class="btn border text-base text-muted-foreground hover:text-foreground transition-all flex items-center gap-2"
+    >
+      Next character 👉
+    </a>
   </div>
 </div>
