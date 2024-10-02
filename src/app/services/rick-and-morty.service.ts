@@ -7,7 +7,7 @@ import { ApiResponse } from '../interface/characters';
   providedIn: 'root'
 })
 export class RickAndMortyService {
-  private baseUrl = 'https://rickandmortyapi.com/api/character';
+  private apiUrl = 'https://rickandmortyapi.com/api/character';
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +17,10 @@ export class RickAndMortyService {
     const genderQuery = gender ? `&gender=${gender}` : '';
     const statusQuery = status ? `&status=${status}` : '';
 
-    return this.http.get<ApiResponse>(`${this.baseUrl}?page=${page}${nameQuery}${specieQuery}${genderQuery}${statusQuery}`);
+    return this.http.get<ApiResponse>(`${this.apiUrl}?page=${page}${nameQuery}${specieQuery}${genderQuery}${statusQuery}`);
+  }
+
+  getCharacterById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 }
