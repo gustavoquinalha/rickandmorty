@@ -1,0 +1,182 @@
+<div class="w-full flex flex-col gap-8" *ngIf="characters; else loading">
+  <div
+    id="filtro"
+    class="border-b backdrop-blur-sm bg-background/95 z-40 sticky top-16 left-0 w-full py-4 flex items-center gap-4 h-20"
+  >
+    <div class="container flex items-center gap-4">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchChange()"
+        placeholder="Pesquisar por nome..."
+        class="input w-full h-14"
+      />
+
+      <div class="flex gap-1 items-center">
+        <button
+          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          title="female"
+          (click)="selectGender('female')"
+          [ngClass]="{
+            '!bg-foreground !text-background': selectedGender === 'female'
+          }"
+        >
+          <span class="leading-none">♀️</span>
+          <span class="text-xs font-thin leading-none truncate">Female</span>
+        </button>
+        <button
+          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          title="male"
+          [ngClass]="{
+            '!bg-foreground !text-background': selectedGender === 'male'
+          }"
+          (click)="selectGender('male')"
+        >
+          <span class="leading-none">♂️</span>
+          <span class="text-xs font-thin leading-none truncate">Male</span>
+        </button>
+        <button
+          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          title="genderless "
+          [ngClass]="{
+            '!bg-foreground !text-background': selectedGender === 'genderless'
+          }"
+          (click)="selectGender('genderless')"
+        >
+          <span class="leading-none">🌳</span>
+          <span class="text-xs font-thin leading-none truncate"
+            >Genderless</span
+          >
+        </button>
+        <button
+          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          title="gender unknown"
+          [ngClass]="{
+            '!bg-foreground !text-background': selectedGender === 'unknown'
+          }"
+          (click)="selectGender('unknown')"
+        >
+          <span class="leading-none">⁉️</span>
+          <span class="text-xs font-thin leading-none truncate">Unknown</span>
+        </button>
+      </div>
+
+      <div class="flex gap-1 items-center">
+        <button
+          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          title="Human"
+          [ngClass]="{
+            '!bg-foreground !text-background': selectedSpecies === 'Human'
+          }"
+          (click)="selectSpecie('Human')"
+        >
+          🧑
+        </button>
+        <button
+          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          title="Alien"
+          [ngClass]="{
+            '!bg-foreground !text-background': selectedSpecies === 'Alien'
+          }"
+          (click)="selectSpecie('Alien')"
+        >
+          👽
+        </button>
+        <button
+          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          title="Humanoid"
+          [ngClass]="{
+            '!bg-foreground !text-background': selectedSpecies === 'Humanoid'
+          }"
+          (click)="selectSpecie('Humanoid')"
+        >
+          🐲
+        </button>
+
+        <button
+          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          title="Poopybutthole"
+          [ngClass]="{
+            '!bg-foreground !text-background':
+              selectedSpecies === 'Poopybutthole'
+          }"
+          (click)="selectSpecie('Poopybutthole')"
+        >
+          🥒
+        </button>
+        <button
+          class="btn btn-square w-auto h-14 min-w-14 flex flex-col gap-1 truncate"
+          title="Mythological Creature"
+          [ngClass]="{
+            '!bg-foreground !text-background':
+              selectedSpecies === 'Mythological Creature'
+          }"
+          (click)="selectSpecie('Mythological Creature')"
+        >
+          🪄
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-8">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    >
+      <div
+        *ngFor="let character of filteredCharacters"
+        class="group relative border rounded-xl overflow-hidden bg-card hover:border-foreground/30 transition-all cursor-pointer"
+      >
+        <img
+          [src]="character?.image"
+          alt="{{ character?.name }}"
+          class="w-full h-auto group-hover:invert"
+        />
+        <div
+          class="absolute truncate p-4 left-0 bottom-0 w-full bg-gradient-to-t from-background from-0% via-background/50 via-40% to-transparent to-100% transition-all h-full flex flex-col justify-end"
+        >
+          <h3 class="text-2xl font-bold truncate">{{ character?.name }}</h3>
+          <div class="flex flex-wrap gap-1">
+            <span class="badge" *ngIf="character?.species">{{
+              character?.species
+            }}</span>
+            <span class="badge" *ngIf="character?.gender">{{
+              character?.gender
+            }}</span>
+            <span class="badge" *ngIf="character?.type">{{
+              character?.type
+            }}</span>
+            <span class="badge" *ngIf="character?.status">{{
+              character?.status
+            }}</span>
+            <span class="badge" *ngIf="character?.location?.name">{{
+              character?.location?.name
+            }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-between mt-4">
+      <button
+        (click)="previousPage()"
+        [disabled]="currentPage === 1"
+        class="btn btn-white"
+      >
+        Anterior
+      </button>
+      <span>Página {{ currentPage }} de {{ totalPages }}</span>
+      <button
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages"
+        class="btn btn-white"
+      >
+        Próxima
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Carregando personagens...</p>
+</ng-template>
