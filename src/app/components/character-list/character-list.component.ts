@@ -17,6 +17,7 @@ import { forkJoin } from 'rxjs';
   providers: [RickAndMortyService]
 })
 export class CharacterListComponent implements OnInit {
+  characters: Character[] = [];
   filteredCharacters: Character[] = [];
   favoriteItems: Character[] = [];
   currentPage: number = 1;
@@ -46,10 +47,15 @@ export class CharacterListComponent implements OnInit {
       .getCharacters(page, name, specie, gender, status, favorites)
       .subscribe({
         next: (response: ApiResponse) => {
+
+          console.log('response', response);
+
+
           if (response) {
             this.filteredCharacters = append
               ? [...this.filteredCharacters, ...response.results]
-              : response.results ? response.results : (response as any);
+              : response.results ? response.results : response instanceof Array ? (response as any) : [response];
+            this.characters = this.filteredCharacters;
             this.totalPages = response?.info?.pages ?? 1;
             this.currentPage = page;
             this.pagesArray = Array.from(
@@ -84,6 +90,10 @@ export class CharacterListComponent implements OnInit {
     console.log('loadFavoriteItems');
 
     this.showFavorites = !this.showFavorites;
+    this.searchTerm = ''
+    this.selectedSpecies = ''
+    this.selectedGender = ''
+    this.selectedStatus = ''
 
     this.fetchCharacters(1, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
   }
