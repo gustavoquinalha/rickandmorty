@@ -4,10 +4,12 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';  // Importar FormsModule
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { Character, ApiResponse } from '../../interface/characters';
+import { FavoriteService } from '../../services/favorite.service';
+import { CardCharacterComponent } from '../card-character/card-character.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, CardCharacterComponent],
   selector: 'app-character-list',
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.scss'],
@@ -25,7 +27,7 @@ export class CharacterListComponent implements OnInit {
   loadingCharacters = true;
   pagesArray: number[] = [];
 
-  constructor(private rickAndMortyService: RickAndMortyService) { }
+  constructor(private rickAndMortyService: RickAndMortyService, private favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
     this.fetchCharacters(this.currentPage);
@@ -33,24 +35,22 @@ export class CharacterListComponent implements OnInit {
 
   fetchCharacters(page: number, name: string = '', specie: string = '', gender: string = '', status: string = ''): void {
     this.loadingCharacters = true;
-    setTimeout(() => {
-      this.rickAndMortyService.getCharacters(page, name, specie, gender, status).subscribe({
-        next: (response: ApiResponse) => {
-          if (response) {
-            this.characters = response.results;
-            this.filteredCharacters = this.characters;
-            this.totalPages = response.info.pages;
-            this.loadingCharacters = false;
-
-            this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-          }
-        },
-        error: (error) => {
-          console.error('Erro ao buscar personagens:', error);
+    this.rickAndMortyService.getCharacters(page, name, specie, gender, status).subscribe({
+      next: (response: ApiResponse) => {
+        if (response) {
+          this.characters = response.results;
+          this.filteredCharacters = this.characters;
+          this.totalPages = response.info.pages;
           this.loadingCharacters = false;
+
+          this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
         }
-      });
-    }, 1000);
+      },
+      error: (error) => {
+        console.error('Erro ao buscar personagens:', error);
+        this.loadingCharacters = false;
+      }
+    });
   }
 
   nextPage(): void {
@@ -106,4 +106,7 @@ export class CharacterListComponent implements OnInit {
     this.currentPage = selectedPage;
     this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
   }
+
+
+
 }

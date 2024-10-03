@@ -1,0 +1,13 @@
+<div *ngIf="favoriteItems.length > 0; else noFavorites">
+  <h2>Your Favorite Characters</h2>
+  <ul>
+    <li *ngFor="let item of favoriteItems">
+      <strong>{{ item.name }}</strong> - {{ item.status }}
+      <img [src]="item.image" alt="{{ item.name }}" width="100">
+    </li>
+  </ul>
+</div>
+
+<ng-template #noFavorites>
+  <p>No favorite characters yet.</p>
+</ng-template>

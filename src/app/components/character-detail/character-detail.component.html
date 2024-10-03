@@ -33,11 +33,12 @@
             <h3 class="text-3xl font-bold truncate text-white">
               {{ character?.name }}
             </h3>
+
             <button
+              (click)="toggleFavorite($event, character.id)"
               class="btn bg-background/60 backdrop-blur-sm h-10 w-10 text-lg border"
             >
-              <!-- ❤️ -->
-              🤍
+              {{ isFavorite(character.id) ? "❤️" : "🤍" }}
             </button>
           </div>
 
@@ -194,7 +195,7 @@
         >
           ⏰
           <span class="text-xs truncate">
-            Created: {{ formatDate(character?.created) }}</span
+            Created: {{ formatDate(character.created) }}</span
           >
         </div>
       </div>

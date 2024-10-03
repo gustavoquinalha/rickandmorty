@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
+import { FavoriteService } from '../../services/favorite.service';
+import { Character } from '../../interface/characters';
 
 @Component({
   standalone: true,
@@ -12,14 +14,15 @@ import { RickAndMortyService } from '../../services/rick-and-morty.service';
   providers: [RickAndMortyService]
 })
 export class CharacterDetailComponent implements OnInit {
-  character: any;
+  character?: Character;
   characterId: any;
   maxCharacters = 826;
 
   constructor(
     private route: ActivatedRoute,
     private rickAndMortyService: RickAndMortyService,
-    private router: Router
+    private router: Router,
+    private favoriteService: FavoriteService
   ) { }
 
   ngOnInit(): void {
@@ -56,5 +59,14 @@ export class CharacterDetailComponent implements OnInit {
     if (this.characterId < this.maxCharacters) {
       this.router.navigate(['/character', Number(this.characterId) + 1]);
     }
+  }
+
+  toggleFavorite(event: any, itemId: number): void {
+    event.stopPropagation();
+    this.favoriteService.toggleFavorite(itemId);
+  }
+
+  isFavorite(itemId: number): boolean {
+    return this.favoriteService.isFavorite(itemId);
   }
 }
