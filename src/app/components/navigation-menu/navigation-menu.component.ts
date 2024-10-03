@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -8,25 +8,25 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './navigation-menu.component.html',
-  styleUrl: './navigation-menu.component.scss'
+  styleUrls: ['./navigation-menu.component.scss']
 })
-export class NavigationMenuComponent {
+export class NavigationMenuComponent implements OnInit {
+  ngOnInit(): void {
+    const savedTheme = localStorage.getItem('theme-rickandmorty');
+    if (savedTheme) {
+      this.setTheme(savedTheme);
+    }
+  }
+
   onThemeSelect(event: Event): void {
     const selectedTheme = (event.target as HTMLSelectElement).value;
-    const htmlElement = document.documentElement;
+    this.setTheme(selectedTheme);
+  }
 
-    if (selectedTheme === 'light') {
-      htmlElement.classList.remove('dark');
-      htmlElement.classList.remove('pickle-rick');
-      htmlElement.classList.add('light');
-    } else if (selectedTheme === 'dark') {
-      htmlElement.classList.remove('light');
-      htmlElement.classList.remove('pickle-rick');
-      htmlElement.classList.add('dark');
-    } else if (selectedTheme === 'pickle-rick') {
-      htmlElement.classList.remove('light');
-      htmlElement.classList.remove('dark');
-      htmlElement.classList.add('pickle-rick');
-    }
+  private setTheme(theme: string): void {
+    const htmlElement = document.documentElement;
+    htmlElement.classList.remove('light', 'dark', 'pickle-rick');
+    htmlElement.classList.add(theme);
+    localStorage.setItem('theme-rickandmorty', theme);
   }
 }
