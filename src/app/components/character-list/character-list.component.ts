@@ -35,26 +35,49 @@ export class CharacterListComponent implements OnInit {
     this.fetchCharacters(this.currentPage);
   }
 
-  fetchCharacters(page: number, name: string = '', specie: string = '', gender: string = '', status: string = ''): void {
+  fetchCharacters(page: number, name: string = '', specie: string = '', gender: string = '', status: string = '', append: boolean = false): void {
     this.loadingCharacters = true;
 
-    const favorites: number[] = this.showFavorites ? this.favoriteService.getFavorites() : [];
+    const favorites: number[] = this.showFavorites
+      ? this.favoriteService.getFavorites()
+      : [];
 
-    this.rickAndMortyService.getCharacters(page, name, specie, gender, status, favorites).subscribe({
-      next: (response: ApiResponse) => {
-        if (response) {
-          this.filteredCharacters = response.results ? response.results : response as any;
-          this.totalPages = response?.info?.pages ?? 1;
-          this.currentPage = page;
-          this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    this.rickAndMortyService
+      .getCharacters(page, name, specie, gender, status, favorites)
+      .subscribe({
+        next: (response: ApiResponse) => {
+          if (response) {
+            this.filteredCharacters = append
+              ? [...this.filteredCharacters, ...response.results]
+              : response.results ? response.results : (response as any);
+            this.totalPages = response?.info?.pages ?? 1;
+            this.currentPage = page;
+            this.pagesArray = Array.from(
+              { length: this.totalPages },
+              (_, i) => i + 1
+            );
+            this.loadingCharacters = false;
+          }
+        },
+        error: (_error) => {
+          this.filteredCharacters = [];
           this.loadingCharacters = false;
-        }
-      },
-      error: (_error) => {
-        this.filteredCharacters = [];
-        this.loadingCharacters = false;
-      }
-    });
+        },
+      });
+  }
+
+  loadMore(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.fetchCharacters(
+        this.currentPage,
+        this.searchTerm,
+        this.selectedSpecies,
+        this.selectedGender,
+        this.selectedStatus,
+        true
+      );
+    }
   }
 
   loadFavoriteItems(): void {

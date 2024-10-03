@@ -6,7 +6,7 @@
     <div
       class="w-full py-4 flex items-center gap-2 md:gap-4 h-20 overflow-x-auto overflow-y-hidden"
     >
-      <div class="container px-2 md:px-4 flex items-center gap-2 md:gap-4">
+      <div class="container px-2 md:px-8 flex items-center gap-2 md:gap-4">
         <div class="flex gap-1 items-center border bg-input/50 rounded-xl p-1">
           <button
             class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg"
@@ -257,48 +257,27 @@
 
   <ng-container *ngIf="filteredCharacters.length; else empty">
     <ng-container *ngIf="!loadingCharacters; else loading">
-      <div class="container py-4">
+      <div class="container py-8">
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 min-h-[calc(100dvh-4rem-5rem-4rem-2rem)]"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 min-h-[calc(100dvh-4rem-5rem-4rem-2rem)]"
         >
           <ng-container *ngFor="let character of filteredCharacters">
             <app-card-character [character]="character"></app-card-character>
           </ng-container>
         </div>
-      </div>
 
-      <div
-        class="hidden md:block border-t backdrop-blur-sm bg-background/95 z-40 sticky bottom-0 left-0 w-full"
-      >
-        <div
-          class="container flex justify-center md:justify-end gap-2 items-center h-16"
-        >
-          <div class="text-xs text-muted-foreground">
-            {{ currentPage }}/{{ totalPages }}
-          </div>
+        <div class="flex justify-center mt-8" *ngIf="currentPage < totalPages">
           <button
-            (click)="previousPage()"
-            [disabled]="currentPage === 1"
+            (click)="loadMore()"
             class="btn btn-border"
+            [disabled]="loadingCharacters"
           >
-            👈
-          </button>
-
-          <select (change)="onPageSelect($event)" class="input">
-            <option
-              *ngFor="let page of pagesArray"
-              [value]="page"
-              [selected]="page === currentPage"
-            >
-              Página {{ page }}
-            </option>
-          </select>
-          <button
-            (click)="nextPage()"
-            [disabled]="currentPage === totalPages"
-            class="btn btn-border"
-          >
-            👉
+            <ng-container *ngIf="loadingCharacters">
+              <span class="text-lg">⏳</span> <span>Loading...</span>
+            </ng-container>
+            <ng-container *ngIf="!loadingCharacters">
+              <span class="text-lg">🎉</span> <span>Load more</span>
+            </ng-container>
           </button>
         </div>
       </div>

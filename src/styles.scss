@@ -106,11 +106,11 @@
   }
 
   ::-webkit-scrollbar {
-    @apply w-2.5 h-2.5 rounded-full;
+    @apply w-2.5 h-2.5;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-border/50 rounded-full;
+    @apply bg-border/50;
   }
 
   ::-webkit-scrollbar-thumb {

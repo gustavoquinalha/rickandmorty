@@ -1,28 +1,49 @@
-<div class="container py-4">
+<div class="w-full min-h-[calc(100dvh-4rem)]">
   <div
-    class="max-w-xl mx-auto flex w-full justify-between items-center gap-4 sticky top-2 left-2 z-50"
+    class="flex justify-center items-center fixed md:sticky top-[calc(100%-4rem)] md:top-0 left-0 z-50 border-t md:border-t-0 border-b-0 md:border-b w-full backdrop-blur-sm bg-background/95"
   >
-    <a
-      routerLink="/"
-      class="btn border text-base text-muted-foreground hover:text-foreground transition-all flex items-center gap-2"
-    >
-      👈 List</a
-    >
+    <div class="container flex justify-between items-center gap-2 h-16">
+      <div class="flex items-center gap-4">
+        <a routerLink="/" class="btn btn-border">
+          <span class="text-lg leading-none">👈</span>
+          <span class="">List</span>
+        </a>
 
-    <div class="text-lg font-semibold">Character {{ characterId }}</div>
+        <span class="text-base font-semibold truncate whitespace-nowrap block"
+          >Character {{ characterId }}</span
+        >
+      </div>
+
+      <div class="flex justify-between items-center gap-2">
+        <button
+          (click)="goToPreviousCharacter()"
+          class="btn btn-border w-10 md:w-auto px-0 md:px-5"
+        >
+          <span class="text-lg leading-none">👈</span>
+          <span class="hidden md:block">Previous character</span>
+        </button>
+        <button
+          (click)="goToNextCharacter()"
+          class="btn btn-border w-10 md:w-auto px-0 md:px-5"
+        >
+          <span class="hidden md:block">Next character</span>
+          <span class="text-lg leading-none">👉</span>
+        </button>
+      </div>
+    </div>
   </div>
 
   <div
     *ngIf="character"
-    class="flex flex-col gap-4 justify-center items-center my-4"
+    class="container flex flex-col gap-4 justify-center items-center my-8"
   >
     <div
-      class="group w-full max-w-xl relative border rounded-xl overflow-hidden bg-background text-foreground transition-all p-6 flex flex-col gap-6"
+      class="group w-full max-w-xl relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
     >
       <div class="flex gap-6 items-start flex-col md:flex-row">
         <img
-          [src]="character?.image"
-          alt="{{ character?.name }}"
+          [src]="character.image"
+          alt="{{ character.name }}"
           class="w-full h-auto md:w-48 min-w-48 md:h-48 rounded-xl border"
         />
 
@@ -31,12 +52,12 @@
         >
           <div class="w-full flex items-center gap-2 justify-between">
             <h3 class="text-3xl font-bold truncate text-white">
-              {{ character?.name }}
+              {{ character.name }}
             </h3>
 
             <button
               (click)="toggleFavorite($event, character.id)"
-              class="btn bg-background/60 backdrop-blur-sm h-10 w-10 text-lg border"
+              class="btn bg-background/60 backdrop-blur-sm h-10 w-10 text-lg leading-none border"
             >
               {{ isFavorite(character.id) ? "❤️" : "🤍" }}
             </button>
@@ -45,117 +66,117 @@
           <div class="flex flex-wrap gap-0">
             <div
               class="w-full flex gap-2 items-center"
-              [title]="character?.status"
-              *ngIf="character?.status"
+              [title]="character.status"
+              *ngIf="character.status"
             >
               <span class="text-muted-foreground min-w-16 text-sm"
                 >Status:</span
               >
-              <span class="text-lg min-w-6 text-center">{{
-                character?.status === "Alive"
+              <span class="text-lg leading-none min-w-6 text-center">{{
+                character.status === "Alive"
                   ? "😄"
-                  : character?.status === "Dead"
+                  : character.status === "Dead"
                   ? "😵"
                   : "🤔"
               }}</span>
               <span class="text-sm truncate capitalize">{{
-                character?.status
+                character.status
               }}</span>
             </div>
 
             <div
               class="w-full flex gap-2 items-center"
-              [title]="character?.gender"
-              *ngIf="character?.gender"
+              [title]="character.gender"
+              *ngIf="character.gender"
             >
               <span class="text-muted-foreground min-w-16 text-sm"
                 >Gender:</span
               >
-              <span class="text-lg min-w-6 text-center">{{
-                character?.gender === "Female"
+              <span class="text-lg leading-none min-w-6 text-center">{{
+                character.gender === "Female"
                   ? "👩"
-                  : character?.gender === "Male"
+                  : character.gender === "Male"
                   ? "👨"
-                  : character?.gender === "Genderless"
+                  : character.gender === "Genderless"
                   ? "🌳"
                   : "🤔"
               }}</span>
               <span class="text-sm truncate capitalize">{{
-                character?.gender
+                character.gender
               }}</span>
             </div>
 
             <div
               class="w-full flex gap-2 items-center"
-              [title]="character?.species"
-              *ngIf="character?.species"
+              [title]="character.species"
+              *ngIf="character.species"
             >
               <span class="text-muted-foreground min-w-16 text-sm"
                 >Specie:</span
               >
-              <span class="text-lg min-w-6 text-center">{{
-                character?.species === "Human"
+              <span class="text-lg leading-none min-w-6 text-center">{{
+                character.species === "Human"
                   ? "🌎"
-                  : character?.species === "Alien"
+                  : character.species === "Alien"
                   ? "👽"
-                  : character?.species === "Robot"
+                  : character.species === "Robot"
                   ? "🤖"
-                  : character?.species === "Animal"
+                  : character.species === "Animal"
                   ? "🐶"
-                  : character?.species === "Cronenberg"
+                  : character.species === "Cronenberg"
                   ? "🐙"
-                  : character?.species === "Humanoid"
+                  : character.species === "Humanoid"
                   ? "🐲"
-                  : character?.species === "Poopybutthole"
+                  : character.species === "Poopybutthole"
                   ? "🥒"
-                  : character?.species === "Mythological Creature"
+                  : character.species === "Mythological Creature"
                   ? "🪄"
-                  : character?.species === "unknown"
+                  : character.species === "unknown"
                   ? "🤔"
-                  : character?.species
+                  : character.species
               }}</span>
               <span class="text-sm truncate capitalize">{{
-                character?.species
+                character.species
               }}</span>
             </div>
 
             <div
               class="w-full flex gap-2 items-center"
               title="Type"
-              *ngIf="character?.type"
+              *ngIf="character.type"
             >
               <span class="text-muted-foreground min-w-16 text-sm">Type:</span>
-              <span class="text-lg min-w-6 text-center">🔎</span>
+              <span class="text-lg leading-none min-w-6 text-center">🔎</span>
               <span class="text-sm truncate capitalize">{{
-                character?.type
+                character.type
               }}</span>
             </div>
 
             <div
               class="w-full flex gap-2 items-center"
               title="Location"
-              *ngIf="character?.location?.name"
+              *ngIf="character.location.name"
             >
               <span class="text-muted-foreground min-w-16 text-sm"
                 >Location:</span
               >
-              <span class="text-lg min-w-6 text-center">📌</span>
+              <span class="text-lg leading-none min-w-6 text-center">📌</span>
               <span class="text-sm truncate capitalize">{{
-                character?.location?.name
+                character.location.name
               }}</span>
-              <a [href]="character?.location?.url"> 🔗 </a>
+              <a [href]="character.location.url"> 🔗 </a>
             </div>
             <div
               class="w-full flex gap-2 items-center"
               title="Origin"
-              *ngIf="character?.origin?.name"
+              *ngIf="character.origin.name"
             >
               <span class="text-muted-foreground min-w-16 text-sm"
                 >Origin:</span
               >
-              <span class="text-lg min-w-6 text-center">👶</span>
+              <span class="text-lg leading-none min-w-6 text-center">👶</span>
               <span class="text-sm truncate capitalize">{{
-                character?.origin?.name
+                character.origin.name
               }}</span>
             </div>
           </div>
@@ -165,19 +186,19 @@
       <div class="flex flex-col gap-4 w-full">
         <div class="border rounded-lg overflow-hidden">
           <div
-            class="text-sm text-foreground rounded-t-lg sticky -top-0 left-0 bg-card/50 backdrop-blur-sm border-b py-3 px-4 flex items-baseline gap-2"
+            class="text-sm text-foreground rounded-t-lg sticky -top-0 left-0 bg-background/50 backdrop-blur-sm border-b py-3 px-4 flex items-baseline gap-2"
           >
-            <span class="text-lg">📽️</span>
+            <span class="text-lg leading-none">📽️</span>
             <span class="text-muted-foreground">Episodes</span>
             <span class="text-xs text-muted-foreground w-full text-right"
-              >({{ character?.episode?.length }})</span
+              >({{ character.episode.length }})</span
             >
           </div>
           <div
-            class="max-h-80 min-h-60 justify-start items-start overflow-auto grid grid-cols-3 gap-3 p-4"
+            class="max-h-96 min-h-60 justify-start items-start overflow-auto grid grid-cols-2 md:grid-cols-3 gap-3 p-4 bg-background"
           >
             <a
-              *ngFor="let episode of character?.episode"
+              *ngFor="let episode of character.episode"
               [title]="episode"
               class="group text-muted-foreground rounded-lg bg-card/50 text-xs hover:text-foreground hover:border-foreground/30 transition-all truncate leading-7 p-4 flex flex-col border overflow-hidden"
               [href]="episode"
@@ -191,7 +212,7 @@
         <div
           class="text-muted-foreground min-w-16 text-sm w-full text-center"
           title="Created"
-          *ngIf="character?.created"
+          *ngIf="character.created"
         >
           ⏰
           <span class="text-xs truncate">
@@ -200,20 +221,5 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="max-w-xl mx-auto flex w-full justify-between items-center gap-4">
-    <button
-      (click)="goToPreviousCharacter()"
-      class="btn border text-base text-muted-foreground hover:text-foreground transition-all flex items-center gap-2"
-    >
-      👈 Previous character
-    </button>
-    <button
-      (click)="goToNextCharacter()"
-      class="btn border text-base text-muted-foreground hover:text-foreground transition-all flex items-center gap-2"
-    >
-      Next character 👉
-    </button>
   </div>
 </div>
