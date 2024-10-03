@@ -164,15 +164,17 @@
       <div class="flex flex-col gap-4 w-full">
         <div class="border rounded-lg overflow-hidden">
           <div
-            class="text-sm text-foreground rounded-t-lg sticky -top-0 left-0 bg-background/80 backdrop-blur-sm border-b py-3 px-4 flex items-center gap-2"
+            class="text-sm text-foreground rounded-t-lg sticky -top-0 left-0 bg-card/50 backdrop-blur-sm border-b py-3 px-4 flex items-baseline gap-2"
           >
-            <span class="">📽️</span>
-            <span class="">Episodes</span>
+            <span class="text-lg">📽️</span>
+            <span class="text-muted-foreground">Episodes</span>
             <span class="text-xs text-muted-foreground w-full text-right"
               >({{ character?.episode?.length }})</span
             >
           </div>
-          <div class="max-h-80 overflow-auto grid grid-cols-3 gap-3 p-4">
+          <div
+            class="max-h-80 min-h-60 justify-start items-start overflow-auto grid grid-cols-3 gap-3 p-4"
+          >
             <a
               *ngFor="let episode of character?.episode"
               [title]="episode"
@@ -200,17 +202,17 @@
   </div>
 
   <div class="max-w-xl mx-auto flex w-full justify-between items-center gap-4">
-    <a
-      routerLink="/"
+    <button
+      (click)="goToPreviousCharacter()"
       class="btn border text-base text-muted-foreground hover:text-foreground transition-all flex items-center gap-2"
     >
       👈 Previous character
-    </a>
-    <a
-      routerLink="/"
+    </button>
+    <button
+      (click)="goToNextCharacter()"
       class="btn border text-base text-muted-foreground hover:text-foreground transition-all flex items-center gap-2"
     >
       Next character 👉
-    </a>
+    </button>
   </div>
 </div>

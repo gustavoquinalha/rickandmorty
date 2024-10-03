@@ -78,7 +78,7 @@ export class CharacterListComponent implements OnInit {
       this.selectedSpecies = specie;
     }
 
-    this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
+    this.fetchCharacters(1, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
   }
 
   selectGender(gender: string) {
@@ -88,7 +88,7 @@ export class CharacterListComponent implements OnInit {
       this.selectedGender = gender;
     }
 
-    this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
+    this.fetchCharacters(1, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
   }
 
   selectStatus(status: string) {
@@ -98,7 +98,7 @@ export class CharacterListComponent implements OnInit {
       this.selectedStatus = status;
     }
 
-    this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
+    this.fetchCharacters(1, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
   }
 
   onPageSelect(event: Event): void {

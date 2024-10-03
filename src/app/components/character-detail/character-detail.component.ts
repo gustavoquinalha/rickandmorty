@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 
 @Component({
@@ -14,17 +14,22 @@ import { RickAndMortyService } from '../../services/rick-and-morty.service';
 export class CharacterDetailComponent implements OnInit {
   character: any;
   characterId: any;
+  maxCharacters = 826;
 
   constructor(
     private route: ActivatedRoute,
-    private rickAndMortyService: RickAndMortyService
+    private rickAndMortyService: RickAndMortyService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.characterId = this.route.snapshot.paramMap.get('id');
-    this.rickAndMortyService.getCharacterById(this.characterId!).subscribe((character) => {
-      this.character = character;
+    this.route.paramMap.subscribe(params => {
+      this.characterId = Number(params.get('id'));
+      this.rickAndMortyService.getCharacterById(this.characterId!).subscribe((character) => {
+        this.character = character;
+      });
     });
+
   }
 
   formatDate(isoString: string): string {
@@ -39,5 +44,17 @@ export class CharacterDetailComponent implements OnInit {
     const seconds = String(date.getSeconds()).padStart(2, '0');
 
     return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+  }
+
+  goToPreviousCharacter() {
+    if (this.characterId > 1) {
+      this.router.navigate(['/character', Number(this.characterId) - 1]);
+    }
+  }
+
+  goToNextCharacter() {
+    if (this.characterId < this.maxCharacters) {
+      this.router.navigate(['/character', Number(this.characterId) + 1]);
+    }
   }
 }
