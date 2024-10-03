@@ -2,6 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import "@fontsource/poppins";
+@import "@fontsource/creepster";
+
 @layer base {
   :root {
     --background: 0 0% 100%;

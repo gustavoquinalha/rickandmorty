@@ -1,122 +1,124 @@
-<div
+<a
+  [routerLink]="['/character', character.id]"
   *ngIf="character"
-  class="group relative border rounded-xl overflow-hidden bg-card hover:border-foreground/30 transition-all"
+  class="block group relative border rounded-xl overflow-hidden bg-card hover:border-foreground/30 transition-all"
 >
   <img
     [src]="character.image"
     alt="{{ character.name }}"
-    class="w-full h-auto group-hover:scale-110 transition-all"
+    class="w-full h-auto object-cover object-center group-hover:scale-110 transition-all"
   />
-  <div
-    class="overflow-hidden absolute p-4 left-0 bottom-0 w-full bg-gradient-to-t from-black/50 from-0% via-transparent via-80% hover:via-40% to-transparent to-100% transition-all h-full flex flex-col justify-end"
-  >
-    <div class="absolute top-2 right-2 z-10 flex items-center gap-1">
-      <button
-        (click)="toggleFavorite($event, character.id)"
-        class="btn bg-background/60 backdrop-blur-sm w-8 h-8 min-w-8 text-lg p-0 border-none"
-      >
-        {{ isFavorite(character.id) ? "❤️" : "🤍" }}
-      </button>
-      <a
-        [routerLink]="['/character', character.id]"
-        class="btn bg-background/60 backdrop-blur-sm w-8 h-8 min-w-8 text-lg p-0 border-none"
-      >
-        🔗
-      </a>
-    </div>
 
-    <a
-      [routerLink]="['/character', character.id]"
-      class="text-2xl font-bold mb-2 text-white"
+  <div class="absolute top-2 right-2 z-10 flex items-center gap-1">
+    <button
+      (click)="toggleFavorite($event, character.id)"
+      class="btn bg-background/60 backdrop-blur-sm w-8 h-8 min-w-8 text-lg p-0 border-none"
     >
-      {{ character.name }}
-      <ng-container
-        *ngIf="character.name.toLowerCase().includes('adolf')"
-        class=""
-        >🔫</ng-container
-      >
-    </a>
-    <div class="flex flex-wrap gap-1">
-      <div
-        class="badge w-8 h-8 min-w-8"
-        [title]="'Gender: ' + character.gender"
-        *ngIf="character.gender"
-      >
-        {{
-          character.gender === "Female"
-            ? "👩"
-            : character.gender === "Male"
-            ? "👨"
-            : character.gender === "Genderless"
-            ? "🌳"
-            : "🤔"
-        }}
+      {{ isFavorite(character.id) ? "❤️" : "🤍" }}
+    </button>
+    <!-- <a
+      [routerLink]="['/character', character.id]"
+      class="btn bg-background/60 backdrop-blur-sm w-8 h-8 min-w-8 text-lg p-0 border-none"
+    >
+      🔗
+    </a> -->
+  </div>
+
+  <div
+    class="absolute left-0 bottom-0 w-full transition-all bg-gradient-to-t from-black/80 from-0% via-transparent via-80% hover:via-40% to-transparent to-100% h-full"
+  >
+    <div class="p-2 flex gap-1 flex-col justify-end h-full">
+      <div class="text-xl font-bold text-white tracking-widest font-creepster">
+        {{ character.name }}
+        <!-- <ng-container
+          *ngIf="character.name.toLowerCase().includes('adolf')"
+          class=""
+          >🔫</ng-container
+        > -->
       </div>
 
-      <div
-        class="badge w-8 h-8 min-w-8"
-        [title]="'Status: ' + character.status"
-        *ngIf="character.status"
-      >
-        {{
-          character.status === "Alive"
-            ? "😄"
-            : character.status === "Dead"
-            ? "😵"
-            : "🤔"
-        }}
-      </div>
+      <div class="flex flex-wrap gap-1">
+        <div
+          class="badge w-8 h-8 min-w-8"
+          [title]="'Gender: ' + character.gender"
+          *ngIf="character.gender"
+        >
+          {{
+            character.gender === "Female"
+              ? "👩"
+              : character.gender === "Male"
+              ? "👨"
+              : character.gender === "Genderless"
+              ? "🌳"
+              : "🤔"
+          }}
+        </div>
 
-      <div
-        class="badge w-8 h-8 min-w-8"
-        [title]="'Specie: ' + character.species"
-        *ngIf="character.species"
-      >
-        {{
-          character.species === "Human"
-            ? "🌎"
-            : character.species === "Alien"
-            ? "👽"
-            : character.species === "Robot"
-            ? "🤖"
-            : character.species === "Animal"
-            ? "🐶"
-            : character.species === "Cronenberg"
-            ? "🐙"
-            : character.species === "Humanoid"
-            ? "🐲"
-            : character.species === "Poopybutthole"
-            ? "🥒"
-            : character.species === "Mythological Creature"
-            ? "🪄"
-            : character.species === "unknown"
-            ? "🤔"
-            : character.species
-        }}
-      </div>
+        <div
+          class="badge w-8 h-8 min-w-8"
+          [title]="'Status: ' + character.status"
+          *ngIf="character.status"
+        >
+          {{
+            character.status === "Alive"
+              ? "😄"
+              : character.status === "Dead"
+              ? "😵"
+              : "🤔"
+          }}
+        </div>
 
-      <div
-        class="badge w-8 h-8 min-w-8"
-        [title]="'Type: ' + character.type"
-        *ngIf="character.type"
-      >
-        🔎
-      </div>
+        <div
+          class="badge w-8 h-8 min-w-8"
+          [title]="'Specie: ' + character.species"
+          *ngIf="character.species"
+        >
+          {{
+            character.species === "Human"
+              ? "🌎"
+              : character.species === "Alien"
+              ? "👽"
+              : character.species === "Robot"
+              ? "🤖"
+              : character.species === "Animal"
+              ? "🐶"
+              : character.species === "Cronenberg"
+              ? "🐙"
+              : character.species === "Humanoid"
+              ? "🐲"
+              : character.species === "Poopybutthole"
+              ? "🥒"
+              : character.species === "Mythological Creature"
+              ? "🪄"
+              : character.species === "unknown"
+              ? "🤔"
+              : character.species
+          }}
+        </div>
 
-      <div
-        class="badge w-8 h-8 min-w-8"
-        [title]="'Location: ' + character.location.name"
-        *ngIf="character.location.name"
-      >
-        📌
-      </div>
-      <div
-        class="badge w-8 h-8 min-w-8"
-        [title]="'Origin: ' + character.origin.name"
-        *ngIf="character.origin.name"
-      >
-        👶
+        <div
+          class="badge w-8 h-8 min-w-8"
+          [title]="'Type: ' + character.type"
+          *ngIf="character.type"
+        >
+          🔎
+        </div>
+
+        <div
+          class="badge w-8 h-8 min-w-8"
+          [title]="'Location: ' + character.location.name"
+          *ngIf="character.location.name"
+        >
+          📌
+        </div>
+        <div
+          class="badge w-8 h-8 min-w-8"
+          [title]="'Origin: ' + character.origin.name"
+          *ngIf="character.origin.name"
+        >
+          👶
+        </div>
       </div>
     </div>
   </div>
-</div>
+</a>

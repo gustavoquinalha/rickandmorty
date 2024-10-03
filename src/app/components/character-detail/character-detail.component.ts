@@ -63,14 +63,13 @@ export class CharacterDetailComponent implements OnInit {
 
     console.log('ids', ids);
 
-
     this.rickAndMortyService
       .getEpisodes(ids)
       .subscribe({
         next: (response: any) => {
           if (response) {
             console.log('response episodes', response);
-            this.episodes = response;
+            this.episodes = response instanceof Array ? response : [response];
           }
         },
         error: (_error) => {
@@ -104,8 +103,9 @@ export class CharacterDetailComponent implements OnInit {
     }
   }
 
-  toggleFavorite(event: any, itemId: number): void {
+  toggleFavorite(event: Event, itemId: number): void {
     event.stopPropagation();
+    event.preventDefault();
     this.favoriteService.toggleFavorite(itemId);
   }
 

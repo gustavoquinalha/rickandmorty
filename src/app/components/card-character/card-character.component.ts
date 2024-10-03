@@ -18,6 +18,7 @@ export class CardCharacterComponent {
 
   toggleFavorite(event: any, itemId: number): void {
     event.stopPropagation();
+    event.preventDefault();
     this.favoriteService.toggleFavorite(itemId);
   }
 
