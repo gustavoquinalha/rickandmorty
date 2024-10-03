@@ -1,13 +1,24 @@
-<div class="sticky md:relative z-50 top-0 left-0 w-full h-16 backdrop-blur-sm bg-background/95 border-b flex justify-center items-center">
+<div
+  class="sticky md:relative z-50 top-0 left-0 w-full h-16 backdrop-blur-sm bg-background/95 border-b flex justify-center items-center"
+>
   <div class="container flex items-center justify-between gap-2">
-    <a routerLink="/" class="block">
-      <img
-        src="./logo.png"
-        width="114"
-        class="w-full max-w-[114px]"
-        alt="Logo Rick And Morty"
-      />
-    </a>
+    <div class="flex items-center gap-4">
+      <a routerLink="/" class="block">
+        <img
+          src="./logo.png"
+          width="114"
+          class="w-full max-w-[114px]"
+          alt="Logo Rick And Morty"
+        />
+      </a>
+      <a
+        class="btn btn-border px-0 py-0 md:px-5 md:py-3 w-10 md:w-auto"
+        href="/"
+      >
+        <span>🏠</span>
+        <span class="hidden md:block">Home</span>
+      </a>
+    </div>
 
     <div class="flex items-center gap-2">
       <a
@@ -35,17 +46,6 @@
         <option value="light" title="Light">☀️ Light</option>
         <option value="pickle-rick" title="Pickle-Rick">🥒 Pickle Rick</option>
       </select>
-
-      <!-- <div
-        class="rounded-xl border bg-background/95 h-10 p-1 gap-1 flex items-center"
-      >
-        <button class="btn !bg-input h-full rounded-lg font-normal">
-          Início
-        </button>
-        <button class="btn bg-background/95 h-full rounded-lg font-normal">
-          Favoritos
-        </button>
-      </div> -->
     </div>
   </div>
 </div>

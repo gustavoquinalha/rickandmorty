@@ -1,5 +1,5 @@
 <div class="w-full flex flex-col" *ngIf="characters; else empty">
-  <div
+  <!-- <div
     id="filtro"
     class="font-poppins fixed md:sticky top-[calc(100%-5rem)] w-full md:top-0 left-0 z-40 overflow-hidden border-t md:border-t-0 border-b-0 md:border-b backdrop-blur-sm bg-background/95"
   >
@@ -253,15 +253,30 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+
+  <app-filter-list
+    (searchTermChange)="onSearchChange($event)"
+    (genderChange)="selectGender($event)"
+    (speciesChange)="selectSpecie($event)"
+    (statusChange)="selectStatus($event)"
+    (favoritesToggle)="loadFavoriteItems($event)"
+    (resetFilters)="resetFilter()"
+  />
 
   <ng-container *ngIf="filteredCharacters.length; else empty">
     <ng-container *ngIf="!loadingCharacters; else loading">
       <div class="container py-8 min-h-[calc(100dvh-4rem-5rem)]">
-        <h2 class="mb-8 text-xl font-medium tracking-widest font-creepster" *ngIf="showFavorites">
+        <h2
+          class="mb-8 text-xl font-medium tracking-widest font-creepster"
+          *ngIf="showFavorites"
+        >
           ❤️ Your Favorite Characters
         </h2>
-        <h2 class="mb-8 text-xl font-medium tracking-widest font-creepster" *ngIf="!showFavorites">
+        <h2
+          class="mb-8 text-xl font-medium tracking-widest font-creepster"
+          *ngIf="!showFavorites"
+        >
           ❤️ Rick and Morty characters
         </h2>
         <div
@@ -292,13 +307,7 @@
 </div>
 
 <ng-template #loading>
-  <div class="container text-center">
-    <div
-      class="p-10 text-muted-foreground min-h-[calc(100dvh-4rem-5rem)] flex justify-center items-center"
-    >
-      <img src="/loading.gif" width="280" alt="" />
-    </div>
-  </div>
+  <app-loading />
 </ng-template>
 
 <ng-template #empty>

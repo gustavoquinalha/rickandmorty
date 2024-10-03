@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';  // Importar FormsModule
+import { FormsModule } from '@angular/forms';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { Character, ApiResponse } from '../../interface/characters';
 import { FavoriteService } from '../../services/favorite.service';
 import { CardCharacterComponent } from '../card-character/card-character.component';
-import { forkJoin } from 'rxjs';
+import { LoadingComponent } from "../loading/loading.component";
+import { FilterListComponent } from "../filter-list/filter-list.component";
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, CardCharacterComponent],
+  imports: [CommonModule, RouterModule, FormsModule, CardCharacterComponent, LoadingComponent, FilterListComponent],
   selector: 'app-character-list',
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.scss'],
@@ -52,7 +53,6 @@ export class CharacterListComponent implements OnInit {
 
           console.log('response', response);
 
-
           if (response) {
             this.filteredCharacters = append
               ? [...this.filteredCharacters, ...response.results]
@@ -74,10 +74,6 @@ export class CharacterListComponent implements OnInit {
       });
   }
 
-  setNull() {
-    return [{}]
-  }
-
   loadMore(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
@@ -92,10 +88,8 @@ export class CharacterListComponent implements OnInit {
     }
   }
 
-  loadFavoriteItems(): void {
-    console.log('loadFavoriteItems');
-
-    this.showFavorites = !this.showFavorites;
+  loadFavoriteItems(value: boolean): void {
+    this.showFavorites = value;
     this.searchTerm = ''
     this.selectedSpecies = ''
     this.selectedGender = ''
@@ -118,37 +112,23 @@ export class CharacterListComponent implements OnInit {
     }
   }
 
-  onSearchChange(): void {
+  onSearchChange(term: string): void {
+    this.searchTerm = term;
     this.fetchCharacters(1, this.searchTerm);
   }
 
   selectSpecie(specie: string) {
-    if (specie === this.selectedSpecies) {
-      this.selectedSpecies = ''
-    } else {
-      this.selectedSpecies = specie;
-    }
-
+    this.selectedSpecies = specie;
     this.fetchCharacters(1, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
   }
 
   selectGender(gender: string) {
-    if (gender === this.selectedGender) {
-      this.selectedGender = ''
-    } else {
-      this.selectedGender = gender;
-    }
-
+    this.selectedGender = gender;
     this.fetchCharacters(1, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
   }
 
   selectStatus(status: string) {
-    if (status === this.selectedStatus) {
-      this.selectedStatus = ''
-    } else {
-      this.selectedStatus = status;
-    }
-
+    this.selectedStatus = status;
     this.fetchCharacters(1, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
   }
 
