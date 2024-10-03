@@ -106,7 +106,4 @@ export class CharacterListComponent implements OnInit {
     this.currentPage = selectedPage;
     this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
   }
-
-
-
 }
