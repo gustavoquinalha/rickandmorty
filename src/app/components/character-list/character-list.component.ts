@@ -47,6 +47,8 @@ export class CharacterListComponent implements OnInit {
           this.totalPages = response?.info?.pages ?? 1;
           this.loadingCharacters = false;
 
+          this.currentPage = page;
+
           this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
         }
       },
@@ -116,6 +118,16 @@ export class CharacterListComponent implements OnInit {
   onPageSelect(event: Event): void {
     const selectedPage = +(event.target as HTMLSelectElement).value;
     this.currentPage = selectedPage;
+    this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
+  }
+
+  resetFilter() {
+    this.showFavorites = false;
+    this.currentPage == 1;
+    this.searchTerm = '';
+    this.selectedSpecies = '';
+    this.selectedGender = '';
+    this.selectedStatus = '';
     this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
   }
 }

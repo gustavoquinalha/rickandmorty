@@ -103,6 +103,6 @@
   }
 
   .badge {
-    @apply rounded-xl bg-background/60 hover:bg-background/80 backdrop-blur-sm text-foreground flex justify-center items-center uppercase w-10 h-10 text-lg truncate;
+    @apply rounded-xl bg-background/60 hover:bg-background/80 backdrop-blur-sm cursor-pointer text-foreground flex justify-center items-center uppercase w-10 h-10 text-lg truncate;
   }
 }

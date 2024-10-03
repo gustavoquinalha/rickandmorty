@@ -11,7 +11,7 @@
           [(ngModel)]="searchTerm"
           (ngModelChange)="onSearchChange()"
           placeholder="Pesquisar por nome..."
-          class="input w-full h-14 min-w-56 pl-12 bg-transparent"
+          class="input w-full h-14 min-w-56 pl-12 bg-transparent text-base"
         />
       </div>
 
@@ -306,7 +306,12 @@
     >
       <span class="text-4xl">😭💔</span>
       <span>No characters found!</span>
-      <button class="btn btn-white">🔄 Reset</button>
+      <button
+        class="btn btn-square w-auto px-4 text-sm"
+        (click)="resetFilter()"
+      >
+        🔄 Reset
+      </button>
     </div>
   </div>
 </ng-template>
