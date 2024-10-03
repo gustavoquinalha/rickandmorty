@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
 import { FavoriteService } from '../../services/favorite.service';
+import { CardCharacterComponent } from '../card-character/card-character.component';
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CardCharacterComponent],
   templateUrl: './favorites.component.html',
 })
 export class FavoritesComponent implements OnInit {

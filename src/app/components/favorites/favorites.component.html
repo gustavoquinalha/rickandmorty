@@ -1,11 +1,14 @@
-<div *ngIf="favoriteItems.length > 0; else noFavorites">
-  <h2>Your Favorite Characters</h2>
-  <ul>
-    <li *ngFor="let item of favoriteItems">
-      <strong>{{ item.name }}</strong> - {{ item.status }}
-      <img [src]="item.image" alt="{{ item.name }}" width="100">
-    </li>
-  </ul>
+<div class="container py-4">
+  <div *ngIf="favoriteItems.length > 0; else noFavorites">
+    <h2 class="mb-4 text-xl font-medium">Your Favorite Characters</h2>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+    >
+      <ng-container *ngFor="let character of favoriteItems">
+        <app-card-character [character]="character"></app-card-character>
+      </ng-container>
+    </div>
+  </div>
 </div>
 
 <ng-template #noFavorites>

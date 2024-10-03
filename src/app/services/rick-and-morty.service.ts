@@ -11,13 +11,15 @@ export class RickAndMortyService {
 
   constructor(private http: HttpClient) { }
 
-  getCharacters(page: number = 1, name: string = '', specie: string = '', gender: string = '', status: string = ''): Observable<ApiResponse> {
+  getCharacters(page: number = 1, name: string = '', specie: string = '', gender: string = '', status: string = '', favorites: number[] = []): Observable<ApiResponse> {
     const nameQuery = name ? `&name=${name}` : '';
     const specieQuery = specie ? `&species=${specie}` : '';
     const genderQuery = gender ? `&gender=${gender}` : '';
     const statusQuery = status ? `&status=${status}` : '';
 
-    return this.http.get<ApiResponse>(`${this.apiUrl}?page=${page}${nameQuery}${specieQuery}${genderQuery}${statusQuery}`);
+    const favoriteQuery = favorites.length ? `/${favorites}` : '';
+
+    return this.http.get<ApiResponse>(`${this.apiUrl}${favoriteQuery}?page=${page}${nameQuery}${specieQuery}${genderQuery}${statusQuery}`);
   }
 
   getCharacterById(id: string): Observable<any> {

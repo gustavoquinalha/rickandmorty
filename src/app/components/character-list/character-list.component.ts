@@ -6,6 +6,7 @@ import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { Character, ApiResponse } from '../../interface/characters';
 import { FavoriteService } from '../../services/favorite.service';
 import { CardCharacterComponent } from '../card-character/card-character.component';
+import { forkJoin } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -16,8 +17,8 @@ import { CardCharacterComponent } from '../card-character/card-character.compone
   providers: [RickAndMortyService]
 })
 export class CharacterListComponent implements OnInit {
-  characters?: Character[] = [];
   filteredCharacters: Character[] = [];
+  favoriteItems: Character[] = [];
   currentPage: number = 1;
   totalPages: number = 1;
   searchTerm: string = '';
@@ -26,6 +27,7 @@ export class CharacterListComponent implements OnInit {
   selectedStatus: string = '';
   loadingCharacters = true;
   pagesArray: number[] = [];
+  showFavorites = false;
 
   constructor(private rickAndMortyService: RickAndMortyService, private favoriteService: FavoriteService) { }
 
@@ -35,22 +37,32 @@ export class CharacterListComponent implements OnInit {
 
   fetchCharacters(page: number, name: string = '', specie: string = '', gender: string = '', status: string = ''): void {
     this.loadingCharacters = true;
-    this.rickAndMortyService.getCharacters(page, name, specie, gender, status).subscribe({
+
+    const favorites: number[] = this.showFavorites ? this.favoriteService.getFavorites() : [];
+
+    this.rickAndMortyService.getCharacters(page, name, specie, gender, status, favorites).subscribe({
       next: (response: ApiResponse) => {
         if (response) {
-          this.characters = response.results;
-          this.filteredCharacters = this.characters;
-          this.totalPages = response.info.pages;
+          this.filteredCharacters = response.results ? response.results : response as any;
+          this.totalPages = response?.info?.pages ?? 1;
           this.loadingCharacters = false;
 
           this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
         }
       },
-      error: (error) => {
-        console.error('Erro ao buscar personagens:', error);
+      error: (_error) => {
+        this.filteredCharacters = [];
         this.loadingCharacters = false;
       }
     });
+  }
+
+  loadFavoriteItems(): void {
+    console.log('loadFavoriteItems');
+
+    this.showFavorites = !this.showFavorites;
+
+    this.fetchCharacters(1, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
   }
 
   nextPage(): void {
