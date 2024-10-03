@@ -18,6 +18,10 @@ export const routes: Routes = [
     loadComponent: () => import('./components/location/location.component').then(m => m.LocationComponent)
   },
   {
+    path: 'episode/:id',
+    loadComponent: () => import('./components/episode/episode.component').then(m => m.EpisodeComponent)
+  },
+  {
     path: '',
     redirectTo: '/',
     pathMatch: 'full'
