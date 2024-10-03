@@ -255,31 +255,33 @@
     </div>
   </div>
 
-  <ng-container *ngIf="!loadingCharacters; else loading">
-    <div class="container py-8">
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 min-h-[calc(100dvh-4rem-5rem-4rem)]"
-      >
-        <ng-container *ngFor="let character of filteredCharacters">
-          <app-card-character [character]="character"></app-card-character>
-        </ng-container>
-      </div>
-
-      <div class="flex justify-center mt-8" *ngIf="currentPage < totalPages">
-        <button
-          (click)="loadMore()"
-          class="btn btn-border"
-          [disabled]="loadingCharacters"
+  <ng-container *ngIf="filteredCharacters.length; else empty">
+    <ng-container *ngIf="!loadingCharacters; else loading">
+      <div class="container py-8">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 min-h-[calc(100dvh-4rem-5rem-4rem)]"
         >
-          <ng-container *ngIf="loadingCharacters">
-            <span class="text-lg">⏳</span> <span>Loading...</span>
+          <ng-container *ngFor="let character of filteredCharacters">
+            <app-card-character [character]="character"></app-card-character>
           </ng-container>
-          <ng-container *ngIf="!loadingCharacters">
-            <span class="text-lg">🎉</span> <span>Load more</span>
-          </ng-container>
-        </button>
+        </div>
+
+        <div class="flex justify-center mt-8" *ngIf="currentPage < totalPages">
+          <button
+            (click)="loadMore()"
+            class="btn btn-border"
+            [disabled]="loadingCharacters"
+          >
+            <ng-container *ngIf="loadingCharacters">
+              <span class="text-lg">⏳</span> <span>Loading...</span>
+            </ng-container>
+            <ng-container *ngIf="!loadingCharacters">
+              <span class="text-lg">🎉</span> <span>Load more</span>
+            </ng-container>
+          </button>
+        </div>
       </div>
-    </div>
+    </ng-container>
   </ng-container>
 </div>
 

@@ -39,8 +39,10 @@ export class CharacterListComponent implements OnInit {
   fetchCharacters(page: number, name: string = '', specie: string = '', gender: string = '', status: string = '', append: boolean = false): void {
     this.loadingCharacters = true;
 
-    const favorites: number[] = this.showFavorites
-      ? this.favoriteService.getFavorites()
+    const favoritesList = this.favoriteService.getFavorites();
+
+    const favorites: any[] = this.showFavorites
+      ? favoritesList.length ? favoritesList : [{}]
       : [];
 
     this.rickAndMortyService
@@ -70,6 +72,10 @@ export class CharacterListComponent implements OnInit {
           this.loadingCharacters = false;
         },
       });
+  }
+
+  setNull() {
+    return [{}]
   }
 
   loadMore(): void {
