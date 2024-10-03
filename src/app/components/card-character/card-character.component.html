@@ -30,8 +30,29 @@
       class="text-2xl font-bold mb-2 text-white"
     >
       {{ character.name }}
+      <ng-container
+        *ngIf="character.name.toLowerCase().includes('adolf')"
+        class=""
+        >🔫</ng-container
+      >
     </a>
     <div class="flex flex-wrap gap-1">
+      <div
+        class="badge w-8 h-8 min-w-8"
+        [title]="'Gender: ' + character.gender"
+        *ngIf="character.gender"
+      >
+        {{
+          character.gender === "Female"
+            ? "👩"
+            : character.gender === "Male"
+            ? "👨"
+            : character.gender === "Genderless"
+            ? "🌳"
+            : "🤔"
+        }}
+      </div>
+
       <div
         class="badge w-8 h-8 min-w-8"
         [title]="'Status: ' + character.status"
@@ -69,24 +90,8 @@
             : character.species === "Mythological Creature"
             ? "🪄"
             : character.species === "unknown"
-            ? "⁉️"
+            ? "🤔"
             : character.species
-        }}
-      </div>
-
-      <div
-        class="badge w-8 h-8 min-w-8"
-        [title]="'Gender: ' + character.gender"
-        *ngIf="character.gender"
-      >
-        {{
-          character.gender === "Female"
-            ? "♀️"
-            : character.gender === "Male"
-            ? "♂️"
-            : character.gender === "Genderless"
-            ? "🌳"
-            : "❔"
         }}
       </div>
 
@@ -103,14 +108,14 @@
         [title]="'Location: ' + character.location.name"
         *ngIf="character.location.name"
       >
-        📍
+        📌
       </div>
       <div
         class="badge w-8 h-8 min-w-8"
         [title]="'Origin: ' + character.origin.name"
         *ngIf="character.origin.name"
       >
-        🍼
+        👶
       </div>
     </div>
   </div>

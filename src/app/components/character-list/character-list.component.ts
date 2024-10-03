@@ -45,9 +45,9 @@ export class CharacterListComponent implements OnInit {
         if (response) {
           this.filteredCharacters = response.results ? response.results : response as any;
           this.totalPages = response?.info?.pages ?? 1;
-          this.loadingCharacters = false;
           this.currentPage = page;
           this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+          this.loadingCharacters = false;
         }
       },
       error: (_error) => {

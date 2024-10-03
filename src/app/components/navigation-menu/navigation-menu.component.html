@@ -1,5 +1,5 @@
-<div class="w-full h-16 backdrop-blur-sm bg-background/95 border-b">
-  <div class="container flex items-center justify-between">
+<div class="sticky md:relative z-50 top-0 left-0 w-full h-16 backdrop-blur-sm bg-background/95 border-b flex justify-center items-center">
+  <div class="container flex items-center justify-between gap-2">
     <a routerLink="/" class="block">
       <img
         src="./logo.png"
@@ -10,10 +10,26 @@
     </a>
 
     <div class="flex items-center gap-2">
+      <a
+        class="btn btn-border px-0 py-0 md:px-5 md:py-3 w-10 md:w-auto"
+        href="https://gus.vision/#contact"
+        target="_blank"
+      >
+        <span>🗯️</span>
+        <span class="hidden md:block">Feedback</span>
+      </a>
+      <a
+        class="btn btn-border px-0 py-0 md:px-5 md:py-3 w-10 md:w-auto"
+        href="https://github.com/gustavoquinalha/rickandmorty"
+        target="_blank"
+      >
+        <span>⭐</span>
+        <span class="hidden md:block">Github</span>
+      </a>
       <select
         (change)="onThemeSelect($event)"
         title="Theme"
-        class="input w-auto pl-2 pr-2 h-12 py-0 text-md"
+        class="input w-auto pl-2 pr-2 py-0 text-md"
       >
         <option value="dark" title="Dark" selected>🌑 Dark</option>
         <option value="light" title="Light">☀️ Light</option>
