@@ -7,7 +7,7 @@ import { ApiResponse } from '../interface/characters';
   providedIn: 'root'
 })
 export class RickAndMortyService {
-  private apiUrl = 'https://rickandmortyapi.com/api/character';
+  private apiUrl = 'https://rickandmortyapi.com/api/';
 
   constructor(private http: HttpClient) { }
 
@@ -19,10 +19,24 @@ export class RickAndMortyService {
 
     const favoriteQuery = favorites.length ? `/${favorites}` : '';
 
-    return this.http.get<ApiResponse>(`${this.apiUrl}${favoriteQuery}?page=${page}${nameQuery}${specieQuery}${genderQuery}${statusQuery}`);
+    return this.http.get<ApiResponse>(`${this.apiUrl}/character${favoriteQuery}?page=${page}${nameQuery}${specieQuery}${genderQuery}${statusQuery}`);
   }
 
   getCharacterById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/character/${id}`);
+  }
+
+  getLocationById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/location/${id}`);
+  }
+
+  getLocation(apiUrl: any): Observable<any> {
+    return this.http.get<any>(`${apiUrl}`);
+  }
+
+  getEpisodes(ids: number[]): Observable<any> {
+    console.log(`${this.apiUrl}/episode/${ids}`);
+
+    return this.http.get<any>(`${this.apiUrl}/episode/${ids}`);
   }
 }

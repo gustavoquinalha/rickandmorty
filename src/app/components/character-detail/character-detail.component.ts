@@ -15,6 +15,8 @@ import { Character } from '../../interface/characters';
 })
 export class CharacterDetailComponent implements OnInit {
   character?: Character;
+  location?: any;
+  episodes?: any;
   characterId: any;
   maxCharacters = 826;
 
@@ -29,10 +31,51 @@ export class CharacterDetailComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.characterId = Number(params.get('id'));
       this.rickAndMortyService.getCharacterById(this.characterId!).subscribe((character) => {
+        console.log('character', character);
         this.character = character;
+        this.getLocation(character?.location?.url)
+        this.getEpisodes(character)
       });
     });
+  }
 
+  getLocation(url: string) {
+    this.rickAndMortyService
+      .getLocation(url)
+      .subscribe({
+        next: (response: any) => {
+          if (response) {
+            this.location = response;
+          }
+        },
+        error: (_error) => {
+        },
+      });
+  }
+
+  getEpisodes(character: any) {
+    console.log('getEpisodes', character);
+
+    const ids = character.episode.map((url: string) => {
+      const parts = url.split('/');
+      return parseInt(parts[parts.length - 1], 10);
+    });
+
+    console.log('ids', ids);
+
+
+    this.rickAndMortyService
+      .getEpisodes(ids)
+      .subscribe({
+        next: (response: any) => {
+          if (response) {
+            console.log('response episodes', response);
+            this.episodes = response;
+          }
+        },
+        error: (_error) => {
+        },
+      });
   }
 
   formatDate(isoString: string): string {

@@ -1,0 +1,73 @@
+<div class="w-full min-h-[calc(100dvh-4rem)]">
+  <div
+    class="flex justify-center items-center fixed md:sticky top-[calc(100%-4rem)] md:top-0 left-0 z-50 border-t md:border-t-0 border-b-0 md:border-b w-full backdrop-blur-sm bg-background/95"
+  >
+    <div class="container flex justify-between items-center gap-2 h-16">
+      <div class="flex items-center gap-4">
+        <a routerLink="/" class="btn btn-border">
+          <span class="text-lg leading-none">👈</span>
+          <span class="">Back</span>
+        </a>
+
+        <span class="text-base font-semibold truncate whitespace-nowrap block"
+          >Location {{ locationId }}</span
+        >
+      </div>
+
+      <div class="flex justify-between items-center gap-2">
+        <button
+          (click)="goToPreviousLocation()"
+          class="btn btn-border w-10 md:w-auto px-0 md:px-5"
+        >
+          <span class="text-lg leading-none">👈</span>
+          <span class="hidden md:block">Previous location</span>
+        </button>
+        <button
+          (click)="goToNextLocation()"
+          class="btn btn-border w-10 md:w-auto px-0 md:px-5"
+        >
+          <span class="hidden md:block">Next location</span>
+          <span class="text-lg leading-none">👉</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-8">
+    <div
+      *ngIf="location"
+      class="group w-full max-w-xl mx-auto relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
+    >
+      <h3 class="font-semibold text-sm">📌 Location</h3>
+      <div class="flex flex-col gap-2">
+        <div class="w-full flex gap-2 items-center">
+          <span class="text-muted-foreground min-w-20 text-sm">Name:</span>
+          <span class="text-sm truncate capitalize">{{ location?.name }}</span>
+        </div>
+
+        <div class="w-full flex gap-2 items-center">
+          <span class="text-muted-foreground min-w-20 text-sm">Type:</span>
+          <span class="text-sm truncate capitalize">{{ location?.type }}</span>
+        </div>
+
+        <div class="w-full flex gap-2 items-center">
+          <span class="text-muted-foreground min-w-20 text-sm">Dimension:</span>
+          <span class="text-sm truncate capitalize">{{
+            location?.dimension
+          }}</span>
+        </div>
+
+        <div class="w-full flex gap-2 items-center">
+          <span class="text-muted-foreground min-w-20 text-sm">Residents:</span>
+          <span class="text-sm truncate capitalize">{{
+            location?.residents?.length
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noLocation>
+  <p>No location found.</p>
+</ng-template>
