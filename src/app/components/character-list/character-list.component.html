@@ -11,7 +11,7 @@
           [(ngModel)]="searchTerm"
           (ngModelChange)="onSearchChange()"
           placeholder="Pesquisar por nome..."
-          class="input w-full h-14 min-w-56 pl-12 bg-transparent text-base"
+          class="input w-full h-14 min-w-56 pl-12 bg-transparent text-base placeholder:text-foreground"
         />
       </div>
 
@@ -262,7 +262,7 @@
           <button
             (click)="previousPage()"
             [disabled]="currentPage === 1"
-            class="btn border bg-transparent"
+            class="btn border bg-transparent hover:bg-background/80"
           >
             👈
           </button>
@@ -279,7 +279,7 @@
           <button
             (click)="nextPage()"
             [disabled]="currentPage === totalPages"
-            class="btn border bg-transparent"
+            class="btn border bg-transparent hover:bg-background/80"
           >
             👉
           </button>

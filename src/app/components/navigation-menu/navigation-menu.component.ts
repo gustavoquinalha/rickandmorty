@@ -17,10 +17,16 @@ export class NavigationMenuComponent {
 
     if (selectedTheme === 'light') {
       htmlElement.classList.remove('dark');
+      htmlElement.classList.remove('pickle-rick');
       htmlElement.classList.add('light');
     } else if (selectedTheme === 'dark') {
       htmlElement.classList.remove('light');
+      htmlElement.classList.remove('pickle-rick');
       htmlElement.classList.add('dark');
+    } else if (selectedTheme === 'pickle-rick') {
+      htmlElement.classList.remove('light');
+      htmlElement.classList.remove('dark');
+      htmlElement.classList.add('pickle-rick');
     }
   }
 }
