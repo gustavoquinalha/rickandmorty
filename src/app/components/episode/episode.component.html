@@ -35,33 +35,97 @@
     </div>
   </div>
 
-  <div class="container py-8" *ngIf="!loadingEpisode; else loading">
-    <div
-      *ngIf="episode; else empty"
-      class="group w-full max-w-xl mx-auto relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
-    >
-      <div class="w-full flex gap-2 items-center justify-between">
-        <h3 class="font-semibold text-sm tracking-widest font-creepster">
-          📽️ Episode {{ episode?.episode }}
-        </h3>
+  <div
+    class="container py-8 flex flex-col gap-4"
+    *ngIf="!loadingEpisode && !loadingCharacter; else loading"
+  >
+    <ng-container *ngIf="episode; else empty">
+      <div
+        class="group w-full max-w-xl mx-auto relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
+      >
+        <div class="w-full flex gap-2 items-center justify-between">
+          <h3 class="font-semibold text-sm tracking-widest font-creepster">
+            📽️ Episode {{ episode?.episode }}
+          </h3>
 
-        <div class="flex items-center justify-center gap-2">
-          <span class="text-muted-foreground text-lg">📺 </span>
-          <span class="text-xs text-muted-foreground capitalize">{{
-            episode?.air_date
-          }}</span>
+          <div class="flex items-center justify-center gap-2">
+            <span class="text-muted-foreground text-lg">📺 </span>
+            <span class="text-xs text-muted-foreground capitalize">{{
+              episode?.air_date
+            }}</span>
+          </div>
+        </div>
+
+        <div
+          class="border aspect-video rounded-lg p-4 w-full justify-center items-center flex flex-col gap-1 text-center bg-background/60 hover:border-foreground/30 transition-all"
+        >
+          <span class="text-muted-foreground text-6xl">🎞️ </span>
+          <div class="w-full">
+            <span class="text-sm capitalize"> {{ episode?.name }}</span>
+          </div>
+        </div>
+
+        <div class="flex gap-2 items-center justify-end flex-wrap">
+          <a
+            target="_blank"
+            [href]="
+              'https://www.netflix.com/search?q=' +
+              'Rick and Morty ' +
+              episode?.name
+            "
+            class="btn btn-border w-10 md:w-auto px-0 md:px-3"
+          >
+            ▶️ Netflix
+          </a>
+          <a
+            target="_blank"
+            [href]="
+              'https://www.primevideo.com/search/ref=atv_nb_sug?ie=UTF8&phrase=' +
+              'Rick and Morty ' +
+              episode?.name
+            "
+            class="btn btn-border w-10 md:w-auto px-0 md:px-3"
+          >
+            ▶️ Prime
+          </a>
+          <a
+            target="_blank"
+            [href]="
+              'https://play.max.com/search/result?q=' +
+              'Rick and Morty ' +
+              episode?.name
+            "
+            class="btn btn-border w-10 md:w-auto px-0 md:px-3"
+          >
+            ▶️ Max
+          </a>
         </div>
       </div>
 
       <div
-        class="border aspect-video rounded-lg p-4 w-full justify-center items-center flex flex-col gap-1 text-center bg-background/60 hover:border-foreground/30 transition-all"
+        *ngIf="character"
+        class="group w-full max-w-xl mx-auto relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
       >
-        <span class="text-muted-foreground text-6xl">🎞️ </span>
-        <div class="w-full">
-          <span class="text-sm capitalize"> {{ episode?.name }}</span>
+        <h3 class="font-semibold text-sm tracking-widest font-creepster">
+          👨‍🚀 Characters
+        </h3>
+        <div class="text-sm flex gap-2 flex-wrap">
+          <ng-container *ngFor="let resident of character">
+            <a
+              [routerLink]="['/character', resident.id]"
+              [title]="resident.name"
+            >
+              <img
+                [src]="resident.image"
+                alt="{{ resident.name }}"
+                class="w-20 h-20 min-20 rounded-full border border-foreground/40 hover:border-foreground/100 transition-all"
+                loading="lazy"
+              />
+            </a>
+          </ng-container>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 </div>
 

@@ -20,7 +20,7 @@ export class RickAndMortyService {
     return this.http.get<ApiResponse>(`${this.apiUrl}/character${favoriteQuery}?page=${page}${nameQuery}${specieQuery}${genderQuery}${statusQuery}`);
   }
 
-  getCharacterById(id: string): Observable<any> {
+  getCharacterById(id: string | number[]): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/character/${id}`);
   }
 

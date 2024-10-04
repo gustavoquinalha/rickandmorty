@@ -8,13 +8,23 @@
           <span class="text-lg leading-none">👈</span>
           <span class="hidden md:block">Back</span>
         </a>
+
+        <span
+          class="text-sm md:ml-2 truncate whitespace-nowrap block text-muted-foreground"
+        >
+          Character {{ characterId }}</span
+        >
       </div>
 
-      <span class="text-base truncate whitespace-nowrap block"
-        >Character {{ characterId }}</span
-      >
-
       <div class="flex justify-between items-center gap-2">
+        <button
+          *ngIf="character"
+          (click)="toggleFavorite($event, character.id)"
+          class="btn bg-background/60 backdrop-blur-sm h-10 w-10 text-lg leading-none border"
+        >
+          {{ isFavorite(character.id) ? "❤️" : "🤍" }}
+        </button>
+
         <button
           [ngClass]="{ disabled: characterId <= 1 }"
           (click)="goToPreviousCharacter()"
@@ -23,6 +33,7 @@
           <span class="text-lg leading-none">👈</span>
           <span class="hidden md:block">Previous character</span>
         </button>
+
         <button
           [ngClass]="{ disabled: this.characterId >= this.maxCharacters }"
           (click)="goToNextCharacter()"
@@ -58,19 +69,12 @@
           <div
             class="overflow-hidden truncate w-full h-full flex gap-2 flex-col justify-end"
           >
-            <div class="w-full flex items-center gap-2 justify-between">
+            <div class="w-full">
               <h3
-                class="text-3xl font-bold truncate text-foreground tracking-widest font-creepster"
+                class="text-3xl font-bold text-foreground tracking-widest font-creepster whitespace-normal"
               >
                 {{ character.name }}
               </h3>
-
-              <button
-                (click)="toggleFavorite($event, character.id)"
-                class="btn bg-background/60 backdrop-blur-sm h-10 w-10 text-lg leading-none border"
-              >
-                {{ isFavorite(character.id) ? "❤️" : "🤍" }}
-              </button>
             </div>
 
             <div class="flex flex-wrap gap-2">
