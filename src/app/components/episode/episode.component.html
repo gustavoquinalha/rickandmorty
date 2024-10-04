@@ -43,7 +43,7 @@
       <div
         class="group w-full max-w-xl mx-auto relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
       >
-        <div class="w-full flex gap-2 items-center justify-between">
+        <div class="w-full flex flex-col md:flex-row gap-2 items-center justify-between">
           <h3 class="font-semibold text-sm tracking-widest font-creepster">
             📽️ Episode {{ episode?.episode }}
           </h3>
@@ -65,7 +65,7 @@
           </div>
         </div>
 
-        <div class="flex gap-2 items-center justify-end flex-wrap">
+        <div class="flex gap-2 items-center justify-center md:justify-end flex-wrap">
           <a
             target="_blank"
             [href]="
@@ -73,7 +73,7 @@
               'Rick and Morty ' +
               episode?.name
             "
-            class="btn btn-border w-10 md:w-auto px-0 md:px-3"
+            class="btn btn-border w-auto px-3"
           >
             ▶️ Netflix
           </a>
@@ -84,7 +84,7 @@
               'Rick and Morty ' +
               episode?.name
             "
-            class="btn btn-border w-10 md:w-auto px-0 md:px-3"
+            class="btn btn-border w-auto px-3"
           >
             ▶️ Prime
           </a>
@@ -95,7 +95,7 @@
               'Rick and Morty ' +
               episode?.name
             "
-            class="btn btn-border w-10 md:w-auto px-0 md:px-3"
+            class="btn btn-border w-auto px-3"
           >
             ▶️ Max
           </a>
@@ -106,10 +106,10 @@
         *ngIf="character"
         class="group w-full max-w-xl mx-auto relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
       >
-        <h3 class="font-semibold text-sm tracking-widest font-creepster">
+        <h3 class="font-semibold text-sm text-center md:text-left tracking-widest font-creepster">
           👨‍🚀 Characters
         </h3>
-        <div class="text-sm flex gap-2 flex-wrap">
+        <div class="text-sm flex gap-2 flex-wrap justify-center items-center">
           <ng-container *ngFor="let resident of character">
             <a
               [routerLink]="['/character', resident.id]"
@@ -118,7 +118,7 @@
               <img
                 [src]="resident.image"
                 alt="{{ resident.name }}"
-                class="w-20 h-20 min-20 rounded-full border border-foreground/40 hover:border-foreground/100 transition-all"
+                class="size-12 md:size-20 rounded-full border border-foreground/40 hover:border-foreground/100 transition-all"
                 loading="lazy"
               />
             </a>

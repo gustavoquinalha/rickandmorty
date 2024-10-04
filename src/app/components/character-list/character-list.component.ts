@@ -113,7 +113,7 @@ export class CharacterListComponent implements OnInit {
 
   onSearchChange(term: string): void {
     this.searchTerm = term;
-    this.fetchCharacters(1, this.searchTerm);
+    this.fetchCharacters(this.currentPage, this.searchTerm);
   }
 
   selectSpecie(specie: string) {

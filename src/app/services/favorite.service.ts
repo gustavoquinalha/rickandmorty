@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FavoriteService {
   private storageKey = 'favoriteItems';
+    private eventoSubject = new Subject<boolean>();
+    eventoObservable$ = this.eventoSubject.asObservable();
 
   constructor() { }
+
+  changeFavoriteList(value: boolean) {
+    this.eventoSubject.next(value);
+  }
 
   getFavorites(): number[] {
     const savedItems = localStorage.getItem(this.storageKey);

@@ -21,6 +21,7 @@ export class CardCharacterComponent {
     event.stopPropagation();
     event.preventDefault();
     this.favoriteService.toggleFavorite(itemId);
+    this.favoriteService.changeFavoriteList(true);
   }
 
   isFavorite(itemId: number): boolean {
