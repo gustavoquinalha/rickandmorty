@@ -1,17 +1,9 @@
 <a
   [routerLink]="['/character', character.id]"
   *ngIf="character"
-  [ngClass]="{ flex: !showGrid }"
+  [ngClass]="showGrid ? '' : 'grid grid-cols-2 items-stretch'"
   class="block group relative border rounded-xl overflow-hidden bg-card hover:border-foreground/30 transition-all"
 >
-  <div class="aspect-square bg-foreground overflow-hidden">
-    <img
-      [src]="character.image"
-      alt="{{ character.name }}"
-      class="aspect-square object-cover object-center group-hover:scale-110 transition-all"
-    />
-  </div>
-
   <div class="absolute top-2 right-2 z-10 flex items-center gap-1">
     <button
       (click)="toggleFavorite($event, character.id)"
@@ -19,6 +11,14 @@
     >
       {{ isFavorite(character.id) ? "❤️" : "🤍" }}
     </button>
+  </div>
+
+  <div class="aspect-square bg-foreground overflow-hidden w-full">
+    <img
+      [src]="character.image"
+      alt="{{ character.name }}"
+      class="aspect-square w-full h-full object-cover object-center group-hover:scale-110 transition-all"
+    />
   </div>
 
   <div
@@ -29,8 +29,8 @@
     class="w-full transition-all h-full"
   >
     <div
-      [ngClass]="{ '!p-6 !gap-4': !showGrid }"
-      class="p-2 flex gap-1 flex-col justify-end h-full"
+      [ngClass]="showGrid ? 'justify-end' : '!p-6 !gap-4'"
+      class="p-2 flex gap-1 flex-col h-full"
     >
       <div
         [ngClass]="{ '!text-2xl': !showGrid }"
@@ -55,7 +55,9 @@
               ? "🌳"
               : "🤔"
           }}
-          <span class="ml-2" *ngIf="!showGrid">{{ character.gender }}</span>
+          <span class="ml-2 truncate h-min" *ngIf="!showGrid">{{
+            character.gender
+          }}</span>
         </div>
 
         <div
@@ -71,7 +73,9 @@
               ? "😵"
               : "🤔"
           }}
-          <span class="ml-2" *ngIf="!showGrid">{{ character.status }}</span>
+          <span class="ml-2 truncate h-min" *ngIf="!showGrid">{{
+            character.status
+          }}</span>
         </div>
 
         <div
@@ -101,7 +105,9 @@
               ? "🤔"
               : character.species
           }}
-          <span class="ml-2" *ngIf="!showGrid">{{ character.species }}</span>
+          <span class="ml-2 truncate h-min" *ngIf="!showGrid">{{
+            character.species
+          }}</span>
         </div>
 
         <div
@@ -111,7 +117,9 @@
           *ngIf="character.type"
         >
           🔎
-          <span class="ml-2" *ngIf="!showGrid">{{ character.type }}</span>
+          <span class="ml-2 truncate h-min" *ngIf="!showGrid">{{
+            character.type
+          }}</span>
         </div>
 
         <div
@@ -121,7 +129,7 @@
           *ngIf="character.location.name"
         >
           📌
-          <span class="ml-2" *ngIf="!showGrid">{{
+          <span class="ml-2 truncate h-min" *ngIf="!showGrid">{{
             character.location.name
           }}</span>
         </div>
@@ -132,7 +140,7 @@
           *ngIf="character.origin.name"
         >
           👶
-          <span class="ml-2" *ngIf="!showGrid">{{
+          <span class="ml-2 truncate h-min" *ngIf="!showGrid">{{
             character.origin.name
           }}</span>
         </div>
