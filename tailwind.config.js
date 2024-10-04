@@ -17,6 +17,9 @@ module.exports = {
         poppins: ['Poppins', 'sans-serif'],
         creepster: ['Creepster', 'cursive'],
       },
+      fontSize: {
+        xs: "11px",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

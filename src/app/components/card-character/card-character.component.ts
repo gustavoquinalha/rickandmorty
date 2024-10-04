@@ -13,6 +13,7 @@ import { Character } from '../../interface/characters';
 })
 export class CardCharacterComponent {
   @Input() character?: Character;
+  @Input() showGrid?: boolean;
 
   constructor(private favoriteService: FavoriteService) { }
 

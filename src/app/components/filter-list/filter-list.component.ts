@@ -12,9 +12,9 @@ import { RouterModule } from '@angular/router';
 })
 export class FilterListComponent {
   searchTerm: string = '';
-  selectedGender: string | null = null;
-  selectedSpecies: string | null = null;
-  selectedStatus: string | null = null;
+  selectedGender: string = '';
+  selectedSpecies: string = '';
+  selectedStatus: string = '';
   showFavorites: boolean = false;
 
   @Output() searchTermChange = new EventEmitter<string>();
@@ -29,18 +29,18 @@ export class FilterListComponent {
   }
 
   selectGender(gender: string) {
-    this.selectedGender = gender;
+    this.selectedGender = this.selectedGender !== gender ? gender : '';
     this.genderChange.emit(gender);
   }
 
   selectSpecie(specie: string) {
-    this.selectedSpecies = specie;
-    this.speciesChange.emit(specie);
+    this.selectedSpecies = this.selectedSpecies !== specie ? specie : '';
+    this.speciesChange.emit(this.selectedSpecies);
   }
 
   selectStatus(status: string) {
-    this.selectedStatus = status;
-    this.statusChange.emit(status);
+    this.selectedStatus = this.selectedStatus !== status ? status : '';
+    this.statusChange.emit(this.selectedStatus);
   }
 
   loadFavoriteItems() {

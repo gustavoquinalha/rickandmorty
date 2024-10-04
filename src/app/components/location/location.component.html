@@ -16,6 +16,7 @@
 
       <div class="flex justify-between items-center gap-2">
         <button
+          [ngClass]="{ disabled: locationId <= 1 }"
           (click)="goToPreviousLocation()"
           class="btn btn-border w-10 md:w-auto px-0 md:px-5"
         >
@@ -23,6 +24,7 @@
           <span class="hidden md:block">Previous location</span>
         </button>
         <button
+          [ngClass]="{ disabled: this.locationId >= this.maxLocation }"
           (click)="goToNextLocation()"
           class="btn btn-border w-10 md:w-auto px-0 md:px-5"
         >

@@ -30,6 +30,7 @@ export class CharacterListComponent implements OnInit {
   loadingCharacters = true;
   pagesArray: number[] = [];
   showFavorites = false;
+  showGrid = true;
 
   constructor(private rickAndMortyService: RickAndMortyService, private favoriteService: FavoriteService) { }
 

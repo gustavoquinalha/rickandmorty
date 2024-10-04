@@ -16,6 +16,7 @@
 
       <div class="flex justify-between items-center gap-2">
         <button
+          [ngClass]="{ disabled: characterId <= 1 }"
           (click)="goToPreviousCharacter()"
           class="btn btn-border w-10 md:w-auto px-0 md:px-5"
         >
@@ -23,6 +24,7 @@
           <span class="hidden md:block">Previous character</span>
         </button>
         <button
+          [ngClass]="{ disabled: this.characterId >= this.maxCharacters }"
           (click)="goToNextCharacter()"
           class="btn btn-border w-10 md:w-auto px-0 md:px-5"
         >
@@ -237,7 +239,7 @@
         >
           <a
             [routerLink]="['/episode', episode?.id]"
-            class="border rounded-lg p-4 w-full justify-center items-center flex flex-col gap-1 text-center bg-background/60 hover:border-foreground/30 transition-all"
+            class="border overflow-hidden rounded-lg p-4 w-full justify-center items-center flex flex-col gap-1 text-center bg-background/60 hover:border-foreground/30 transition-all"
           >
             <span class="text-muted-foreground text-2xl">🎞️ </span>
             <div class="w-full">
@@ -245,8 +247,8 @@
                 >{{ episode?.episode }} - {{ episode?.name }}</span
               >
             </div>
-            <div class="w-full">
-              <span class="text-muted-foreground text-lg">📺 </span>
+            <div class="w-full flex items-center justify-center flex-wrap gap-2">
+              <span class="text-muted-foreground text-lg">📺</span>
               <span class="text-xs text-muted-foreground capitalize">{{
                 episode?.air_date
               }}</span>

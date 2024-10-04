@@ -16,17 +16,19 @@
 
       <div class="flex justify-between items-center gap-2">
         <button
+          [ngClass]="{ disabled: episodeId <= 1 }"
           (click)="goToPreviousEpisode()"
           class="btn btn-border w-10 md:w-auto px-0 md:px-5"
         >
           <span class="text-lg leading-none">👈</span>
-          <span class="hidden md:block">Previous pisode</span>
+          <span class="hidden md:block">Previous episode</span>
         </button>
         <button
+          [ngClass]="{ disabled: this.episodeId >= this.maxEpisode }"
           (click)="goToNextEpisode()"
           class="btn btn-border w-10 md:w-auto px-0 md:px-5"
         >
-          <span class="hidden md:block">Next pisode</span>
+          <span class="hidden md:block">Next episode</span>
           <span class="text-lg leading-none">👉</span>
         </button>
       </div>
@@ -43,7 +45,7 @@
           📽️ Episode {{ episode?.episode }}
         </h3>
 
-        <div class="">
+        <div class="flex items-center justify-center gap-2">
           <span class="text-muted-foreground text-lg">📺 </span>
           <span class="text-xs text-muted-foreground capitalize">{{
             episode?.air_date

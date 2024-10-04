@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class EpisodeComponent {
   episodeId: any;
   episode?: any;
-  maxLocation = 126;
+  maxEpisode = 51;
   constructor(
     private route: ActivatedRoute,
     private rickAndMortyService: RickAndMortyService,
@@ -22,10 +22,8 @@ export class EpisodeComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.episodeId = Number(params.get('id'));
-      console.log('episodeId', this.episodeId);
 
       this.rickAndMortyService.getEpisodeById(this.episodeId!).subscribe((episode) => {
-        console.log('episode', episode);
         this.episode = episode;
       });
     });
@@ -38,7 +36,7 @@ export class EpisodeComponent {
   }
 
   goToNextEpisode() {
-    if (this.episodeId) {
+    if (this.episodeId < this.maxEpisode) {
       this.router.navigate(['/episode', Number(this.episodeId) + 1]);
     }
   }
