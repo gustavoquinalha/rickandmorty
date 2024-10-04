@@ -54,10 +54,10 @@
   >
     <div
       *ngIf="character; else empty"
-      class="container flex flex-col gap-4 justify-center items-center my-8"
+      class="container flex flex-col gap-4 justify-center items-center py-8"
     >
       <div
-        class="group w-full max-w-xl relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
+        class="group w-full max-w-xl relative border rounded-xl text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50 overflow-hidden"
       >
         <div class="flex gap-6 items-start flex-col md:flex-row">
           <img
@@ -77,36 +77,36 @@
               </h3>
             </div>
 
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-col gap-2">
               <div
-                class="w-full flex gap-2 items-stretch"
+                class="whitespace-normal capitalize"
                 [title]="character.status"
                 *ngIf="character.status"
               >
-                <span class="text-muted-foreground min-w-16 text-sm"
+                <span
+                  class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-20 mb-2 md:mb-0"
                   >Status:</span
                 >
-                <span class="text-lg leading-none min-w-6 text-center">{{
+                <span class="text-lg leading-none min-w-6 text-center mr-2">{{
                   character.status === "Alive"
                     ? "😄"
                     : character.status === "Dead"
                     ? "😵"
                     : "🤔"
                 }}</span>
-                <span class="text-sm whitespace-normal capitalize">{{
-                  character.status
-                }}</span>
+                <span class="text-sm">{{ character.status }}</span>
               </div>
 
               <div
-                class="w-full flex gap-2 items-stretch"
+                class="whitespace-normal capitalize"
                 [title]="character.gender"
                 *ngIf="character.gender"
               >
-                <span class="text-muted-foreground min-w-16 text-sm"
+                <span
+                  class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-20 mb-2 md:mb-0"
                   >Gender:</span
                 >
-                <span class="text-lg leading-none min-w-6 text-center">{{
+                <span class="text-lg leading-none min-w-6 text-center mr-2">{{
                   character.gender === "Female"
                     ? "👩"
                     : character.gender === "Male"
@@ -115,20 +115,19 @@
                     ? "🌳"
                     : "🤔"
                 }}</span>
-                <span class="text-sm whitespace-normal capitalize">{{
-                  character.gender
-                }}</span>
+                <span class="text-sm">{{ character.gender }}</span>
               </div>
 
               <div
-                class="w-full flex gap-2 items-stretch"
+                class="whitespace-normal capitalize"
                 [title]="character.species"
                 *ngIf="character.species"
               >
-                <span class="text-muted-foreground min-w-16 text-sm"
+                <span
+                  class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-20 mb-2 md:mb-0"
                   >Specie:</span
                 >
-                <span class="text-lg leading-none min-w-6 text-center">{{
+                <span class="text-lg leading-none min-w-6 text-center mr-2">{{
                   character.species === "Human"
                     ? "🌎"
                     : character.species === "Alien"
@@ -149,108 +148,144 @@
                     ? "🤔"
                     : character.species
                 }}</span>
-                <span class="text-sm whitespace-normal capitalize">{{
-                  character.species
-                }}</span>
+                <span class="text-sm">{{ character.species }}</span>
               </div>
 
               <div
-                class="w-full flex gap-2 items-stretch"
+                class="whitespace-normal capitalize"
                 title="Type"
                 *ngIf="character.type"
               >
-                <span class="text-muted-foreground min-w-16 text-sm"
+                <span
+                  class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-20 mb-2 md:mb-0"
                   >Type:</span
                 >
-                <span class="text-lg leading-none min-w-6 text-center">🔎</span>
-                <span class="text-sm whitespace-normal capitalize">{{
-                  character.type
-                }}</span>
+                <span class="text-lg leading-none min-w-6 text-center mr-2"
+                  >🔎</span
+                >
+                <span class="text-sm">{{ character.type }}</span>
               </div>
 
               <div
-                class="w-full flex gap-2 items-stretch"
+                class="whitespace-normal capitalize"
+                title="location"
+                *ngIf="character.location"
+              >
+                <span
+                  class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-20 mb-2 md:mb-0"
+                  >Location:</span
+                >
+                <span class="text-lg leading-none min-w-6 text-center mr-2"
+                  >📌</span
+                >
+                <span class="text-sm">{{ character.location.name }}</span>
+              </div>
+
+              <!-- <div
+                class="whitespace-normal capitalize"
                 title="Location"
                 *ngIf="character.location.name"
               >
-                <span class="text-muted-foreground min-w-16 text-sm"
+                <span
+                  class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-20 mb-2 md:mb-0"
                   >Location:</span
                 >
-                <span class="text-lg leading-none min-w-6 text-center">📌</span>
-                <div class="text-sm whitespace-normal capitalize">
-                  {{ character.location.name }}
-                </div>
-              </div>
+                <span class="text-lg leading-none min-w-6 text-center mr-2"
+                  >📌</span
+                >
+                <div class="text-sm">{{ character.location.name }}</div>
+              </div> -->
+
               <div
-                class="w-full flex gap-2 items-stretch"
+                class="whitespace-normal capitalize"
                 title="Origin"
                 *ngIf="character.origin.name"
               >
-                <span class="text-muted-foreground min-w-16 text-sm"
+                <span
+                  class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-20 mb-2 md:mb-0"
                   >Origin:</span
                 >
-                <span class="text-lg leading-none min-w-6 text-center">👶</span>
-                <span class="text-sm whitespace-normal capitalize">{{
-                  character.origin.name
-                }}</span>
+                <span class="text-lg leading-none min-w-6 text-center mr-2"
+                  >👶</span
+                >
+                <span class="text-sm">{{ character.origin.name }}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div
+      <a
+        [routerLink]="['/location', location?.id]"
         *ngIf="location"
-        class="group w-full max-w-xl relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
+        class="group w-full max-w-xl relative border rounded-xl text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50 overflow-hidden"
       >
-        <h3 class="font-semibold text-sm text-center md:text-left tracking-widest font-creepster">
-          📌 Location
+        <h3
+          class="font-semibold text-xl text-center md:text-left tracking-widest font-creepster flex items-center gap-2"
+        >
+          <span class="text-xl">📌</span>
+          <span>Location</span>
         </h3>
         <div class="flex flex-col gap-2">
-          <div class="w-full flex gap-2 items-stretch">
-            <span class="text-muted-foreground min-w-24 text-sm">Name:</span>
-            <a
-              [routerLink]="['/location', location?.id]"
-              class="text-sm whitespace-normal capitalize hover:text-muted-foreground transition-all"
-              >🔗 {{ location?.name }}</a
+          <div class="whitespace-normal capitalize">
+            <span
+              class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-24 mb-2 md:mb-0"
+              >Name:</span
             >
+            <span class="text-lg leading-none min-w-6 text-center mr-2"
+              >📍</span
+            >
+            <span class="text-sm">{{ location?.name }}</span>
           </div>
 
-          <div class="w-full flex gap-2 items-stretch">
-            <span class="text-muted-foreground min-w-24 text-sm">Type:</span>
-            <span class="text-sm whitespace-normal capitalize">{{
-              location?.type
-            }}</span>
+          <div class="whitespace-normal capitalize">
+            <span
+              class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-24 mb-2 md:mb-0"
+              >Type:</span
+            >
+            <span class="text-lg leading-none min-w-6 text-center mr-2"
+              >🪐</span
+            >
+            <span class="text-sm">{{ location?.type }}</span>
           </div>
 
-          <div class="w-full flex gap-2 items-stretch">
-            <span class="text-muted-foreground min-w-24 text-sm"
+          <div class="whitespace-normal capitalize">
+            <span
+              class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-24 mb-2 md:mb-0"
               >Dimension:</span
             >
-            <span class="text-sm whitespace-normal capitalize">{{
-              location?.dimension
-            }}</span>
+            <span class="text-lg leading-none min-w-6 text-center mr-2"
+              >🚀</span
+            >
+            <span class="text-sm">{{ location?.dimension }}</span>
           </div>
 
-          <div class="w-full flex gap-2 items-stretch">
-            <span class="text-muted-foreground min-w-24 text-sm"
+          <div class="whitespace-normal capitalize">
+            <span
+              class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-24 mb-2 md:mb-0"
               >Residents:</span
             >
-            <span class="text-sm whitespace-normal capitalize">{{
-              location?.residents?.length
-            }}</span>
+            <span class="text-lg leading-none min-w-6 text-center mr-2"
+              >👽</span
+            >
+            <span class="text-sm">{{ location?.residents?.length }}</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <div
         *ngIf="episodes"
-        class="group w-full max-w-xl relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
+        class="group w-full max-w-xl relative border rounded-xl text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50 overflow-hidden"
       >
-        <h3 class="font-semibold text-sm text-center md:text-left tracking-widest font-creepster">
-          📽️ Episodes
+        <h3
+          class="font-semibold text-xl text-center md:text-left tracking-widest font-creepster flex items-center gap-2"
+        >
+          <span class="text-xl">📽️</span>
+          <span>Episodes</span>
         </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-96 overflow-auto pr-2">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-96 overflow-auto pr-2"
+        >
           <div
             class="w-full flex gap-2 items-stretch justify-stretch aspect-video"
             *ngFor="let episode of episodes"

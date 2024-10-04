@@ -1,0 +1,85 @@
+<div
+  class="container p-8 flex flex-col gap-4 min-h-[calc(100dvh-4rem)]"
+  *ngIf="!loadingLocations; else loading"
+>
+  <div class="w-full">
+    <h3
+      class="font-semibold text-xl text-center md:text-left tracking-widest font-creepster flex items-center gap-2"
+    >
+      <span class="text-xl">📌</span>
+      <span>Locations</span>
+    </h3>
+  </div>
+
+  <div
+    class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+    *ngIf="locations; else empty"
+  >
+    <a
+      [routerLink]="['/location', location?.id]"
+      *ngFor="let location of locations"
+      class="group w-full relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50 hover:bg-input/80 hover:border-foreground/30"
+    >
+      <div class="flex flex-col gap-2">
+        <div class="whitespace-normal capitalize">
+          <span
+            class="text-muted-foreground text-sm inline-block w-full max-w-fauto mb-2"
+            >Name:</span
+          >
+          <span class="text-lg leading-none min-w-6 text-center mr-2">📍</span>
+          <span class="text-sm">{{ location?.name }}</span>
+        </div>
+
+        <div class="whitespace-normal capitalize">
+          <span
+            class="text-muted-foreground text-sm inline-block w-full max-w-fauto mb-2"
+            >Type:</span
+          >
+          <span class="text-lg leading-none min-w-6 text-center mr-2">🪐</span>
+          <span class="text-sm">{{ location?.type }}</span>
+        </div>
+
+        <div class="whitespace-normal capitalize">
+          <span
+            class="text-muted-foreground text-sm inline-block w-full max-w-fauto mb-2"
+            >Dimension:</span
+          >
+          <span class="text-lg leading-none min-w-6 text-center mr-2">🚀</span>
+          <span class="text-sm">{{ location?.dimension }}</span>
+        </div>
+
+        <div class="whitespace-normal capitalize">
+          <span
+            class="text-muted-foreground text-sm inline-block w-full max-w-fauto mb-2"
+            >Residents:</span
+          >
+          <span class="text-lg leading-none min-w-6 text-center mr-2">👽</span>
+          <span class="text-sm">{{ location?.residents?.length }}</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<ng-template #empty>
+  <div class="container text-center">
+    <div
+      class="p-10 min-h-[calc(100dvh-4rem-5rem)] flex gap-1 flex-col justify-center items-center"
+    >
+      <span class="text-2xl mb-2">🎞️😭💔</span>
+      <h3 class="text-sm text-foreground">No locations found!</h3>
+      <span class="text-xs text-muted-foreground"
+        >Please try searching again.</span
+      >
+
+      <a href="/" class="btn btn-white w-auto px-4 text-sm mt-4">
+        <span class="text-lg">👈</span>
+        <span>Back to home</span>
+      </a>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <app-loading />
+</ng-template>

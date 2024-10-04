@@ -24,9 +24,41 @@
         [routerLinkActiveOptions]="{ exact: true }"
       >
         <span class="text-lg">🛸</span>
-        <span class="hidden md:block">Characters</span>
+        <span class="hidden lg:block">Characters</span>
       </a>
 
+      <a
+        class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
+        routerLinkActive="!bg-red-200"
+        [routerLink]="'/episodes'"
+        [routerLinkActive]="[
+          '!text-background',
+          '!bg-foreground',
+          'router-active'
+        ]"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="text-lg">📽️</span>
+        <span class="hidden lg:block">Episodes</span>
+      </a>
+
+      <a
+        class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
+        routerLinkActive="!bg-red-200"
+        [routerLink]="'/locations'"
+        [routerLinkActive]="[
+          '!text-background',
+          '!bg-foreground',
+          'router-active'
+        ]"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="text-lg">📌</span>
+        <span class="hidden lg:block">Locations</span>
+      </a>
+    </div>
+
+    <div class="flex items-center gap-2">
       <a
         [routerLink]="'/feedback'"
         [routerLinkActive]="[
@@ -38,91 +70,92 @@
         class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
       >
         <span class="text-lg">🗯️</span>
-        <span class="hidden md:block">Feedback</span>
+        <span class="hidden lg:block">Feedback</span>
       </a>
+
       <a
         class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
         href="https://github.com/gustavoquinalha/rickandmorty"
         target="_blank"
       >
         <span class="text-lg">⭐</span>
-        <span class="hidden md:block">Github</span>
+        <span class="hidden lg:block">Github</span>
       </a>
-    </div>
 
-    <div class="group relative inline-block text-left z-50">
-      <div>
-        <button
-          class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
-          id="theme-button"
-        >
-          <span class="text-lg">🎨</span>
-          <span class="hidden md:block capitalize">{{ selectedTheme }}</span>
-          <span class="text-xs hidden md:block">▼</span>
-        </button>
-      </div>
+      <div class="group relative inline-block text-left z-50">
+        <div>
+          <button
+            class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
+            id="theme-button"
+          >
+            <span class="text-lg">🎨</span>
+            <span class="hidden lg:block capitalize">{{ selectedTheme }}</span>
+            <span class="text-xs hidden lg:block">▼</span>
+          </button>
+        </div>
 
-      <div
-        class="hidden group-hover:block absolute right-0 z-[60] w-56 origin-top-right"
-      >
         <div
-          class="rounded-xl mt-2 border bg-background backdrop-blur-sm shadow-lg"
+          class="hidden group-hover:block absolute right-0 z-[60] w-56 origin-top-right"
         >
-          <div class="p-2 flex flex-col gap-1">
-            <div
-              class="px-4 py-1 rounded-lg flex gap-2 items-center transition-all"
-            >
-              <span class="text-lg">🖌️</span>
-              <span class="text-sm text-muted-foreground">Select theme</span>
-            </div>
-            <div
-              class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
-              (click)="onThemeSelect('dark')"
-              [ngClass]="{
-                '!bg-foreground !text-background border-border':
-                  selectedTheme === 'dark'
-              }"
-              title="Dark"
-              selected
-            >
-              <span class="text-lg">🌑</span>
-              <span class="text-sm">Dark</span>
-            </div>
-            <div
-              class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
-              (click)="onThemeSelect('light')"
-              [ngClass]="{
-                '!bg-foreground !text-background border-border':
-                  selectedTheme === 'light'
-              }"
-              title="Light"
-            >
-              <span class="text-lg">☀️</span>
-              <span class="text-sm">Light</span>
-            </div>
-            <div
-              class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
-              (click)="onThemeSelect('pickle-rick')"
-              [ngClass]="{
-                '!bg-foreground !text-background border-border':
-                  selectedTheme === 'pickle-rick'
-              }"
-              title="Pickle Rick"
-            >
-              <span class="text-lg">🥒</span>
-              <span class="text-sm">Pickle Rick</span>
-            </div>
-            <div
-              class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
-              (click)="onThemeSelect('rick-and-morty')"
-              [ngClass]="{
-                '!bg-foreground !text-background border-border':
-                  selectedTheme === 'rick-and-morty'
-              }"
-              title="Rick and Morty"
-            >
-              <span class="text-lg">👩‍🚀</span>
-              <span class="text-sm">Rick and Morty</span>
+          <div
+            class="rounded-xl mt-2 border bg-background backdrop-blur-sm shadow-lg"
+          >
+            <div class="p-2 flex flex-col gap-1">
+              <div
+                class="px-4 py-1 rounded-lg flex gap-2 items-center transition-all"
+              >
+                <span class="text-lg">🖌️</span>
+                <span class="text-sm text-muted-foreground">Select theme</span>
+              </div>
+              <div
+                class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
+                (click)="onThemeSelect('dark')"
+                [ngClass]="{
+                  '!bg-foreground !text-background border-border':
+                    selectedTheme === 'dark'
+                }"
+                title="Dark"
+                selected
+              >
+                <span class="text-lg">🌑</span>
+                <span class="text-sm">Dark</span>
+              </div>
+              <div
+                class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
+                (click)="onThemeSelect('light')"
+                [ngClass]="{
+                  '!bg-foreground !text-background border-border':
+                    selectedTheme === 'light'
+                }"
+                title="Light"
+              >
+                <span class="text-lg">☀️</span>
+                <span class="text-sm">Light</span>
+              </div>
+              <div
+                class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
+                (click)="onThemeSelect('pickle-rick')"
+                [ngClass]="{
+                  '!bg-foreground !text-background border-border':
+                    selectedTheme === 'pickle-rick'
+                }"
+                title="Pickle Rick"
+              >
+                <span class="text-lg">🥒</span>
+                <span class="text-sm">Pickle Rick</span>
+              </div>
+              <div
+                class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
+                (click)="onThemeSelect('rick-and-morty')"
+                [ngClass]="{
+                  '!bg-foreground !text-background border-border':
+                    selectedTheme === 'rick-and-morty'
+                }"
+                title="Rick and Morty"
+              >
+                <span class="text-lg">👩‍🚀</span>
+                <span class="text-sm">Rick and Morty</span>
+              </div>
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { EpisodesListComponent } from './components/episodes-list/episodes-list.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { Routes } from '@angular/router';
 
@@ -19,8 +20,16 @@ export const routes: Routes = [
     loadComponent: () => import('./components/character-detail/character-detail.component').then(m => m.CharacterDetailComponent)
   },
   {
+    path: 'locations',
+    loadComponent: () => import('./components/locations-list/locations-list.component').then(m => m.LocationsListComponent)
+  },
+  {
     path: 'location/:id',
     loadComponent: () => import('./components/location/location.component').then(m => m.LocationComponent)
+  },
+  {
+    path: 'episodes',
+    loadComponent: () => import('./components/episodes-list/episodes-list.component').then(m => m.EpisodesListComponent)
   },
   {
     path: 'episode/:id',

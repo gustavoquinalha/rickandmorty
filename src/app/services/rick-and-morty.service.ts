@@ -32,6 +32,10 @@ export class RickAndMortyService {
     return this.http.get<any>(`${apiUrl}`);
   }
 
+  getLocations(ids: number[]): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/location/${ids}`);
+  }
+
   getEpisodeById(id: any): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/episode/${id}`);
   }
