@@ -4,11 +4,13 @@ import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from '../loading/loading.component';
 import { Character } from '../../interface/characters';
+import { AvatarCharactersComponent } from '../avatar-characters/avatar-characters.component';
+import { EmptyResultComponent } from '../empty-result/empty-result.component';
 
 @Component({
   selector: 'app-episode',
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, AvatarCharactersComponent, EmptyResultComponent],
   templateUrl: './episode.component.html',
   styleUrl: './episode.component.scss'
 })

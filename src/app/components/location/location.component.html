@@ -109,17 +109,7 @@
         </h3>
         <div class="text-sm flex gap-2 flex-wrap justify-center items-center">
           <ng-container *ngFor="let resident of character">
-            <a
-              [routerLink]="['/character', resident.id]"
-              [title]="resident.name"
-            >
-              <img
-                [src]="resident.image"
-                alt="{{ resident.name }}"
-                class="size-12 md:size-20 rounded-full border border-foreground/40 hover:border-foreground/100 transition-all"
-                loading="lazy"
-              />
-            </a>
+            <app-avatar-characters [avatar]="resident" />
           </ng-container>
         </div>
       </div>
@@ -128,22 +118,12 @@
 </div>
 
 <ng-template #empty>
-  <div class="container text-center">
-    <div
-      class="p-10 min-h-[calc(100dvh-4rem-5rem)] flex gap-1 flex-col justify-center items-center"
-    >
-      <span class="text-2xl mb-2">🌎😭💔</span>
-      <h3 class="text-sm text-foreground">No location found!</h3>
-      <span class="text-xs text-muted-foreground"
-        >Please try searching again.</span
-      >
-
-      <a href="/" class="btn btn-white w-auto px-4 text-sm mt-4">
-        <span class="text-lg leading-none min-w-6 text-center">👈</span>
-        <span>Back to home</span>
-      </a>
-    </div>
-  </div>
+  <app-empty-result
+    [icons]="'🌎😭💔'"
+    [title]="'No location found!'"
+    [subtitle]="'Please try searching again.'"
+    [back]="true"
+  />
 </ng-template>
 
 <ng-template #loading>

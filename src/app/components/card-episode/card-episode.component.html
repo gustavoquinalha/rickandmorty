@@ -1,0 +1,13 @@
+<ng-container *ngIf="episode">
+  <a [routerLink]="['/episode', episode?.id]" class="block text-center">
+    <div
+      class="border mb-1.5 aspect-video overflow-hidden rounded-lg p-4 w-full justify-center items-center flex flex-col gap-1 text-center bg-input/50 hover:bg-input/80 hover:border-foreground/30 transition-all"
+    >
+      <span class="text-muted-foreground text-2xl">🎞️ </span>
+      <div class="w-full">
+        <span class="text-sm capitalize">{{ episode?.episode }}</span>
+      </div>
+    </div>
+    <div class="text-sm text-muted-foreground">{{ episode?.name }}</div>
+  </a>
+</ng-container>

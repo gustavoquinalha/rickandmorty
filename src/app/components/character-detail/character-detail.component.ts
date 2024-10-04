@@ -5,10 +5,12 @@ import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { FavoriteService } from '../../services/favorite.service';
 import { Character } from '../../interface/characters';
 import { LoadingComponent } from '../loading/loading.component';
+import { CardEpisodeComponent } from '../card-episode/card-episode.component';
+import { EmptyResultComponent } from '../empty-result/empty-result.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, CardEpisodeComponent, EmptyResultComponent],
   selector: 'app-character-detail',
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.scss'],

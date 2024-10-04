@@ -8,10 +8,11 @@ import { FavoriteService } from '../../services/favorite.service';
 import { CardCharacterComponent } from '../card-character/card-character.component';
 import { LoadingComponent } from "../loading/loading.component";
 import { FilterListComponent } from "../filter-list/filter-list.component";
+import { EmptyResultComponent } from '../empty-result/empty-result.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, CardCharacterComponent, LoadingComponent, FilterListComponent],
+  imports: [CommonModule, RouterModule, FormsModule, CardCharacterComponent, LoadingComponent, FilterListComponent, EmptyResultComponent],
   selector: 'app-character-list',
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.scss'],

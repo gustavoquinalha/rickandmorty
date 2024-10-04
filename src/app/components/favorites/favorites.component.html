@@ -18,25 +18,12 @@
 </div>
 
 <ng-template #empty>
-  <div class="container text-center">
-    <div
-      class="p-10 min-h-[calc(100dvh-4rem-5rem)] flex gap-1 flex-col justify-center items-center"
-    >
-      <span class="text-2xl mb-2">😭💔</span>
-
-      <h3 class="text-sm text-foreground">
-        Looks like you don't have any favorites yet!
-      </h3>
-
-      <span class="text-xs text-muted-foreground"
-        >Go back to the home page and choose the best ones for you.
-      </span>
-      <a href="/" class="btn btn-white w-auto px-4 text-sm mt-4">
-        <span class="text-lg">👈</span>
-        <span>Back to list</span>
-      </a>
-    </div>
-  </div>
+  <app-empty-result
+    [icons]="'😭💔'"
+    [title]="'Looks like you dont have any favorites yet!'"
+    [subtitle]="'Go back to the home page and choose the best ones for you.'"
+    [back]="true"
+  />
 </ng-template>
 
 <ng-template #loading>

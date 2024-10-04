@@ -47,12 +47,15 @@
         <div
           class="w-full flex flex-col md:flex-row gap-2 items-center justify-between"
         >
-          <h3 class="font-semibold text-sm tracking-widest font-creepster">
-            📽️ Episode {{ episode?.episode }}
+          <h3
+            class="font-semibold text-xl text-center md:text-left tracking-widest font-creepster flex items-center gap-2"
+          >
+            <span class="text-xl">📽️</span>
+            <span>Episode {{ episode?.episode }}</span>
           </h3>
 
           <div class="flex items-center justify-center gap-2">
-            <span class="text-muted-foreground text-lg">📺 </span>
+            <span class="text-muted-foreground text-lg">📺</span>
             <span class="text-xs text-muted-foreground capitalize">{{
               episode?.air_date
             }}</span>
@@ -60,7 +63,7 @@
         </div>
 
         <div
-          class="border aspect-video rounded-lg p-4 w-full justify-center items-center flex flex-col gap-1 text-center bg-background/60 hover:border-foreground/30 transition-all"
+          class="border aspect-video rounded-lg p-4 w-full justify-center items-center flex flex-col gap-1 text-center bg-background/60"
         >
           <span class="text-muted-foreground text-6xl">🎞️ </span>
           <div class="w-full">
@@ -119,17 +122,7 @@
         </h3>
         <div class="text-sm flex gap-2 flex-wrap justify-center items-center">
           <ng-container *ngFor="let resident of character">
-            <a
-              [routerLink]="['/character', resident.id]"
-              [title]="resident.name"
-            >
-              <img
-                [src]="resident.image"
-                alt="{{ resident.name }}"
-                class="size-12 md:size-20 rounded-full border border-foreground/40 hover:border-foreground/100 transition-all"
-                loading="lazy"
-              />
-            </a>
+            <app-avatar-characters [avatar]="resident" />
           </ng-container>
         </div>
       </div>
@@ -138,22 +131,12 @@
 </div>
 
 <ng-template #empty>
-  <div class="container text-center">
-    <div
-      class="p-10 min-h-[calc(100dvh-4rem-5rem)] flex gap-1 flex-col justify-center items-center"
-    >
-      <span class="text-2xl mb-2">🎞️😭💔</span>
-      <h3 class="text-sm text-foreground">No episode found!</h3>
-      <span class="text-xs text-muted-foreground"
-        >Please try searching again.</span
-      >
-
-      <a href="/" class="btn btn-white w-auto px-4 text-sm mt-4">
-        <span class="text-lg">👈</span>
-        <span>Back to home</span>
-      </a>
-    </div>
-  </div>
+  <app-empty-result
+    [icons]="'🎞️😭💔'"
+    [title]="'No episode found!'"
+    [subtitle]="'Please try searching again'"
+    [back]="true"
+  />
 </ng-template>
 
 <ng-template #loading>

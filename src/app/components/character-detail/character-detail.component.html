@@ -283,33 +283,10 @@
           <span class="text-xl">📽️</span>
           <span>Episodes</span>
         </h3>
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-96 overflow-auto pr-2"
-        >
-          <div
-            class="w-full flex gap-2 items-stretch justify-stretch aspect-video"
-            *ngFor="let episode of episodes"
-          >
-            <a
-              [routerLink]="['/episode', episode?.id]"
-              class="border overflow-hidden rounded-lg p-4 w-full justify-center items-center flex flex-col gap-1 text-center bg-background/60 hover:border-foreground/30 transition-all"
-            >
-              <span class="text-muted-foreground text-2xl">🎞️ </span>
-              <div class="w-full">
-                <span class="text-sm capitalize"
-                  >{{ episode?.episode }} - {{ episode?.name }}</span
-                >
-              </div>
-              <div
-                class="w-full flex items-center justify-center flex-wrap gap-2"
-              >
-                <span class="text-muted-foreground text-lg">📺</span>
-                <span class="text-xs text-muted-foreground capitalize">{{
-                  episode?.air_date
-                }}</span>
-              </div>
-            </a>
-          </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-auto">
+          <ng-container *ngFor="let episode of episodes">
+            <app-card-episode [episode]="episode" />
+          </ng-container>
         </div>
       </div>
     </div>
@@ -317,22 +294,12 @@
 </div>
 
 <ng-template #empty>
-  <div class="container text-center">
-    <div
-      class="p-10 min-h-[calc(100dvh-4rem-5rem)] flex gap-1 flex-col justify-center items-center"
-    >
-      <span class="text-2xl mb-2">👽😭💔</span>
-      <h3 class="text-sm text-foreground">No character found!</h3>
-      <span class="text-xs text-muted-foreground"
-        >Please try searching again.</span
-      >
-
-      <a href="/" class="btn btn-white w-auto px-4 text-sm mt-4">
-        <span class="text-lg">👈</span>
-        <span>Back to home</span>
-      </a>
-    </div>
-  </div>
+  <app-empty-result
+    [icons]="'👽😭💔'"
+    [title]="'No character found!'"
+    [subtitle]="'Please try searching again'"
+    [back]="true"
+  />
 </ng-template>
 
 <ng-template #loading>

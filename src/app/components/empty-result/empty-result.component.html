@@ -1,0 +1,16 @@
+<div class="container text-center">
+  <div
+    class="p-10 min-h-[calc(100dvh-4rem-5rem)] flex gap-1 flex-col justify-center items-center"
+  >
+    <span class="text-2xl mb-2" *ngIf="icons">{{ icons }}</span>
+    <h3 class="text-sm text-foreground" *ngIf="title">{{ title }}</h3>
+    <span class="text-xs text-muted-foreground" *ngIf="subtitle">{{
+      subtitle
+    }}</span>
+
+    <a *ngIf="back" href="/" class="btn btn-white w-auto px-4 text-sm mt-4">
+      <span class="text-lg">👈</span>
+      <span>Back to list</span>
+    </a>
+  </div>
+</div>
