@@ -14,7 +14,6 @@ import { Character } from '../../interface/characters';
 export class CardCharacterComponent {
   @Input() character?: Character;
   @Input() showGrid?: boolean;
-  @Input() showFavorite?: number;
   @Output() favoriteChange = new EventEmitter<number>();
 
   constructor(private favoriteService: FavoriteService) { }
@@ -23,11 +22,7 @@ export class CardCharacterComponent {
     event.stopPropagation();
     event.preventDefault();
     this.favoriteService.toggleFavorite(itemId);
-
     this.favoriteChange.emit(itemId);
-
-    if (this.showFavorite) {}
-    // this.favoriteService.changeFavoriteList(true);
   }
 
   isFavorite(itemId: number): boolean {

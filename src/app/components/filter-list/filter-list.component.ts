@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { FavoriteService } from '../../services/favorite.service';
 
 @Component({
@@ -26,8 +26,6 @@ export class FilterListComponent {
   @Output() favoritesToggle = new EventEmitter<boolean>();
   @Output() resetFilters = new EventEmitter<void>();
 
-  private subscription!: Subscription;
-
   private searchTermSubject: Subject<string> = new Subject<string>();
 
   constructor(private favoriteService: FavoriteService) {
@@ -37,10 +35,6 @@ export class FilterListComponent {
     ).subscribe((searchTerm: string | undefined) => {
       this.searchTermChange.emit(searchTerm);
     });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   onSearchChange() {

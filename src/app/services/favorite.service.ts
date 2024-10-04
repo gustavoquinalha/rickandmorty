@@ -6,8 +6,11 @@ import { Subject } from 'rxjs';
 })
 export class FavoriteService {
   private storageKey = 'favoriteItems';
+    private eventoSubject = new Subject<string>();
+    eventoObservable$ = this.eventoSubject.asObservable();
 
   constructor() { }
+
 
   getFavorites(): number[] {
     const savedItems = localStorage.getItem(this.storageKey);
