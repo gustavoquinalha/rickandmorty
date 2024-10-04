@@ -4,10 +4,11 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { FavoriteService } from '../../services/favorite.service';
 import { Character } from '../../interface/characters';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, LoadingComponent],
   selector: 'app-character-detail',
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.scss'],
@@ -20,6 +21,10 @@ export class CharacterDetailComponent implements OnInit {
   characterId: any;
   maxCharacters = 826;
 
+  loadingCharacter = true;
+  loadingLocation = true;
+  loadingEpisodes = true;
+
   constructor(
     private route: ActivatedRoute,
     private rickAndMortyService: RickAndMortyService,
@@ -30,38 +35,40 @@ export class CharacterDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.characterId = Number(params.get('id'));
+      this.loadingCharacter = true;
       this.rickAndMortyService.getCharacterById(this.characterId!).subscribe((character) => {
-        console.log('character', character);
         this.character = character;
         this.getLocation(character?.location?.url)
         this.getEpisodes(character)
+        this.loadingCharacter = false;
       });
     });
   }
 
   getLocation(url: string) {
+    this.loadingLocation = true;
     this.rickAndMortyService
       .getLocation(url)
       .subscribe({
         next: (response: any) => {
           if (response) {
             this.location = response;
+            this.loadingLocation = false;
           }
         },
         error: (_error) => {
+          this.loadingLocation = false;
         },
       });
   }
 
   getEpisodes(character: any) {
-    console.log('getEpisodes', character);
+    this.loadingEpisodes = true;
 
     const ids = character.episode.map((url: string) => {
       const parts = url.split('/');
       return parseInt(parts[parts.length - 1], 10);
     });
-
-    console.log('ids', ids);
 
     this.rickAndMortyService
       .getEpisodes(ids)
@@ -70,9 +77,11 @@ export class CharacterDetailComponent implements OnInit {
           if (response) {
             console.log('response episodes', response);
             this.episodes = response instanceof Array ? response : [response];
+            this.loadingEpisodes = false;
           }
         },
         error: (_error) => {
+          this.loadingEpisodes = false;
         },
       });
   }

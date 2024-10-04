@@ -35,229 +35,241 @@
     </div>
   </div>
 
-  <div
-    *ngIf="character; else noCharacter"
-    class="container flex flex-col gap-4 justify-center items-center my-8"
-  >
+  <ng-container *ngIf="!loadingCharacter && !loadingLocation && !loadingEpisodes; else loading">
     <div
-      class="group w-full max-w-xl relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
+      *ngIf="character; else noCharacter"
+      class="container flex flex-col gap-4 justify-center items-center my-8"
     >
-      <div class="flex gap-6 items-start flex-col md:flex-row">
-        <img
-          [src]="character.image"
-          alt="{{ character.name }}"
-          class="w-full h-auto md:w-48 min-w-48 md:h-48 rounded-xl border"
-        />
+      <div
+        class="group w-full max-w-xl relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
+      >
+        <div class="flex gap-6 items-start flex-col md:flex-row">
+          <img
+            [src]="character.image"
+            alt="{{ character.name }}"
+            class="w-full h-auto md:w-48 min-w-48 md:h-48 rounded-xl border"
+          />
 
-        <div
-          class="overflow-hidden truncate w-full h-full flex gap-2 flex-col justify-end"
-        >
-          <div class="w-full flex items-center gap-2 justify-between">
-            <h3
-              class="text-3xl font-bold truncate text-foreground tracking-widest font-creepster"
-            >
-              {{ character.name }}
-            </h3>
-
-            <button
-              (click)="toggleFavorite($event, character.id)"
-              class="btn bg-background/60 backdrop-blur-sm h-10 w-10 text-lg leading-none border"
-            >
-              {{ isFavorite(character.id) ? "❤️" : "🤍" }}
-            </button>
-          </div>
-
-          <div class="flex flex-wrap gap-2">
-            <div
-              class="w-full flex gap-2 items-center"
-              [title]="character.status"
-              *ngIf="character.status"
-            >
-              <span class="text-muted-foreground min-w-16 text-sm"
-                >Status:</span
+          <div
+            class="overflow-hidden truncate w-full h-full flex gap-2 flex-col justify-end"
+          >
+            <div class="w-full flex items-center gap-2 justify-between">
+              <h3
+                class="text-3xl font-bold truncate text-foreground tracking-widest font-creepster"
               >
-              <span class="text-lg leading-none min-w-6 text-center">{{
-                character.status === "Alive"
-                  ? "😄"
-                  : character.status === "Dead"
-                  ? "😵"
-                  : "🤔"
-              }}</span>
-              <span class="text-sm truncate capitalize">{{
-                character.status
-              }}</span>
+                {{ character.name }}
+              </h3>
+
+              <button
+                (click)="toggleFavorite($event, character.id)"
+                class="btn bg-background/60 backdrop-blur-sm h-10 w-10 text-lg leading-none border"
+              >
+                {{ isFavorite(character.id) ? "❤️" : "🤍" }}
+              </button>
             </div>
 
-            <div
-              class="w-full flex gap-2 items-center"
-              [title]="character.gender"
-              *ngIf="character.gender"
-            >
-              <span class="text-muted-foreground min-w-16 text-sm"
-                >Gender:</span
+            <div class="flex flex-wrap gap-2">
+              <div
+                class="w-full flex gap-2 items-center"
+                [title]="character.status"
+                *ngIf="character.status"
               >
-              <span class="text-lg leading-none min-w-6 text-center">{{
-                character.gender === "Female"
-                  ? "👩"
-                  : character.gender === "Male"
-                  ? "👨"
-                  : character.gender === "Genderless"
-                  ? "🌳"
-                  : "🤔"
-              }}</span>
-              <span class="text-sm truncate capitalize">{{
-                character.gender
-              }}</span>
-            </div>
+                <span class="text-muted-foreground min-w-16 text-sm"
+                  >Status:</span
+                >
+                <span class="text-lg leading-none min-w-6 text-center">{{
+                  character.status === "Alive"
+                    ? "😄"
+                    : character.status === "Dead"
+                    ? "😵"
+                    : "🤔"
+                }}</span>
+                <span class="text-sm truncate capitalize">{{
+                  character.status
+                }}</span>
+              </div>
 
-            <div
-              class="w-full flex gap-2 items-center"
-              [title]="character.species"
-              *ngIf="character.species"
-            >
-              <span class="text-muted-foreground min-w-16 text-sm"
-                >Specie:</span
+              <div
+                class="w-full flex gap-2 items-center"
+                [title]="character.gender"
+                *ngIf="character.gender"
               >
-              <span class="text-lg leading-none min-w-6 text-center">{{
-                character.species === "Human"
-                  ? "🌎"
-                  : character.species === "Alien"
-                  ? "👽"
-                  : character.species === "Robot"
-                  ? "🤖"
-                  : character.species === "Animal"
-                  ? "🐶"
-                  : character.species === "Cronenberg"
-                  ? "🐙"
-                  : character.species === "Humanoid"
-                  ? "🐲"
-                  : character.species === "Poopybutthole"
-                  ? "🥒"
-                  : character.species === "Mythological Creature"
-                  ? "🪄"
-                  : character.species === "unknown"
-                  ? "🤔"
-                  : character.species
-              }}</span>
-              <span class="text-sm truncate capitalize">{{
-                character.species
-              }}</span>
-            </div>
+                <span class="text-muted-foreground min-w-16 text-sm"
+                  >Gender:</span
+                >
+                <span class="text-lg leading-none min-w-6 text-center">{{
+                  character.gender === "Female"
+                    ? "👩"
+                    : character.gender === "Male"
+                    ? "👨"
+                    : character.gender === "Genderless"
+                    ? "🌳"
+                    : "🤔"
+                }}</span>
+                <span class="text-sm truncate capitalize">{{
+                  character.gender
+                }}</span>
+              </div>
 
-            <div
-              class="w-full flex gap-2 items-center"
-              title="Type"
-              *ngIf="character.type"
-            >
-              <span class="text-muted-foreground min-w-16 text-sm">Type:</span>
-              <span class="text-lg leading-none min-w-6 text-center">🔎</span>
-              <span class="text-sm truncate capitalize">{{
-                character.type
-              }}</span>
-            </div>
-
-            <div
-              class="w-full flex gap-2 items-center"
-              title="Location"
-              *ngIf="character.location.name"
-            >
-              <span class="text-muted-foreground min-w-16 text-sm"
-                >Location:</span
+              <div
+                class="w-full flex gap-2 items-center"
+                [title]="character.species"
+                *ngIf="character.species"
               >
-              <span class="text-lg leading-none min-w-6 text-center">📌</span>
-              <div class="text-sm truncate capitalize">
-                {{ character.location.name }}
+                <span class="text-muted-foreground min-w-16 text-sm"
+                  >Specie:</span
+                >
+                <span class="text-lg leading-none min-w-6 text-center">{{
+                  character.species === "Human"
+                    ? "🌎"
+                    : character.species === "Alien"
+                    ? "👽"
+                    : character.species === "Robot"
+                    ? "🤖"
+                    : character.species === "Animal"
+                    ? "🐶"
+                    : character.species === "Cronenberg"
+                    ? "🐙"
+                    : character.species === "Humanoid"
+                    ? "🐲"
+                    : character.species === "Poopybutthole"
+                    ? "🥒"
+                    : character.species === "Mythological Creature"
+                    ? "🪄"
+                    : character.species === "unknown"
+                    ? "🤔"
+                    : character.species
+                }}</span>
+                <span class="text-sm truncate capitalize">{{
+                  character.species
+                }}</span>
+              </div>
+
+              <div
+                class="w-full flex gap-2 items-center"
+                title="Type"
+                *ngIf="character.type"
+              >
+                <span class="text-muted-foreground min-w-16 text-sm"
+                  >Type:</span
+                >
+                <span class="text-lg leading-none min-w-6 text-center">🔎</span>
+                <span class="text-sm truncate capitalize">{{
+                  character.type
+                }}</span>
+              </div>
+
+              <div
+                class="w-full flex gap-2 items-center"
+                title="Location"
+                *ngIf="character.location.name"
+              >
+                <span class="text-muted-foreground min-w-16 text-sm"
+                  >Location:</span
+                >
+                <span class="text-lg leading-none min-w-6 text-center">📌</span>
+                <div class="text-sm truncate capitalize">
+                  {{ character.location.name }}
+                </div>
+              </div>
+              <div
+                class="w-full flex gap-2 items-center"
+                title="Origin"
+                *ngIf="character.origin.name"
+              >
+                <span class="text-muted-foreground min-w-16 text-sm"
+                  >Origin:</span
+                >
+                <span class="text-lg leading-none min-w-6 text-center">👶</span>
+                <span class="text-sm truncate capitalize">{{
+                  character.origin.name
+                }}</span>
               </div>
             </div>
-            <div
-              class="w-full flex gap-2 items-center"
-              title="Origin"
-              *ngIf="character.origin.name"
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="location"
+        class="group w-full max-w-xl relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
+      >
+        <h3 class="font-semibold text-sm tracking-widest font-creepster">
+          📌 Location
+        </h3>
+        <div class="flex flex-col gap-2">
+          <div class="w-full flex gap-2 items-center">
+            <span class="text-muted-foreground min-w-24 text-sm">Name:</span>
+            <a
+              [routerLink]="['/location', location?.id]"
+              class="text-sm truncate capitalize hover:text-muted-foreground transition-all"
+              >🔗 {{ location?.name }}</a
             >
-              <span class="text-muted-foreground min-w-16 text-sm"
-                >Origin:</span
+          </div>
+
+          <div class="w-full flex gap-2 items-center">
+            <span class="text-muted-foreground min-w-24 text-sm">Type:</span>
+            <span class="text-sm truncate capitalize">{{
+              location?.type
+            }}</span>
+          </div>
+
+          <div class="w-full flex gap-2 items-center">
+            <span class="text-muted-foreground min-w-24 text-sm"
+              >Dimension:</span
+            >
+            <span class="text-sm truncate capitalize">{{
+              location?.dimension
+            }}</span>
+          </div>
+
+          <div class="w-full flex gap-2 items-center">
+            <span class="text-muted-foreground min-w-24 text-sm"
+              >Residents:</span
+            >
+            <span class="text-sm truncate capitalize">{{
+              location?.residents?.length
+            }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="episodes"
+        class="group w-full max-w-xl relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
+      >
+        <h3 class="font-semibold text-sm tracking-widest font-creepster">
+          📽️ Episodes
+        </h3>
+        <div class="grid grid-cols-2 gap-2 max-h-96 overflow-auto pr-2">
+          <div
+            class="w-full flex gap-2 items-stretch justify-stretch aspect-video"
+            *ngFor="let episode of episodes"
+          >
+            <a
+              [routerLink]="['/episode', episode?.id]"
+              class="border overflow-hidden rounded-lg p-4 w-full justify-center items-center flex flex-col gap-1 text-center bg-background/60 hover:border-foreground/30 transition-all"
+            >
+              <span class="text-muted-foreground text-2xl">🎞️ </span>
+              <div class="w-full">
+                <span class="text-sm capitalize"
+                  >{{ episode?.episode }} - {{ episode?.name }}</span
+                >
+              </div>
+              <div
+                class="w-full flex items-center justify-center flex-wrap gap-2"
               >
-              <span class="text-lg leading-none min-w-6 text-center">👶</span>
-              <span class="text-sm truncate capitalize">{{
-                character.origin.name
-              }}</span>
-            </div>
+                <span class="text-muted-foreground text-lg">📺</span>
+                <span class="text-xs text-muted-foreground capitalize">{{
+                  episode?.air_date
+                }}</span>
+              </div>
+            </a>
           </div>
         </div>
       </div>
     </div>
-
-    <div
-      *ngIf="location"
-      class="group w-full max-w-xl relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
-    >
-      <h3 class="font-semibold text-sm tracking-widest font-creepster">
-        📌 Location
-      </h3>
-      <div class="flex flex-col gap-2">
-        <div class="w-full flex gap-2 items-center">
-          <span class="text-muted-foreground min-w-24 text-sm">Name:</span>
-          <a
-            [routerLink]="['/location', location?.id]"
-            class="text-sm truncate capitalize hover:text-muted-foreground transition-all"
-            >🔗 {{ location?.name }}</a
-          >
-        </div>
-
-        <div class="w-full flex gap-2 items-center">
-          <span class="text-muted-foreground min-w-24 text-sm">Type:</span>
-          <span class="text-sm truncate capitalize">{{ location?.type }}</span>
-        </div>
-
-        <div class="w-full flex gap-2 items-center">
-          <span class="text-muted-foreground min-w-24 text-sm">Dimension:</span>
-          <span class="text-sm truncate capitalize">{{
-            location?.dimension
-          }}</span>
-        </div>
-
-        <div class="w-full flex gap-2 items-center">
-          <span class="text-muted-foreground min-w-24 text-sm">Residents:</span>
-          <span class="text-sm truncate capitalize">{{
-            location?.residents?.length
-          }}</span>
-        </div>
-      </div>
-    </div>
-
-    <div
-      *ngIf="episodes"
-      class="group w-full max-w-xl relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
-    >
-      <h3 class="font-semibold text-sm tracking-widest font-creepster">
-        📽️ Episodes
-      </h3>
-      <div class="grid grid-cols-2 gap-2 max-h-96 overflow-auto pr-2">
-        <div
-          class="w-full flex gap-2 items-stretch justify-stretch aspect-video"
-          *ngFor="let episode of episodes"
-        >
-          <a
-            [routerLink]="['/episode', episode?.id]"
-            class="border overflow-hidden rounded-lg p-4 w-full justify-center items-center flex flex-col gap-1 text-center bg-background/60 hover:border-foreground/30 transition-all"
-          >
-            <span class="text-muted-foreground text-2xl">🎞️ </span>
-            <div class="w-full">
-              <span class="text-sm capitalize"
-                >{{ episode?.episode }} - {{ episode?.name }}</span
-              >
-            </div>
-            <div class="w-full flex items-center justify-center flex-wrap gap-2">
-              <span class="text-muted-foreground text-lg">📺</span>
-              <span class="text-xs text-muted-foreground capitalize">{{
-                episode?.air_date
-              }}</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+  </ng-container>
 </div>
 
 <ng-template #noCharacter>
@@ -269,4 +281,8 @@
       <span>No character found!</span>
     </div>
   </div>
+</ng-template>
+
+<ng-template #loading>
+  <app-loading />
 </ng-template>

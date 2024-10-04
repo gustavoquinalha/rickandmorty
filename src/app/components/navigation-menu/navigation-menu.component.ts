@@ -11,22 +11,19 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./navigation-menu.component.scss']
 })
 export class NavigationMenuComponent implements OnInit {
+  selectedTheme = 'dark';
   ngOnInit(): void {
     const savedTheme = localStorage.getItem('theme-rickandmorty');
     if (savedTheme) {
-      this.setTheme(savedTheme);
+      this.onThemeSelect(savedTheme);
     }
   }
 
-  onThemeSelect(event: Event): void {
-    const selectedTheme = (event.target as HTMLSelectElement).value;
-    this.setTheme(selectedTheme);
-  }
-
-  private setTheme(theme: string): void {
+  onThemeSelect(value: string): void {
+    this.selectedTheme = value;
     const htmlElement = document.documentElement;
     htmlElement.classList.remove('light', 'dark', 'pickle-rick');
-    htmlElement.classList.add(theme);
-    localStorage.setItem('theme-rickandmorty', theme);
+    htmlElement.classList.add(this.selectedTheme);
+    localStorage.setItem('theme-rickandmorty', this.selectedTheme);
   }
 }
