@@ -3,16 +3,16 @@
     class="flex justify-center items-center fixed md:sticky top-[calc(100%-4rem)] md:top-0 left-0 z-50 border-t md:border-t-0 border-b-0 md:border-b w-full backdrop-blur-sm bg-background/95"
   >
     <div class="container flex justify-between items-center gap-2 h-16">
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2">
         <a routerLink="/" class="btn btn-border">
           <span class="text-lg leading-none">👈</span>
-          <span class="">Back</span>
+          <span class="hidden md:block">Back</span>
         </a>
-
-        <span class="text-base font-semibold truncate whitespace-nowrap block"
-          >Character {{ characterId }}</span
-        >
       </div>
+
+      <span class="text-base truncate whitespace-nowrap block"
+        >Character {{ characterId }}</span
+      >
 
       <div class="flex justify-between items-center gap-2">
         <button
@@ -42,7 +42,7 @@
     "
   >
     <div
-      *ngIf="character; else noCharacter"
+      *ngIf="character; else empty"
       class="container flex flex-col gap-4 justify-center items-center my-8"
     >
       <div
@@ -277,13 +277,21 @@
   </ng-container>
 </div>
 
-<ng-template #noCharacter>
+<ng-template #empty>
   <div class="container text-center">
     <div
-      class="p-10 text-muted-foreground min-h-[calc(100dvh-4rem-5rem)] flex gap-2 flex-col justify-center items-center"
+      class="p-10 min-h-[calc(100dvh-4rem-5rem)] flex gap-1 flex-col justify-center items-center"
     >
-      <span class="text-2xl">😭💔</span>
-      <span>No character found!</span>
+      <span class="text-2xl mb-2">👽😭💔</span>
+      <h3 class="text-sm text-foreground">No character found!</h3>
+      <span class="text-xs text-muted-foreground"
+        >Please try searching again.</span
+      >
+
+      <a href="/" class="btn btn-white w-auto px-4 text-sm mt-4">
+        <span class="text-lg">👈</span>
+        <span>Back to home</span>
+      </a>
     </div>
   </div>
 </ng-template>

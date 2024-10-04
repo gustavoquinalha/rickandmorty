@@ -28,8 +28,8 @@ export class FavoritesComponent implements OnInit {
       next: (characters) => {
         this.favoriteItems = characters;
       },
-      error: (err) => {
-        console.error('Erro ao buscar personagens:', err);
+      error: (_err) => {
+        this.favoriteItems = [];
       }
     });
   }

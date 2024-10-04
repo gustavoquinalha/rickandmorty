@@ -7,7 +7,7 @@ import { ApiResponse } from '../interface/characters';
   providedIn: 'root'
 })
 export class RickAndMortyService {
-  private apiUrl = 'https://rickandmortyapi.com/api/';
+  private apiUrl = 'https://rickandmortyapi.com/api';
 
   constructor(private http: HttpClient) { }
 
@@ -16,9 +16,7 @@ export class RickAndMortyService {
     const specieQuery = specie ? `&species=${specie}` : '';
     const genderQuery = gender ? `&gender=${gender}` : '';
     const statusQuery = status ? `&status=${status}` : '';
-
     const favoriteQuery = favorites.length ? `/${favorites}` : '';
-
     return this.http.get<ApiResponse>(`${this.apiUrl}/character${favoriteQuery}?page=${page}${nameQuery}${specieQuery}${genderQuery}${statusQuery}`);
   }
 
@@ -39,8 +37,6 @@ export class RickAndMortyService {
   }
 
   getEpisodes(ids: number[]): Observable<any> {
-    console.log(`${this.apiUrl}/episode/${ids}`);
-
     return this.http.get<any>(`${this.apiUrl}/episode/${ids}`);
   }
 }

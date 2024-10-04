@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -11,11 +12,11 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./filter-list.component.scss'],
 })
 export class FilterListComponent {
-  searchTerm: string = '';
-  selectedGender: string = '';
-  selectedSpecies: string = '';
-  selectedStatus: string = '';
-  showFavorites: boolean = false;
+  @Input() searchTerm: string = '';
+  @Input() selectedGender: string = '';
+  @Input() selectedSpecies: string = '';
+  @Input() selectedStatus: string = '';
+  @Input() showFavorites?: boolean = false;
 
   @Output() searchTermChange = new EventEmitter<string>();
   @Output() genderChange = new EventEmitter<string>();
@@ -24,43 +25,57 @@ export class FilterListComponent {
   @Output() favoritesToggle = new EventEmitter<boolean>();
   @Output() resetFilters = new EventEmitter<void>();
 
+  private searchTermSubject: Subject<string> = new Subject<string>();
+
+  constructor() {
+    this.searchTermSubject.pipe(
+      debounceTime(1000),
+      distinctUntilChanged()
+    ).subscribe((searchTerm: string | undefined) => {
+      this.searchTermChange.emit(searchTerm);
+    });
+  }
+
   onSearchChange() {
-    this.searchTermChange.emit(this.searchTerm);
+    this.searchTermSubject.next(this.searchTerm);
   }
 
   selectGender(gender: string) {
     this.selectedGender = this.selectedGender !== gender ? gender : '';
     this.genderChange.emit(gender);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   selectSpecie(specie: string) {
     this.selectedSpecies = this.selectedSpecies !== specie ? specie : '';
     this.speciesChange.emit(this.selectedSpecies);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   selectStatus(status: string) {
     this.selectedStatus = this.selectedStatus !== status ? status : '';
     this.statusChange.emit(this.selectedStatus);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   loadFavoriteItems() {
+    // this.resetSelects();
     this.showFavorites = !this.showFavorites;
     this.favoritesToggle.emit(this.showFavorites);
-    this.searchTerm = '';
-    this.searchTermChange.emit(this.searchTerm);
-    this.selectGender('');
-    this.selectSpecie('');
-    this.selectStatus('');
   }
 
   resetFilter() {
+    this.resetSelects();
+    this.showFavorites = false;
+    this.favoritesToggle.emit(this.showFavorites);
+    this.resetFilters.emit();
+  }
+
+  resetSelects() {
     this.searchTerm = '';
     this.searchTermChange.emit(this.searchTerm);
     this.selectGender('');
     this.selectSpecie('');
     this.selectStatus('');
-    this.showFavorites = false;
-    this.favoritesToggle.emit(this.showFavorites);
-    this.resetFilters.emit();
   }
 }

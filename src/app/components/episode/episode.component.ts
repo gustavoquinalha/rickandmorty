@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { CommonModule } from '@angular/common';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-episode',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, LoadingComponent],
   templateUrl: './episode.component.html',
   styleUrl: './episode.component.scss'
 })
@@ -14,6 +15,7 @@ export class EpisodeComponent {
   episodeId: any;
   episode?: any;
   maxEpisode = 51;
+  loadingEpisode = true;
   constructor(
     private route: ActivatedRoute,
     private rickAndMortyService: RickAndMortyService,
@@ -21,10 +23,16 @@ export class EpisodeComponent {
   ) { }
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
+      this.loadingEpisode = true;
       this.episodeId = Number(params.get('id'));
-
-      this.rickAndMortyService.getEpisodeById(this.episodeId!).subscribe((episode) => {
-        this.episode = episode;
+      this.rickAndMortyService.getEpisodeById(this.episodeId!).subscribe({
+        next: (episode) => {
+          this.episode = episode;
+          this.loadingEpisode = false;
+        },
+        error: (_err) => {
+          this.loadingEpisode = false;
+        }
       });
     });
   }

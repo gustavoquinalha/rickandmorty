@@ -15,7 +15,7 @@ import { LoadingComponent } from '../loading/loading.component';
   providers: [RickAndMortyService]
 })
 export class CharacterDetailComponent implements OnInit {
-  character?: Character;
+  character?: Character | null;
   location?: any;
   episodes?: any;
   characterId: any;
@@ -36,11 +36,21 @@ export class CharacterDetailComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.characterId = Number(params.get('id'));
       this.loadingCharacter = true;
-      this.rickAndMortyService.getCharacterById(this.characterId!).subscribe((character) => {
-        this.character = character;
-        this.getLocation(character?.location?.url)
-        this.getEpisodes(character)
-        this.loadingCharacter = false;
+      this.rickAndMortyService.getCharacterById(this.characterId!).subscribe({
+        next: (character: any) => {
+          if (character) {
+            this.character = character;
+            this.getLocation(character?.location?.url)
+            this.getEpisodes(character)
+            this.loadingCharacter = false;
+          }
+        },
+        error: (_err) => {
+          this.character = null;
+          this.loadingCharacter = false;
+          this.loadingLocation = false;
+          this.loadingEpisodes = false;
+        },
       });
     });
   }
@@ -56,7 +66,7 @@ export class CharacterDetailComponent implements OnInit {
             this.loadingLocation = false;
           }
         },
-        error: (_error) => {
+        error: (_err) => {
           this.loadingLocation = false;
         },
       });
@@ -75,12 +85,11 @@ export class CharacterDetailComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           if (response) {
-            console.log('response episodes', response);
             this.episodes = response instanceof Array ? response : [response];
             this.loadingEpisodes = false;
           }
         },
-        error: (_error) => {
+        error: (_err) => {
           this.loadingEpisodes = false;
         },
       });

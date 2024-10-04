@@ -5,7 +5,7 @@
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
     >
       <ng-container *ngFor="let character of favoriteItems">
-        <app-card-character [character]="character"></app-card-character>
+        <app-card-character [character]="character" [showGrid]="true"></app-card-character>
       </ng-container>
     </div>
   </div>

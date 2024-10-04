@@ -2,7 +2,7 @@
   [routerLink]="['/character', character.id]"
   *ngIf="character"
   [ngClass]="showGrid ? '' : 'grid grid-cols-2 items-stretch'"
-  class="block group relative border rounded-xl overflow-hidden bg-card hover:border-foreground/30 transition-all"
+  class="block group h-full relative border rounded-xl overflow-hidden bg-card hover:border-foreground/30 transition-all"
 >
   <div class="absolute top-2 right-2 z-10 flex items-center gap-1">
     <button

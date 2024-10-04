@@ -63,7 +63,7 @@
 
   .pickle-rick {
     --background: 88 49% 30%;
-    --foreground: 0 0% 100%;
+    --foreground: 84 88% 77%;
     --card: 85 51% 35%;
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
@@ -78,8 +78,8 @@
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 78 60% 46%;
-    --input: 240 3.7% 15.9%;
+    --input: 78 60% 46%;
+    --border: 75 74% 52%;
     --ring: 240 4.9% 83.9%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
@@ -153,7 +153,11 @@
   }
 
   .disabled {
-    @apply opacity-60 pointer-events-none select-none;
+    @apply opacity-50 pointer-events-none select-none;
+
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🚫</text></svg>")
+        16 0,
+      auto;
   }
 
   .custom-cursor {

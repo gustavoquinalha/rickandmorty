@@ -13,15 +13,22 @@
       </a>
 
       <a
-        class="btn btn-border px-0 py-0 md:px-5 md:py-3 w-10 md:w-auto"
-        href="/"
+        class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
+        routerLinkActive="!bg-red-200"
+        [routerLink]="'/'"
+        [routerLinkActive]="[
+          '!text-background',
+          '!bg-foreground',
+          'router-active'
+        ]"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         <span class="text-lg">🏠</span>
         <span class="hidden md:block">Home</span>
       </a>
 
       <a
-        class="btn btn-border px-0 py-0 md:px-5 md:py-3 w-10 md:w-auto"
+        class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
         href="https://gus.vision/#contact"
         target="_blank"
       >
@@ -29,7 +36,7 @@
         <span class="hidden md:block">Feedback</span>
       </a>
       <a
-        class="btn btn-border px-0 py-0 md:px-5 md:py-3 w-10 md:w-auto"
+        class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
         href="https://github.com/gustavoquinalha/rickandmorty"
         target="_blank"
       >
@@ -41,7 +48,7 @@
     <div class="group relative inline-block text-left z-50">
       <div>
         <button
-          class="btn btn-border px-0 py-0 md:px-5 md:py-3 w-10 md:w-auto"
+          class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
           id="theme-button"
         >
           <span class="text-lg">🎨</span>
@@ -64,10 +71,10 @@
               <span class="text-sm text-muted-foreground">Select theme</span>
             </div>
             <div
-              class="px-4 py-2 hover:bg-input/30 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
+              class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
               (click)="onThemeSelect('dark')"
               [ngClass]="{
-                'bg-input/50 border-border': selectedTheme === 'dark'
+                '!bg-foreground !text-background border-border': selectedTheme === 'dark'
               }"
               title="Dark"
               selected
@@ -76,10 +83,10 @@
               <span class="text-sm">Dark</span>
             </div>
             <div
-              class="px-4 py-2 hover:bg-input/30 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
+              class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
               (click)="onThemeSelect('light')"
               [ngClass]="{
-                'bg-input/50 border-border': selectedTheme === 'light'
+                '!bg-foreground !text-background border-border': selectedTheme === 'light'
               }"
               title="Light"
             >
@@ -87,10 +94,10 @@
               <span class="text-sm">Light</span>
             </div>
             <div
-              class="px-4 py-2 hover:bg-input/30 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
+              class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
               (click)="onThemeSelect('pickle-rick')"
               [ngClass]="{
-                'bg-input/50 border-border': selectedTheme === 'pickle-rick'
+                '!bg-foreground !text-background border-border': selectedTheme === 'pickle-rick'
               }"
               title="Pickle-Rick"
             >

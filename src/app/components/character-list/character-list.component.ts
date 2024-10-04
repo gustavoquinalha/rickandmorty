@@ -52,8 +52,6 @@ export class CharacterListComponent implements OnInit {
       .subscribe({
         next: (response: ApiResponse) => {
 
-          console.log('response', response);
-
           if (response) {
             this.filteredCharacters = append
               ? [...this.filteredCharacters, ...response.results]
@@ -68,7 +66,7 @@ export class CharacterListComponent implements OnInit {
             this.loadingCharacters = false;
           }
         },
-        error: (_error) => {
+        error: (_err) => {
           this.filteredCharacters = [];
           this.loadingCharacters = false;
         },

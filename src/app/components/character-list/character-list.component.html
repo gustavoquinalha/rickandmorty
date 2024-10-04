@@ -1,11 +1,16 @@
 <ng-container *ngIf="characters; else empty">
   <app-filter-list
+    [searchTerm]="searchTerm"
     (searchTermChange)="onSearchChange($event)"
+    [selectedGender]="selectedGender"
     (genderChange)="selectGender($event)"
+    [selectedSpecies]="selectedSpecies"
     (speciesChange)="selectSpecie($event)"
+    [selectedStatus]="selectedStatus"
     (statusChange)="selectStatus($event)"
     (favoritesToggle)="loadFavoriteItems($event)"
     (resetFilters)="resetFilter()"
+    [showFavorites]="showFavorites"
   />
 
   <ng-container *ngIf="filteredCharacters.length; else empty">
@@ -37,7 +42,6 @@
               (click)="showGrid = true"
             >
               <div class="leading-none block w-full mb-1">📅</div>
-              <!-- <div class="text-xs truncate leading-none">Grid</div> -->
             </button>
             <button
               class="!block btn btn-square w-10 h-10 min-w-10 px-2 border-none bg-transparent hover:bg-input rounded-lg"
@@ -46,7 +50,6 @@
               (click)="showGrid = false"
             >
               <div class="leading-none block w-full mb-1">📄</div>
-              <!-- <div class="text-xs truncate leading-none">List</div> -->
             </button>
           </div>
         </div>
@@ -70,7 +73,7 @@
         <div class="flex justify-center mt-8" *ngIf="currentPage < totalPages">
           <button
             (click)="loadMore()"
-            class="btn btn-border"
+            class="btn btn-white"
             [disabled]="loadingCharacters"
           >
             <ng-container *ngIf="loadingCharacters">
@@ -93,15 +96,36 @@
 <ng-template #empty>
   <div class="container text-center">
     <div
-      class="p-10 text-muted-foreground min-h-[calc(100dvh-4rem-5rem)] flex gap-2 flex-col justify-center items-center"
+      class="p-10 min-h-[calc(100dvh-4rem-5rem)] flex gap-1 flex-col justify-center items-center"
     >
-      <span class="text-2xl">😭💔</span>
-      <span>No characters found!</span>
+      <span class="text-2xl mb-2">😭💔</span>
+      <h3 class="text-sm text-foreground" *ngIf="!showFavorites">
+        Nothing was found!
+      </h3>
+      <h3 class="text-sm text-foreground" *ngIf="showFavorites">
+        Looks like you don't have any favorites yet!
+      </h3>
+      <span class="text-xs text-muted-foreground" *ngIf="!showFavorites"
+        >Please try searching again.</span
+      >
+      <span class="text-xs text-muted-foreground" *ngIf="showFavorites"
+        >Go back to the home page and choose the best ones for you.
+      </span>
       <button
-        class="btn btn-square w-auto px-4 text-sm mt-4"
+        *ngIf="!showFavorites"
+        class="btn btn-white w-auto px-4 text-sm mt-4"
         (click)="resetFilter()"
       >
-        🔄 Reset
+        <span class="text-lg">↺</span>
+        <span>Reset</span>
+      </button>
+      <button
+        *ngIf="showFavorites"
+        class="btn btn-white w-auto px-4 text-sm mt-4"
+        (click)="resetFilter()"
+      >
+        <span class="text-lg">👈</span>
+        <span>Back to list</span>
       </button>
     </div>
   </div>

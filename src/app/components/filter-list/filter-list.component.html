@@ -8,7 +8,7 @@
     <div class="container px-2 md:px-8 flex items-center gap-2">
       <div class="flex gap-1 items-center border bg-input/50 rounded-xl p-1">
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-auto h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Favorites"
           [ngClass]="{ '!bg-foreground !text-background': showFavorites }"
           (click)="loadFavoriteItems()"
@@ -18,36 +18,37 @@
         </button>
       </div>
 
-      <div class="relative w-full">
+      <div class="relative w-full" [ngClass]="{ disabled: showFavorites }">
         <div class="absolute top-3 left-3 text-xl z-10">🔎</div>
         <input
           type="text"
           [(ngModel)]="searchTerm"
           (ngModelChange)="onSearchChange()"
-          placeholder="Pesquisar por nome..."
+          placeholder="Search by name..."
           class="input w-full h-14 min-w-56 pl-12"
         />
       </div>
 
-      <div class="flex gap-1 items-center border bg-input/50 rounded-xl p-1">
+      <div
+        class="flex gap-1 items-center border bg-input/50 rounded-xl p-1"
+        [ngClass]="{ disabled: showFavorites }"
+      >
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="female"
           (click)="selectGender('female')"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedGender === 'female'
+            '!bg-foreground !text-background !border-foreground': selectedGender === 'female'
           }"
         >
           <div class="leading-none block w-full mb-1">👩</div>
           <div class="text-xs truncate leading-none">Female</div>
         </button>
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="male"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedGender === 'male'
+            '!bg-foreground !text-background !border-foreground': selectedGender === 'male'
           }"
           (click)="selectGender('male')"
         >
@@ -55,11 +56,10 @@
           <div class="text-xs truncate leading-none">Male</div>
         </button>
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="genderless "
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedGender === 'genderless'
+            '!bg-foreground !text-background !border-foreground': selectedGender === 'genderless'
           }"
           (click)="selectGender('genderless')"
         >
@@ -67,11 +67,10 @@
           <div class="text-xs truncate leading-none">Genderless</div>
         </button>
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="gender unknown"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedGender === 'unknown'
+            '!bg-foreground !text-background !border-foreground': selectedGender === 'unknown'
           }"
           (click)="selectGender('unknown')"
         >
@@ -80,13 +79,15 @@
         </button>
       </div>
 
-      <div class="flex gap-1 items-center border bg-input/50 rounded-xl p-1">
+      <div
+        class="flex gap-1 items-center border bg-input/50 rounded-xl p-1"
+        [ngClass]="{ disabled: showFavorites }"
+      >
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Human"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedSpecies === 'Human'
+            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Human'
           }"
           (click)="selectSpecie('Human')"
         >
@@ -95,11 +96,10 @@
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Alien"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedSpecies === 'Alien'
+            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Alien'
           }"
           (click)="selectSpecie('Alien')"
         >
@@ -108,11 +108,10 @@
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Robot"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedSpecies === 'Robot'
+            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Robot'
           }"
           (click)="selectSpecie('Robot')"
         >
@@ -121,11 +120,10 @@
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Animal"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedSpecies === 'Animal'
+            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Animal'
           }"
           (click)="selectSpecie('Animal')"
         >
@@ -134,11 +132,10 @@
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Cronenberg"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedSpecies === 'Cronenberg'
+            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Cronenberg'
           }"
           (click)="selectSpecie('Cronenberg')"
         >
@@ -147,11 +144,10 @@
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Humanoid"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedSpecies === 'Humanoid'
+            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Humanoid'
           }"
           (click)="selectSpecie('Humanoid')"
         >
@@ -160,11 +156,10 @@
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Poopybutthole"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedSpecies === 'Poopybutthole'
+            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Poopybutthole'
           }"
           (click)="selectSpecie('Poopybutthole')"
         >
@@ -173,7 +168,7 @@
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Mythological Creature"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -186,11 +181,10 @@
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Unknown"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedSpecies === 'unknown'
+            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'unknown'
           }"
           (click)="selectSpecie('unknown')"
         >
@@ -199,13 +193,15 @@
         </button>
       </div>
 
-      <div class="flex gap-1 items-center border bg-input/50 rounded-xl p-1">
+      <div
+        class="flex gap-1 items-center border bg-input/50 rounded-xl p-1"
+        [ngClass]="{ disabled: showFavorites }"
+      >
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Alive"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedStatus === 'alive'
+            '!bg-foreground !text-background !border-foreground': selectedStatus === 'alive'
           }"
           (click)="selectStatus('alive')"
         >
@@ -214,11 +210,10 @@
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Dead"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedStatus === 'dead'
+            '!bg-foreground !text-background !border-foreground': selectedStatus === 'dead'
           }"
           (click)="selectStatus('dead')"
         >
@@ -227,11 +222,10 @@
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="unknown"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground':
-              selectedStatus === 'unknown'
+            '!bg-foreground !text-background !border-foreground': selectedStatus === 'unknown'
           }"
           (click)="selectStatus('unknown')"
         >
@@ -240,9 +234,16 @@
         </button>
       </div>
 
-      <div class="flex gap-1 items-center border bg-input/50 rounded-xl p-1">
+      <div
+        *ngIf="
+          selectedSpecies !== '' ||
+          selectedStatus !== '' ||
+          selectedGender !== ''
+        "
+        class="flex gap-1 items-center border bg-input/50 rounded-xl p-1"
+      >
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-input rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Reset"
           (click)="resetFilter()"
         >
