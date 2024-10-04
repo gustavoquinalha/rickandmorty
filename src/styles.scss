@@ -88,16 +88,36 @@
     --chart-5: 340 75% 55%;
   }
 
-  .pickle-rick img {
-    filter: invert(100%);
-
-    &:hover {
-      filter: invert(0%);
-    }
+  .rick-and-morty {
+    --background: 187 100% 40%;
+    --foreground: 75 74% 52%;
+    --card: 85 51% 35%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 187 100% 40%;
+    --primary-foreground: 240 10% 3.9%;
+    --secondary: 75 74% 52%;
+    --secondary-foreground: 240 10% 3.9%;
+    --muted: 88 49% 20%;
+    --muted-foreground: 75 74% 52%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --input: 85 51% 35%;
+    --border: 75 74% 52%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 
+  .rick-and-morty .group:hover img,
   .pickle-rick .group:hover img {
-    filter: invert(0%);
+    filter: invert(100%);
   }
 
   * {

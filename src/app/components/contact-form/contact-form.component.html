@@ -1,0 +1,83 @@
+<div class="container py-8">
+  <div class="max-w-md mx-auto p-8 bg-background rounded-xl border flex flex-col gap-4">
+    <h2 class="mb-4 text-xl font-medium">Thanks for feedback!</h2>
+    <form [formGroup]="contactForm" (ngSubmit)="sendToWhatsApp()" class="flex flex-col gap-4">
+      <div class="flex flex-col gap-2">
+        <label
+          for="name"
+          class="block text-sm font-medium text-muted-foreground"
+          >Nome</label
+        >
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          class="input w-full"
+        />
+        <div
+          *ngIf="
+            contactForm.get('name')?.invalid && contactForm.get('name')?.touched
+          "
+          class="text-red-500 text-sm"
+        >
+          O nome é obrigatório e deve ter pelo menos 3 caracteres.
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label
+          for="email"
+          class="block text-sm font-medium text-muted-foreground"
+          >Email</label
+        >
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="input w-full"
+        />
+        <div
+          *ngIf="
+            contactForm.get('email')?.invalid &&
+            contactForm.get('email')?.touched
+          "
+          class="text-red-500 text-sm"
+        >
+          Informe um email válido.
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label
+          for="message"
+          class="block text-sm font-medium text-muted-foreground"
+          >Mensagem</label
+        >
+        <textarea
+          id="message"
+          rows="4"
+          formControlName="message"
+          class="input w-full resize-none h-auto"
+        ></textarea>
+        <div
+          *ngIf="
+            contactForm.get('message')?.invalid &&
+            contactForm.get('message')?.touched
+          "
+          class="text-red-500 text-sm"
+        >
+          A mensagem deve ter pelo menos 10 caracteres.
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-white w-full"
+        [disabled]="contactForm.invalid"
+        [ngClass]="{ disabled: contactForm.invalid }"
+      >
+        Enviar via WhatsApp
+      </button>
+    </form>
+  </div>
+</div>

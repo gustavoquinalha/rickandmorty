@@ -28,9 +28,14 @@
       </a>
 
       <a
+        [routerLink]="'/feedback'"
+        [routerLinkActive]="[
+          '!text-background',
+          '!bg-foreground',
+          'router-active'
+        ]"
+        [routerLinkActiveOptions]="{ exact: true }"
         class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
-        href="https://gus.vision/#contact"
-        target="_blank"
       >
         <span class="text-lg">🗯️</span>
         <span class="hidden md:block">Feedback</span>
@@ -52,7 +57,7 @@
           id="theme-button"
         >
           <span class="text-lg">🎨</span>
-          <span class="hidden md:block">Theme</span>
+          <span class="hidden md:block capitalize">{{ selectedTheme }}</span>
           <span class="text-xs hidden md:block">▼</span>
         </button>
       </div>
@@ -74,7 +79,8 @@
               class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
               (click)="onThemeSelect('dark')"
               [ngClass]="{
-                '!bg-foreground !text-background border-border': selectedTheme === 'dark'
+                '!bg-foreground !text-background border-border':
+                  selectedTheme === 'dark'
               }"
               title="Dark"
               selected
@@ -86,7 +92,8 @@
               class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
               (click)="onThemeSelect('light')"
               [ngClass]="{
-                '!bg-foreground !text-background border-border': selectedTheme === 'light'
+                '!bg-foreground !text-background border-border':
+                  selectedTheme === 'light'
               }"
               title="Light"
             >
@@ -97,12 +104,25 @@
               class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
               (click)="onThemeSelect('pickle-rick')"
               [ngClass]="{
-                '!bg-foreground !text-background border-border': selectedTheme === 'pickle-rick'
+                '!bg-foreground !text-background border-border':
+                  selectedTheme === 'pickle-rick'
               }"
-              title="Pickle-Rick"
+              title="Pickle Rick"
             >
               <span class="text-lg">🥒</span>
               <span class="text-sm">Pickle Rick</span>
+            </div>
+            <div
+              class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
+              (click)="onThemeSelect('rick-and-morty')"
+              [ngClass]="{
+                '!bg-foreground !text-background border-border':
+                  selectedTheme === 'rick-and-morty'
+              }"
+              title="Rick and Morty"
+            >
+              <span class="text-lg">👩‍🚀</span>
+              <span class="text-sm">Rick and Morty</span>
             </div>
           </div>
         </div>

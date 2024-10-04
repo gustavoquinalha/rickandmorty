@@ -30,8 +30,6 @@ export class EpisodeComponent {
       this.episodeId = Number(params.get('id'));
       this.rickAndMortyService.getEpisodeById(this.episodeId!).subscribe({
         next: (episode) => {
-          console.log('episode', episode);
-
           this.episode = episode;
           this.loadingEpisode = false;
 
@@ -58,8 +56,6 @@ export class EpisodeComponent {
         if (character) {
           this.character = character;
           this.loadingCharacter = false;
-
-          console.log('character', character);
         }
       },
       error: (_err) => {

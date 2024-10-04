@@ -1,3 +1,4 @@
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -8,6 +9,10 @@ export const routes: Routes = [
   {
     path: 'favorites',
     loadComponent: () => import('./components/favorites/favorites.component').then(m => m.FavoritesComponent)
+  },
+  {
+    path: 'feedback',
+    loadComponent: () => import('./components/contact-form/contact-form.component').then(m => m.ContactFormComponent)
   },
   {
     path: 'character/:id',

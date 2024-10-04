@@ -30,8 +30,6 @@ export class LocationComponent {
       this.locationId = Number(params.get('id'));
       this.rickAndMortyService.getLocationById(this.locationId!).subscribe({
         next: (location) => {
-          console.log('location', location);
-
           this.location = location;
           this.loadingLocation = false;
 
@@ -58,9 +56,6 @@ export class LocationComponent {
         if (character) {
           this.character = character;
           this.loadingCharacter = false;
-
-          console.log('character', character);
-
         }
       },
       error: (_err) => {

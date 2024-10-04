@@ -22,7 +22,7 @@ export class NavigationMenuComponent implements OnInit {
   onThemeSelect(value: string): void {
     this.selectedTheme = value;
     const htmlElement = document.documentElement;
-    htmlElement.classList.remove('light', 'dark', 'pickle-rick');
+    htmlElement.classList.remove('light', 'dark', 'pickle-rick', 'rick-and-morty');
     htmlElement.classList.add(this.selectedTheme);
     localStorage.setItem('theme-rickandmorty', this.selectedTheme);
   }
