@@ -6,11 +6,12 @@ import { LoadingComponent } from '../loading/loading.component';
 import { Character } from '../../interface/characters';
 import { AvatarCharactersComponent } from '../avatar-characters/avatar-characters.component';
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
+import { CardLocationComponent } from '../card-location/card-location.component';
 
 @Component({
   selector: 'app-location',
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent, AvatarCharactersComponent, EmptyResultComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, AvatarCharactersComponent, EmptyResultComponent, CardLocationComponent],
   templateUrl: './location.component.html',
   styleUrl: './location.component.scss'
 })

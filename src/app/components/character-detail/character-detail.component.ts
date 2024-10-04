@@ -7,10 +7,11 @@ import { Character } from '../../interface/characters';
 import { LoadingComponent } from '../loading/loading.component';
 import { CardEpisodeComponent } from '../card-episode/card-episode.component';
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
+import { CardLocationComponent } from "../card-location/card-location.component";
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent, CardEpisodeComponent, EmptyResultComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, CardEpisodeComponent, EmptyResultComponent, CardLocationComponent, CardLocationComponent],
   selector: 'app-character-detail',
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.scss'],

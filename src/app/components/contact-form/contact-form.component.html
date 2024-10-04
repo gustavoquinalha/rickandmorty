@@ -1,11 +1,17 @@
 <div class="container py-8">
-  <div class="max-w-md mx-auto p-8 bg-input/50 rounded-xl border flex flex-col gap-4">
-    <h2 class="text-xl font-medium tracking-widest font-creepster mb-4">🗯️ Thanks for feedback!</h2>
-    <form [formGroup]="contactForm" (ngSubmit)="sendToWhatsApp()" class="flex flex-col gap-4">
-      <div class="flex flex-col gap-2">
-        <label
-          for="name"
-          class="block text-sm font-medium text-foreground"
+  <div
+    class="max-w-md mx-auto p-8 bg-input/50 rounded-xl border flex flex-col gap-4"
+  >
+    <h2 class="text-xl font-medium tracking-widest font-creepster mb-4">
+      🗯️ Thanks for feedback!
+    </h2>
+    <form
+      [formGroup]="contactForm"
+      (ngSubmit)="sendToWhatsApp()"
+      class="flex flex-col gap-4"
+    >
+      <div class="flex flex-col text-left gap-2">
+        <label for="name" class="block text-sm font-medium text-foreground"
           >Nome</label
         >
         <input
@@ -24,10 +30,8 @@
         </div>
       </div>
 
-      <div class="flex flex-col gap-2">
-        <label
-          for="email"
-          class="block text-sm font-medium text-foreground"
+      <div class="flex flex-col text-left gap-2">
+        <label for="email" class="block text-sm font-medium text-foreground"
           >Email</label
         >
         <input
@@ -47,10 +51,8 @@
         </div>
       </div>
 
-      <div class="flex flex-col gap-2">
-        <label
-          for="message"
-          class="block text-sm font-medium text-foreground"
+      <div class="flex flex-col text-left gap-2">
+        <label for="message" class="block text-sm font-medium text-foreground"
           >Mensagem</label
         >
         <textarea
