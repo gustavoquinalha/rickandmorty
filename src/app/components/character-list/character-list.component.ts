@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -32,7 +32,16 @@ export class CharacterListComponent implements OnInit {
   showFavorites = false;
   showGrid = true;
 
+  private canLoadMore: boolean = true;
+
   constructor(private rickAndMortyService: RickAndMortyService, private favoriteService: FavoriteService) { }
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 64 && !this.loadingCharacters) {
+      this.loadMore();
+    }
+  }
 
   ngOnInit(): void {
     this.fetchCharacters(this.currentPage);
@@ -93,7 +102,6 @@ export class CharacterListComponent implements OnInit {
     this.selectedSpecies = ''
     this.selectedGender = ''
     this.selectedStatus = ''
-
     this.fetchCharacters(1, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
   }
 
