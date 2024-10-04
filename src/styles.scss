@@ -125,7 +125,7 @@
   }
 
   .btn {
-    @apply transition-all cursor-pointer appearance-none outline-none text-sm h-10 flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium bg-background text-foreground hover:bg-background/80;
+    @apply transition-all cursor-pointer appearance-none outline-none text-sm h-10 flex items-center justify-center gap-2 px-3 py-3 rounded-xl font-medium bg-background text-foreground hover:bg-background/80;
   }
 
   .btn-primary {

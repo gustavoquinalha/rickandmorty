@@ -146,4 +146,8 @@ export class CharacterListComponent implements OnInit {
     this.selectedStatus = '';
     this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
   }
+
+  get getFavoritesLength() {
+    return this.favoriteService.getFavorites().length
+  }
 }

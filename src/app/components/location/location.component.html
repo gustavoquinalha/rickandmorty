@@ -18,7 +18,7 @@
         <button
           [ngClass]="{ disabled: locationId <= 1 }"
           (click)="goToPreviousLocation()"
-          class="btn btn-border w-10 md:w-auto px-0 md:px-5"
+          class="btn btn-border w-10 md:w-auto px-0 md:px-3"
         >
           <span class="text-lg leading-none">👈</span>
           <span class="hidden md:block">Previous location</span>
@@ -26,7 +26,7 @@
         <button
           [ngClass]="{ disabled: this.locationId >= this.maxLocation }"
           (click)="goToNextLocation()"
-          class="btn btn-border w-10 md:w-auto px-0 md:px-5"
+          class="btn btn-border w-10 md:w-auto px-0 md:px-3"
         >
           <span class="hidden md:block">Next location</span>
           <span class="text-lg leading-none">👉</span>

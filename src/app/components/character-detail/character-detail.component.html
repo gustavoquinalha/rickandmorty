@@ -18,7 +18,7 @@
         <button
           [ngClass]="{ disabled: characterId <= 1 }"
           (click)="goToPreviousCharacter()"
-          class="btn btn-border w-10 md:w-auto px-0 md:px-5"
+          class="btn btn-border w-10 md:w-auto px-0 md:px-3"
         >
           <span class="text-lg leading-none">👈</span>
           <span class="hidden md:block">Previous character</span>
@@ -26,7 +26,7 @@
         <button
           [ngClass]="{ disabled: this.characterId >= this.maxCharacters }"
           (click)="goToNextCharacter()"
-          class="btn btn-border w-10 md:w-auto px-0 md:px-5"
+          class="btn btn-border w-10 md:w-auto px-0 md:px-3"
         >
           <span class="hidden md:block">Next character</span>
           <span class="text-lg leading-none">👉</span>

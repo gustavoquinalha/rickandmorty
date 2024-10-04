@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
+import { FavoriteService } from '../../services/favorite.service';
 
 @Component({
   standalone: true,
@@ -27,7 +28,7 @@ export class FilterListComponent {
 
   private searchTermSubject: Subject<string> = new Subject<string>();
 
-  constructor() {
+  constructor(private favoriteService: FavoriteService) {
     this.searchTermSubject.pipe(
       debounceTime(1000),
       distinctUntilChanged()
@@ -35,6 +36,8 @@ export class FilterListComponent {
       this.searchTermChange.emit(searchTerm);
     });
   }
+
+
 
   onSearchChange() {
     this.searchTermSubject.next(this.searchTerm);
@@ -77,5 +80,9 @@ export class FilterListComponent {
     this.selectGender('');
     this.selectSpecie('');
     this.selectStatus('');
+  }
+
+  get getFavoritesLength() {
+    return this.favoriteService.getFavorites().length
   }
 }

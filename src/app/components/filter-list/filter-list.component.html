@@ -14,7 +14,9 @@
           (click)="loadFavoriteItems()"
         >
           <div class="leading-none block w-full mb-1">❤️</div>
-          <div class="text-xs truncate leading-none">Favorites</div>
+          <div class="text-xs truncate leading-none">
+            Favorites ({{ getFavoritesLength }})
+          </div>
         </button>
       </div>
 
@@ -38,7 +40,8 @@
           title="female"
           (click)="selectGender('female')"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedGender === 'female'
+            '!bg-foreground !text-background !border-foreground':
+              selectedGender === 'female'
           }"
         >
           <div class="leading-none block w-full mb-1">👩</div>
@@ -48,7 +51,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="male"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedGender === 'male'
+            '!bg-foreground !text-background !border-foreground':
+              selectedGender === 'male'
           }"
           (click)="selectGender('male')"
         >
@@ -59,7 +63,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="genderless "
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedGender === 'genderless'
+            '!bg-foreground !text-background !border-foreground':
+              selectedGender === 'genderless'
           }"
           (click)="selectGender('genderless')"
         >
@@ -70,7 +75,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="gender unknown"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedGender === 'unknown'
+            '!bg-foreground !text-background !border-foreground':
+              selectedGender === 'unknown'
           }"
           (click)="selectGender('unknown')"
         >
@@ -87,7 +93,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Human"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Human'
+            '!bg-foreground !text-background !border-foreground':
+              selectedSpecies === 'Human'
           }"
           (click)="selectSpecie('Human')"
         >
@@ -99,7 +106,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Alien"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Alien'
+            '!bg-foreground !text-background !border-foreground':
+              selectedSpecies === 'Alien'
           }"
           (click)="selectSpecie('Alien')"
         >
@@ -111,7 +119,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Robot"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Robot'
+            '!bg-foreground !text-background !border-foreground':
+              selectedSpecies === 'Robot'
           }"
           (click)="selectSpecie('Robot')"
         >
@@ -123,7 +132,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Animal"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Animal'
+            '!bg-foreground !text-background !border-foreground':
+              selectedSpecies === 'Animal'
           }"
           (click)="selectSpecie('Animal')"
         >
@@ -135,7 +145,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Cronenberg"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Cronenberg'
+            '!bg-foreground !text-background !border-foreground':
+              selectedSpecies === 'Cronenberg'
           }"
           (click)="selectSpecie('Cronenberg')"
         >
@@ -147,7 +158,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Humanoid"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Humanoid'
+            '!bg-foreground !text-background !border-foreground':
+              selectedSpecies === 'Humanoid'
           }"
           (click)="selectSpecie('Humanoid')"
         >
@@ -159,7 +171,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Poopybutthole"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'Poopybutthole'
+            '!bg-foreground !text-background !border-foreground':
+              selectedSpecies === 'Poopybutthole'
           }"
           (click)="selectSpecie('Poopybutthole')"
         >
@@ -184,7 +197,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Unknown"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedSpecies === 'unknown'
+            '!bg-foreground !text-background !border-foreground':
+              selectedSpecies === 'unknown'
           }"
           (click)="selectSpecie('unknown')"
         >
@@ -201,7 +215,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Alive"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedStatus === 'alive'
+            '!bg-foreground !text-background !border-foreground':
+              selectedStatus === 'alive'
           }"
           (click)="selectStatus('alive')"
         >
@@ -213,7 +228,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="Dead"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedStatus === 'dead'
+            '!bg-foreground !text-background !border-foreground':
+              selectedStatus === 'dead'
           }"
           (click)="selectStatus('dead')"
         >
@@ -225,7 +241,8 @@
           class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
           title="unknown"
           [ngClass]="{
-            '!bg-foreground !text-background !border-foreground': selectedStatus === 'unknown'
+            '!bg-foreground !text-background !border-foreground':
+              selectedStatus === 'unknown'
           }"
           (click)="selectStatus('unknown')"
         >
