@@ -8,11 +8,17 @@
     <div class="container px-2 md:px-8 flex items-center gap-2">
       <div class="flex gap-1 items-center border bg-input/50 rounded-xl p-1">
         <button
-          class="!block btn btn-square w-auto h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-auto h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="Favorites"
           [ngClass]="{ '!bg-foreground !text-background': showFavorites }"
           (click)="loadFavoriteItems()"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="showFavorites"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">❤️</div>
           <div class="text-xs truncate leading-none">
             Favorites ({{ getFavoritesLength }})
@@ -36,7 +42,7 @@
         [ngClass]="{ disabled: showFavorites }"
       >
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="female"
           (click)="selectGender('female')"
           [ngClass]="{
@@ -44,11 +50,18 @@
               selectedGender === 'female'
           }"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedGender === 'female'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">👩</div>
           <div class="text-xs truncate leading-none">Female</div>
         </button>
+
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="male"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -56,11 +69,18 @@
           }"
           (click)="selectGender('male')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedGender === 'male'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">👨</div>
           <div class="text-xs truncate leading-none">Male</div>
         </button>
+
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="genderless "
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -68,11 +88,18 @@
           }"
           (click)="selectGender('genderless')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedGender === 'genderless'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">🌳</div>
           <div class="text-xs truncate leading-none">Genderless</div>
         </button>
+
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="gender unknown"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -80,6 +107,12 @@
           }"
           (click)="selectGender('unknown')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedGender === 'unknown'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">🤔</div>
           <div class="text-xs truncate leading-none">Unknown</div>
         </button>
@@ -90,7 +123,7 @@
         [ngClass]="{ disabled: showFavorites }"
       >
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="Human"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -98,12 +131,18 @@
           }"
           (click)="selectSpecie('Human')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedSpecies === 'Human'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">🌎</div>
           <div class="text-xs truncate leading-none">Human</div>
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="Alien"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -111,12 +150,18 @@
           }"
           (click)="selectSpecie('Alien')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedSpecies === 'Alien'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">👽</div>
           <div class="text-xs truncate leading-none">Alien</div>
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="Robot"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -124,12 +169,18 @@
           }"
           (click)="selectSpecie('Robot')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedSpecies === 'Robot'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">🤖</div>
           <div class="text-xs truncate leading-none">Robot</div>
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="Animal"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -137,12 +188,18 @@
           }"
           (click)="selectSpecie('Animal')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedSpecies === 'Animal'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">🐶</div>
           <div class="text-xs truncate leading-none">Animal</div>
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="Cronenberg"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -150,12 +207,18 @@
           }"
           (click)="selectSpecie('Cronenberg')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedSpecies === 'Cronenberg'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">🐙</div>
           <div class="text-xs truncate leading-none">Cronenberg</div>
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="Humanoid"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -163,12 +226,18 @@
           }"
           (click)="selectSpecie('Humanoid')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedSpecies === 'Humanoid'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">🐲</div>
           <div class="text-xs truncate leading-none">Humanoid</div>
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="Poopybutthole"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -176,12 +245,18 @@
           }"
           (click)="selectSpecie('Poopybutthole')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedSpecies === 'Poopybutthole'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">🥒</div>
           <div class="text-xs truncate leading-none">Poopybutthole</div>
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="Mythological Creature"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -189,12 +264,18 @@
           }"
           (click)="selectSpecie('Mythological Creature')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedSpecies === 'Mythological Creature'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">🪄</div>
           <div class="text-xs truncate leading-none">Mythological Creature</div>
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="Unknown"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -202,6 +283,12 @@
           }"
           (click)="selectSpecie('unknown')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedSpecies === 'unknown'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">🤔</div>
           <div class="text-xs truncate leading-none">Unknown</div>
         </button>
@@ -212,7 +299,7 @@
         [ngClass]="{ disabled: showFavorites }"
       >
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="Alive"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -220,12 +307,18 @@
           }"
           (click)="selectStatus('alive')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedStatus === 'alive'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">😄</div>
           <div class="text-xs truncate leading-none">Alive</div>
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="Dead"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -233,12 +326,18 @@
           }"
           (click)="selectStatus('dead')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedStatus === 'dead'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">😵</div>
           <div class="text-xs truncate leading-none">Dead</div>
         </button>
 
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="unknown"
           [ngClass]="{
             '!bg-foreground !text-background !border-foreground':
@@ -246,6 +345,12 @@
           }"
           (click)="selectStatus('unknown')"
         >
+          <span
+            class="text-base absolute -top-2 -right-2"
+            *ngIf="selectedStatus === 'unknown'"
+            title="Remove"
+            >⛔</span
+          >
           <div class="leading-none block w-full mb-1">🤔</div>
           <div class="text-xs truncate leading-none">Unknown</div>
         </button>
@@ -260,11 +365,11 @@
         class="flex gap-1 items-center border bg-input/50 rounded-xl p-1"
       >
         <button
-          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0"
+          class="!block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
           title="Reset"
           (click)="resetFilter()"
         >
-          <div class="leading-none block w-full mb-1">🔄</div>
+          <div class="leading-none block w-full mb-1">⛔</div>
           <div class="text-xs truncate leading-none">Reset</div>
         </button>
       </div>

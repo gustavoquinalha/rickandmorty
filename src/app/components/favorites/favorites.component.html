@@ -1,16 +1,44 @@
-<div class="container py-8">
-  <div *ngIf="favoriteItems.length > 0; else noFavorites">
-    <h2 class="mb-4 text-xl font-medium">Your Favorite Characters</h2>
+<div class="container py-8" *ngIf="!loadingFavorites; else loading">
+  <div *ngIf="favoriteItems.length > 0; else empty">
+    <h2 class="text-xl font-medium tracking-widest font-creepster mb-4">
+      ❤️ Your Favorite Characters ({{ getFavoritesLength }})
+    </h2>
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
     >
       <ng-container *ngFor="let character of favoriteItems">
-        <app-card-character [character]="character" [showGrid]="true"></app-card-character>
+        <app-card-character
+          [character]="character"
+          [showGrid]="true"
+          (favoriteChange)="loadFavoriteItems()"
+        ></app-card-character>
       </ng-container>
     </div>
   </div>
 </div>
 
-<ng-template #noFavorites>
-  <p>No favorite characters yet.</p>
+<ng-template #empty>
+  <div class="container text-center">
+    <div
+      class="p-10 min-h-[calc(100dvh-4rem-5rem)] flex gap-1 flex-col justify-center items-center"
+    >
+      <span class="text-2xl mb-2">😭💔</span>
+
+      <h3 class="text-sm text-foreground">
+        Looks like you don't have any favorites yet!
+      </h3>
+
+      <span class="text-xs text-muted-foreground"
+        >Go back to the home page and choose the best ones for you.
+      </span>
+      <a href="/" class="btn btn-white w-auto px-4 text-sm mt-4">
+        <span class="text-lg">👈</span>
+        <span>Back to list</span>
+      </a>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <app-loading />
 </ng-template>
