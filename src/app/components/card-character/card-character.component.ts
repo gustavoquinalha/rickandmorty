@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FavoriteService } from '../../services/favorite.service';
 import { Character } from '../../interface/characters';
@@ -14,6 +14,8 @@ import { Character } from '../../interface/characters';
 export class CardCharacterComponent {
   @Input() character?: Character;
   @Input() showGrid?: boolean;
+  @Input() showFavorite?: number;
+  @Output() favoriteChange = new EventEmitter<number>();
 
   constructor(private favoriteService: FavoriteService) { }
 
@@ -21,7 +23,11 @@ export class CardCharacterComponent {
     event.stopPropagation();
     event.preventDefault();
     this.favoriteService.toggleFavorite(itemId);
-    this.favoriteService.changeFavoriteList(true);
+
+    this.favoriteChange.emit(itemId);
+
+    if (this.showFavorite) {}
+    // this.favoriteService.changeFavoriteList(true);
   }
 
   isFavorite(itemId: number): boolean {

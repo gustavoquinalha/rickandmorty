@@ -32,8 +32,6 @@ export class CharacterListComponent implements OnInit {
   showFavorites = false;
   showGrid = true;
 
-  private canLoadMore: boolean = true;
-
   constructor(private rickAndMortyService: RickAndMortyService, private favoriteService: FavoriteService) { }
 
   @HostListener('window:scroll', [])
@@ -157,5 +155,11 @@ export class CharacterListComponent implements OnInit {
 
   get getFavoritesLength() {
     return this.favoriteService.getFavorites().length
+  }
+
+  favoriteChange(_id: number) {
+    if (this.showFavorites) {
+      this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
+    }
   }
 }

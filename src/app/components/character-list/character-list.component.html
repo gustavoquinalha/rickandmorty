@@ -66,24 +66,10 @@
             <app-card-character
               [character]="character"
               [showGrid]="showGrid"
+              (favoriteChange)="favoriteChange($event)"
             ></app-card-character>
           </ng-container>
         </div>
-
-        <!-- <div class="flex justify-center mt-8" *ngIf="currentPage < totalPages">
-          <button
-            (click)="loadMore()"
-            class="btn btn-white"
-            [disabled]="loadingCharacters"
-          >
-            <ng-container *ngIf="loadingCharacters">
-              <span class="text-lg">⏳</span> <span>Loading...</span>
-            </ng-container>
-            <ng-container *ngIf="!loadingCharacters">
-              <span class="text-lg">🎉</span> <span>Load more</span>
-            </ng-container>
-          </button>
-        </div> -->
       </div>
     </ng-container>
   </ng-container>

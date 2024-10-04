@@ -39,15 +39,6 @@ export class FilterListComponent {
     });
   }
 
-  ngOnInit() {
-    this.subscription = this.favoriteService.eventoObservable$.subscribe({
-      next: (value) => {
-        this.searchTerm = '';
-        this.searchTermChange.emit(this.searchTerm);
-      },
-    });
-  }
-
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
