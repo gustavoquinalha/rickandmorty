@@ -6,11 +6,12 @@ import { LoadingComponent } from '../loading/loading.component';
 import { Character } from '../../interface/characters';
 import { AvatarCharactersComponent } from '../avatar-characters/avatar-characters.component';
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
+import { CardEpisodeComponent } from "../card-episode/card-episode.component";
 
 @Component({
   selector: 'app-episode',
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent, AvatarCharactersComponent, EmptyResultComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, AvatarCharactersComponent, EmptyResultComponent, CardEpisodeComponent],
   templateUrl: './episode.component.html',
   styleUrl: './episode.component.scss'
 })

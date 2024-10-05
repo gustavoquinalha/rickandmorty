@@ -53,61 +53,9 @@
             <span class="text-xl">📽️</span>
             <span>Episode {{ episode?.episode }}</span>
           </h3>
-
-          <div class="flex items-center justify-center gap-2">
-            <span class="text-muted-foreground text-lg">📺</span>
-            <span class="text-xs text-muted-foreground capitalize">{{
-              episode?.air_date
-            }}</span>
-          </div>
         </div>
 
-        <div
-          class="border aspect-video rounded-lg p-4 w-full justify-center items-center flex flex-col gap-1 text-center bg-background/60"
-        >
-          <span class="text-muted-foreground text-6xl">🎞️ </span>
-          <div class="w-full">
-            <span class="text-sm capitalize"> {{ episode?.name }}</span>
-          </div>
-        </div>
-
-        <div
-          class="flex gap-2 items-center justify-center md:justify-end flex-wrap"
-        >
-          <a
-            target="_blank"
-            [href]="
-              'https://www.netflix.com/search?q=' +
-              'Rick and Morty ' +
-              episode?.name
-            "
-            class="btn btn-border w-auto px-3"
-          >
-            ▶️ Netflix
-          </a>
-          <a
-            target="_blank"
-            [href]="
-              'https://www.primevideo.com/search/ref=atv_nb_sug?ie=UTF8&phrase=' +
-              'Rick and Morty ' +
-              episode?.name
-            "
-            class="btn btn-border w-auto px-3"
-          >
-            ▶️ Prime
-          </a>
-          <a
-            target="_blank"
-            [href]="
-              'https://play.max.com/search/result?q=' +
-              'Rick and Morty ' +
-              episode?.name
-            "
-            class="btn btn-border w-auto px-3"
-          >
-            ▶️ Max
-          </a>
-        </div>
+        <app-card-episode [episode]="episode" [showInfo]="true" />
       </div>
 
       <div

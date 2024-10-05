@@ -57,7 +57,10 @@ export class LocationComponent {
     this.rickAndMortyService.getCharacterById(ids).subscribe({
       next: (character: any) => {
         if (character) {
-          this.character = character;
+
+          console.log('character', character);
+
+          this.character = character instanceof Array ? character : [character];
           this.loadingCharacter = false;
         }
       },
