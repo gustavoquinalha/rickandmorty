@@ -2,7 +2,7 @@
   <div
     class="flex justify-center items-center fixed md:sticky top-[calc(100%-4rem)] md:top-0 left-0 z-50 border-t md:border-t-0 border-b-0 md:border-b w-full backdrop-blur-sm bg-background/95"
   >
-    <div class="container flex justify-between items-center gap-2 h-16">
+    <div class="container px-4 md:px-8 flex justify-between items-center gap-2 h-16">
       <div class="flex items-center gap-2">
         <a routerLink="/" class="btn btn-border">
           <span class="text-lg leading-none">👈</span>
@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <div class="container py-8">
+  <div class="container px-4 md:px-8 py-8">
     <div
       *ngIf="!loadingLocation && !loadingCharacter; else loading"
       class="max-w-2xl mx-auto flex flex-col gap-4"
@@ -45,7 +45,7 @@
 
       <div
         *ngIf="character?.length; else emptyResidents"
-        class="max-w-2xl mx-auto group w-full relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
+        class="max-w-2xl mx-auto w-full relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
       >
         <h3
           class="font-semibold text-xl text-center md:text-left tracking-widest font-creepster flex items-center gap-2"
@@ -53,7 +53,7 @@
           <span class="text-xl">🐄</span>
           <span>Residents</span>
         </h3>
-        <div class="text-sm flex gap-2 flex-wrap justify-center items-center">
+        <div class="text-sm flex gap-2 flex-wrap items-center">
           <ng-container *ngFor="let resident of character">
             <app-avatar-characters [avatar]="resident" />
           </ng-container>
@@ -74,7 +74,7 @@
 
 <ng-template #emptyResidents>
   <div
-    class="max-w-2xl mx-auto group w-full relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
+    class="max-w-2xl mx-auto w-full relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
   >
     <app-empty-result
       [icons]="'👽'"

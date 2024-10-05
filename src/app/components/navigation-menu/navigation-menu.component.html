@@ -1,9 +1,9 @@
 <div
   class="sticky md:relative z-[60] top-0 left-0 w-full h-16 backdrop-blur-sm bg-background/95 border-b flex justify-center items-center"
 >
-  <div class="container flex items-center justify-between gap-2">
+  <div class="container px-4 md:px-8 flex items-center justify-between gap-2">
     <div class="flex items-center gap-2">
-      <a routerLink="/" class="block mr-4">
+      <a routerLink="/" class="block mr-2 md:mr-4">
         <img
           src="./logo.png"
           width="114"
@@ -13,7 +13,7 @@
       </a>
 
       <a
-        class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
+        class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
         routerLinkActive="!bg-red-200"
         [routerLink]="'/'"
         [routerLinkActive]="[
@@ -28,7 +28,7 @@
       </a>
 
       <a
-        class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
+        class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
         routerLinkActive="!bg-red-200"
         [routerLink]="'/episodes'"
         [routerLinkActive]="[
@@ -43,7 +43,7 @@
       </a>
 
       <a
-        class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
+        class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
         routerLinkActive="!bg-red-200"
         [routerLink]="'/locations'"
         [routerLinkActive]="[
@@ -67,14 +67,14 @@
           'router-active'
         ]"
         [routerLinkActiveOptions]="{ exact: true }"
-        class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
+        class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
       >
         <span class="text-lg">🗯️</span>
         <span class="hidden lg:block">Feedback</span>
       </a>
 
       <a
-        class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
+        class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
         href="https://github.com/gustavoquinalha/rickandmorty"
         target="_blank"
       >
@@ -85,7 +85,7 @@
       <div class="group relative inline-block text-left z-50">
         <div>
           <button
-            class="btn btn-border px-0 py-0 md:px-3 md:py-3 w-10 md:w-auto"
+            class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
             id="theme-button"
           >
             <span class="text-lg">🎨</span>
@@ -101,9 +101,7 @@
             class="rounded-xl mt-2 border bg-background backdrop-blur-sm shadow-lg"
           >
             <div class="p-2 flex flex-col gap-1">
-              <div
-                class="px-4 py-1 rounded-lg flex gap-2 items-center transition-all"
-              >
+              <div class="px-4 py-1 flex gap-2 items-center">
                 <span class="text-lg">🖌️</span>
                 <span class="text-sm text-muted-foreground">Select theme</span>
               </div>

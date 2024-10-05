@@ -1,49 +1,45 @@
 <a
   [routerLink]="['/character', character.id]"
   *ngIf="character"
-  [ngClass]="showGrid ? '' : 'grid grid-cols-2 items-stretch'"
-  class="block group h-full relative border rounded-xl overflow-hidden bg-card hover:border-foreground/30 transition-all"
+  [ngClass]="showGrid ? '' : ''"
+  class="group block relative text-center border hover:border-foreground bg-input rounded-xl overflow-hidden"
 >
-  <div class="absolute top-2 right-2 z-10 flex items-center gap-1">
-    <button
-      (click)="toggleFavorite($event, character.id)"
-      class="btn bg-background/60 backdrop-blur-sm w-8 h-8 min-w-8 text-lg p-0 border-none"
-    >
-      {{ isFavorite(character.id) ? "❤️" : "🤍" }}
-    </button>
-  </div>
+  <div
+    class="min-h-64 w-full justify-end items-start flex flex-col gap-1 text-center transition-all"
+  >
+    <div class="absolute top-2 right-2 z-10 flex items-center gap-1">
+      <button
+        (click)="toggleFavorite($event, character.id)"
+        class="btn bg-background/60 backdrop-blur-sm w-8 h-8 min-w-8 text-lg p-0 border-none"
+      >
+        {{ isFavorite(character.id) ? "❤️" : "🤍" }}
+      </button>
+    </div>
 
-  <div class="aspect-square bg-foreground overflow-hidden w-full">
     <img
+      *ngIf="character.image"
       [src]="character.image"
-      alt="{{ character.name }}"
-      class="aspect-square w-full h-full object-cover object-center group-hover:scale-110 transition-all"
+      [ngClass]="showGrid ? 'aspect-square' : ''"
+      class="w-full h-full object-cover absolute top-0 left-0 select-none group-hover:scale-110 transition-all brightness-[60%] group-hover:brightness-[70%]"
+      [alt]="character.name"
       loading="lazy"
     />
-  </div>
 
-  <div
-    [ngClass]="{
-      'absolute left-0 bottom-0 bg-gradient-to-t from-black/80 from-0% via-transparent via-80% hover:via-40% to-transparent to-100%':
-        showGrid
-    }"
-    class="w-full transition-all h-full"
-  >
     <div
-      [ngClass]="showGrid ? 'justify-end' : '!p-6 !gap-4'"
-      class="p-2 flex gap-1 flex-col h-full"
+      [ngClass]="showGrid ? '' : '!p-6'"
+      class="p-4 flex gap-1 flex-col justify-end items-start h-full w-full"
     >
       <div
         [ngClass]="{ '!text-2xl': !showGrid }"
-        class="text-xl font-bold text-white tracking-widest font-creepster"
+        class="block text-xl font-bold text-white tracking-widest font-creepster z-10"
       >
         {{ character.name }}
       </div>
 
-      <div class="flex flex-wrap gap-1">
+      <div class="flex flex-wrap gap-1 z-10">
         <div
-          [ngClass]="{ '!w-8 h-8 min-w-8 !px-0 !text-lg': showGrid }"
-          class="badge w-auto px-4 text-sm"
+          [ngClass]="{ '!w-8 !h-8 min-w-8 !px-0 !py-0 !text-lg': showGrid }"
+          class="badge w-auto px-2 py-1 h-auto text-sm"
           [title]="'Gender: ' + character.gender"
           *ngIf="character.gender"
         >
@@ -62,8 +58,8 @@
         </div>
 
         <div
-          [ngClass]="{ '!w-8 h-8 min-w-8 !px-0 !text-lg': showGrid }"
-          class="badge w-auto px-4 text-sm"
+          [ngClass]="{ '!w-8 !h-8 min-w-8 !px-0 !py-0 !text-lg': showGrid }"
+          class="badge w-auto px-2 py-1 h-auto text-sm"
           [title]="'Status: ' + character.status"
           *ngIf="character.status"
         >
@@ -80,8 +76,8 @@
         </div>
 
         <div
-          [ngClass]="{ '!w-8 h-8 min-w-8 !px-0 !text-lg': showGrid }"
-          class="badge w-auto px-4 text-sm"
+          [ngClass]="{ '!w-8 !h-8 min-w-8 !px-0 !py-0 !text-lg': showGrid }"
+          class="badge w-auto px-2 py-1 h-auto text-sm"
           [title]="'Specie: ' + character.species"
           *ngIf="character.species"
         >
@@ -112,8 +108,8 @@
         </div>
 
         <div
-          [ngClass]="{ '!w-8 h-8 min-w-8 !px-0 !text-lg': showGrid }"
-          class="badge w-auto px-4 text-sm"
+          [ngClass]="{ '!w-8 !h-8 min-w-8 !px-0 !py-0 !text-lg': showGrid }"
+          class="badge w-auto px-2 py-1 h-auto text-sm"
           [title]="'Type: ' + character.type"
           *ngIf="character.type"
         >
@@ -124,8 +120,8 @@
         </div>
 
         <div
-          [ngClass]="{ '!w-8 h-8 min-w-8 !px-0 !text-lg': showGrid }"
-          class="badge w-auto px-4 text-sm"
+          [ngClass]="{ '!w-8 !h-8 min-w-8 !px-0 !py-0 !text-lg': showGrid }"
+          class="badge w-auto px-2 py-1 h-auto text-sm"
           [title]="'Location: ' + character.location.name"
           *ngIf="character.location.name"
         >
@@ -135,8 +131,8 @@
           }}</span>
         </div>
         <div
-          [ngClass]="{ '!w-8 h-8 min-w-8 !px-0 !text-lg': showGrid }"
-          class="badge w-auto px-4 text-sm"
+          [ngClass]="{ '!w-8 !h-8 min-w-8 !px-0 !py-0 !text-lg': showGrid }"
+          class="badge w-auto px-2 py-1 h-auto text-sm"
           [title]="'Origin: ' + character.origin.name"
           *ngIf="character.origin.name"
         >

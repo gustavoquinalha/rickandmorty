@@ -1,4 +1,4 @@
-<div class="container py-8" *ngIf="!loadingFavorites; else loading">
+<div class="container px-4 md:px-8 py-8" *ngIf="!loadingFavorites; else loading">
   <div *ngIf="favoriteItems.length > 0; else empty">
     <h2 class="text-xl font-medium tracking-widest font-creepster mb-4">
       ❤️ Your Favorite Characters ({{ getFavoritesLength }})

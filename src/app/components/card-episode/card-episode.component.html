@@ -1,43 +1,30 @@
 <ng-container *ngIf="episode">
   <a
     [routerLink]="!showInfo ? ['/episode', episode?.id] : null"
-    class="group block text-center"
+    [ngClass]="showInfo ? 'mb-4' : ''"
+    class="group relative block text-center border hover:border-foreground bg-input rounded-xl overflow-hidden"
   >
     <div
-      [ngClass]="showInfo ? 'mb-4' : 'mb-1.5 hover:bg-input/80 '"
-      class="border relative aspect-video hover:border-foreground/30 min-h-40 overflow-hidden rounded-xl p-4 w-full justify-center items-center flex flex-col gap-1 text-center bg-input/50 transition-all"
+      class="aspect-video min-h-40 p-4 w-full justify-center items-center flex flex-col gap-1 text-center transition-all"
     >
       <img
-        *ngIf="showInfo && imageCharacter"
+        *ngIf="imageCharacter"
         [src]="imageCharacter"
-        class="w-full aspect-video object-cover absolute top-0 left-0 -z-10 select-none group-hover:scale-110 transition-all"
+        class="w-full aspect-video h-full object-cover absolute top-0 left-0 select-none group-hover:scale-110 transition-all brightness-[40%] group-hover:brightness-[50%]"
         [alt]="episode?.episode"
+        loading="lazy"
       />
 
       <span
-        class="absolute top-4 left-4 text-sm capitalize text-muted-foreground group-hover:text-foreground transition-all"
-        *ngIf="showInfo"
+        class="absolute text-left top-4 left-4 text-sm capitalize text-foreground transition-all z-10"
       >
-        {{ episode?.episode }} - {{ episode?.name }}</span
-      >
-      <span
-        class="text-muted-foreground"
-        [ngClass]="
-          showInfo
-            ? 'text-3xl md:text-5xl group-hover:scale-125 transition-all delay-150'
-            : 'text-2xl'
-        "
-      >
-        {{ showInfo ? "▶️" : "🎞️" }}
+        {{ episode?.episode }} - {{ episode?.name }}
       </span>
-      <div class="w-full">
-        <span class="text-sm capitalize" *ngIf="!showInfo">{{
-          episode?.episode
-        }}</span>
-      </div>
-    </div>
-    <div class="text-sm text-muted-foreground" *ngIf="!showInfo">
-      {{ episode?.name }}
+      <span
+        class="text-muted-foreground group-hover:scale-125 transition-all delay-150 text-3xl md:text-4xl z-10"
+      >
+        ▶️
+      </span>
     </div>
   </a>
 
