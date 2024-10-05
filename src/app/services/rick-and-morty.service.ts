@@ -21,8 +21,6 @@ export class RickAndMortyService {
   }
 
   getCharacterById(id: string | number[]): Observable<any> {
-    console.log('getCharacterById');
-
     return this.http.get<any>(`${this.apiUrl}/character/${id}`);
   }
 

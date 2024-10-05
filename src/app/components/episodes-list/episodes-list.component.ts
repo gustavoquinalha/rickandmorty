@@ -22,7 +22,6 @@ export class EpisodesListComponent {
   constructor(private rickAndMortyService: RickAndMortyService,) { }
 
   ngOnInit(): void {
-    console.log('getEpisodes');
     this.getEpisodes();
   }
 
@@ -33,13 +32,9 @@ export class EpisodesListComponent {
       .getEpisodes([])
       .subscribe({
         next: (response: any) => {
-          console.log('response', response);
-
           if (response) {
-
             this.count = response.info.count;
             this.pages = response.info.pages;
-
             this.episodes = response.results;
             this.loadingEpisodes = false;
           }

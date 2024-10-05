@@ -54,20 +54,22 @@ export class LocationComponent {
       return parseInt(parts[parts.length - 1], 10);
     });
 
-    this.rickAndMortyService.getCharacterById(ids).subscribe({
-      next: (character: any) => {
-        if (character) {
-
-          console.log('character', character);
-
-          this.character = character instanceof Array ? character : [character];
+    if (ids.length) {
+      this.rickAndMortyService.getCharacterById(ids).subscribe({
+        next: (character: any) => {
+          if (character) {
+            this.character = character instanceof Array ? character : [character];
+            this.loadingCharacter = false;
+          }
+        },
+        error: (_err) => {
           this.loadingCharacter = false;
-        }
-      },
-      error: (_err) => {
-        this.loadingCharacter = false;
-      },
-    });
+        },
+      });
+    } else {
+      this.character = [];
+      this.loadingCharacter = false;
+    }
   }
 
   goToPreviousLocation() {

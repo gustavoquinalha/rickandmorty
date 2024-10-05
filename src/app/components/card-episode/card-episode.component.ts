@@ -20,7 +20,6 @@ export class CardEpisodeComponent {
   ) { }
 
   ngOnInit() {
-    console.log('episode', this.episode.characters);
     this.getFavoritesLength(this.episode.characters);
   }
 

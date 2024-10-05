@@ -22,7 +22,6 @@ export class LocationsListComponent {
   constructor(private rickAndMortyService: RickAndMortyService,) { }
 
   ngOnInit(): void {
-    console.log('getLocations');
     this.getLocations();
   }
 
@@ -33,13 +32,9 @@ export class LocationsListComponent {
       .getLocations([])
       .subscribe({
         next: (response: any) => {
-          console.log('response', response);
-
           if (response) {
-
             this.count = response.info.count;
             this.pages = response.info.pages;
-
             this.locations = response.results;
             this.loadingLocations = false;
           }
