@@ -14,4 +14,5 @@ export class EmptyResultComponent {
   @Input() title?: string;
   @Input() subtitle?: string;
   @Input() back?: boolean;
+  @Input() fullScreen?: boolean = true;
 }
