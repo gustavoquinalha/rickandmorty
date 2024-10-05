@@ -1,0 +1,138 @@
+<div
+  *ngIf="character"
+  class="group w-full relative border rounded-xl text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50 overflow-hidden"
+>
+  <div class="flex gap-6 items-start flex-col md:flex-row">
+    <img
+      [src]="character.image"
+      alt="{{ character.name }}"
+      class="w-full h-auto md:w-48 min-w-48 md:h-48 rounded-xl border"
+    />
+
+    <div
+      class="overflow-hidden truncate w-full h-full flex gap-2 flex-col justify-end"
+    >
+      <div class="w-full">
+        <h3
+          class="text-3xl font-bold text-foreground tracking-widest font-creepster whitespace-normal"
+        >
+          {{ character.name }}
+        </h3>
+      </div>
+
+      <div class="flex flex-col">
+        <div
+          class="whitespace-normal capitalize hover:bg-input/50 transition-all rounded-lg px-2 py-1"
+          [title]="character.status"
+          *ngIf="character.status"
+        >
+          <span
+            class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-20 mb-2 md:mb-0"
+            >Status:</span
+          >
+          <span class="text-lg leading-none min-w-6 text-center mr-2">{{
+            character.status === "Alive"
+              ? "😄"
+              : character.status === "Dead"
+              ? "😵"
+              : "🤔"
+          }}</span>
+          <span class="text-sm">{{ character.status }}</span>
+        </div>
+
+        <div
+          class="whitespace-normal capitalize hover:bg-input/50 transition-all rounded-lg px-2 py-1"
+          [title]="character.gender"
+          *ngIf="character.gender"
+        >
+          <span
+            class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-20 mb-2 md:mb-0"
+            >Gender:</span
+          >
+          <span class="text-lg leading-none min-w-6 text-center mr-2">{{
+            character.gender === "Female"
+              ? "👩"
+              : character.gender === "Male"
+              ? "👨"
+              : character.gender === "Genderless"
+              ? "🌳"
+              : "🤔"
+          }}</span>
+          <span class="text-sm">{{ character.gender }}</span>
+        </div>
+
+        <div
+          class="whitespace-normal capitalize hover:bg-input/50 transition-all rounded-lg px-2 py-1"
+          [title]="character.species"
+          *ngIf="character.species"
+        >
+          <span
+            class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-20 mb-2 md:mb-0"
+            >Specie:</span
+          >
+          <span class="text-lg leading-none min-w-6 text-center mr-2">{{
+            character.species === "Human"
+              ? "🌎"
+              : character.species === "Alien"
+              ? "👽"
+              : character.species === "Robot"
+              ? "🤖"
+              : character.species === "Animal"
+              ? "🐶"
+              : character.species === "Cronenberg"
+              ? "🐙"
+              : character.species === "Humanoid"
+              ? "🐲"
+              : character.species === "Poopybutthole"
+              ? "🥒"
+              : character.species === "Mythological Creature"
+              ? "🪄"
+              : character.species === "unknown"
+              ? "🤔"
+              : character.species
+          }}</span>
+          <span class="text-sm">{{ character.species }}</span>
+        </div>
+
+        <div
+          class="whitespace-normal capitalize hover:bg-input/50 transition-all rounded-lg px-2 py-1"
+          title="Type"
+          *ngIf="character.type"
+        >
+          <span
+            class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-20 mb-2 md:mb-0"
+            >Type:</span
+          >
+          <span class="text-lg leading-none min-w-6 text-center mr-2">🔎</span>
+          <span class="text-sm">{{ character.type }}</span>
+        </div>
+
+        <div
+          class="whitespace-normal capitalize hover:bg-input/50 transition-all rounded-lg px-2 py-1"
+          title="location"
+          *ngIf="character.location"
+        >
+          <span
+            class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-20 mb-2 md:mb-0"
+            >Location:</span
+          >
+          <span class="text-lg leading-none min-w-6 text-center mr-2">📌</span>
+          <span class="text-sm">{{ character.location.name }}</span>
+        </div>
+
+        <div
+          class="whitespace-normal capitalize hover:bg-input/50 transition-all rounded-lg px-2 py-1"
+          title="Origin"
+          *ngIf="character.origin.name"
+        >
+          <span
+            class="text-muted-foreground text-sm inline-block w-full max-w-fauto md:max-w-20 mb-2 md:mb-0"
+            >Origin:</span
+          >
+          <span class="text-lg leading-none min-w-6 text-center mr-2">👶</span>
+          <span class="text-sm">{{ character.origin.name }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
