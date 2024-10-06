@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { FavoriteService } from '../../services/favorite.service';
-import { Character } from '../../interface/characters';
+import { Character, Episode, Location } from '../../interface/characters';
 import { LoadingComponent } from '../loading/loading.component';
 import { CardEpisodeComponent } from '../card-episode/card-episode.component';
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
@@ -21,9 +21,9 @@ import { TopbarActionsComponent } from "../topbar-actions/topbar-actions.compone
 })
 export class CharacterDetailComponent implements OnInit {
   character?: Character | null;
-  location?: any;
-  episodes?: any;
-  characterId: any;
+  location?: Location;
+  episodes?: Episode[];
+  characterId?: string | number;
   maxCharacters = 826;
 
   loadingCharacter = true;
@@ -41,8 +41,8 @@ export class CharacterDetailComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.characterId = Number(params.get('id'));
       this.loadingCharacter = true;
-      this.rickAndMortyService.getCharacterById(this.characterId!).subscribe({
-        next: (character: any) => {
+      this.rickAndMortyService.getCharacterById(this.characterId).subscribe({
+        next: (character: Character) => {
           if (character) {
             this.character = character;
             this.getLocation(character?.location?.url)
@@ -65,7 +65,7 @@ export class CharacterDetailComponent implements OnInit {
     this.rickAndMortyService
       .getLocation(url)
       .subscribe({
-        next: (response: any) => {
+        next: (response: Location) => {
           if (response) {
             this.location = response;
             this.loadingLocation = false;
@@ -77,7 +77,7 @@ export class CharacterDetailComponent implements OnInit {
       });
   }
 
-  getEpisodes(character: any) {
+  getEpisodes(character: Character) {
     this.loadingEpisodes = true;
 
     const ids = character.episode.map((url: string) => {
@@ -88,7 +88,7 @@ export class CharacterDetailComponent implements OnInit {
     this.rickAndMortyService
       .getEpisodes(ids)
       .subscribe({
-        next: (response: any) => {
+        next: (response: Episode[]) => {
           if (response) {
             this.episodes = response instanceof Array ? response : [response];
             this.loadingEpisodes = false;
@@ -115,13 +115,13 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   goToPreviousCharacter() {
-    if (this.characterId > 1) {
+    if (Number(this.characterId) > 1) {
       this.router.navigate(['/character', Number(this.characterId) - 1]);
     }
   }
 
   goToNextCharacter() {
-    if (this.characterId < this.maxCharacters) {
+    if (Number(this.characterId) < this.maxCharacters) {
       this.router.navigate(['/character', Number(this.characterId) + 1]);
     }
   }

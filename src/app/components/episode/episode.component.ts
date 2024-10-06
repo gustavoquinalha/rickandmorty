@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from '../loading/loading.component';
-import { Character } from '../../interface/characters';
+import { Character, Episode } from '../../interface/characters';
 import { AvatarCharactersComponent } from '../avatar-characters/avatar-characters.component';
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
 import { CardEpisodeComponent } from "../card-episode/card-episode.component";
@@ -17,8 +17,8 @@ import { TopbarActionsComponent } from '../topbar-actions/topbar-actions.compone
   styleUrl: './episode.component.scss'
 })
 export class EpisodeComponent {
-  episodeId: any;
-  episode?: any;
+  episodeId: number = 0;
+  episode?: Episode;
   maxEpisode = 51;
   loadingEpisode = true;
   loadingCharacter = true;
@@ -33,7 +33,7 @@ export class EpisodeComponent {
       this.loadingEpisode = true;
       this.episodeId = Number(params.get('id'));
       this.rickAndMortyService.getEpisodeById(this.episodeId!).subscribe({
-        next: (episode) => {
+        next: (episode: Episode) => {
           this.episode = episode;
           this.loadingEpisode = false;
 
@@ -47,16 +47,16 @@ export class EpisodeComponent {
     });
   }
 
-  getCharacters(residents: number[]) {
+  getCharacters(residents: string[]) {
     this.loadingCharacter = true;
 
-    const ids = residents.map((id: any) => {
+    const ids = residents.map((id: string) => {
       const parts = id.split('/');
       return parseInt(parts[parts.length - 1], 10);
     });
 
     this.rickAndMortyService.getCharacterById(ids).subscribe({
-      next: (character: any) => {
+      next: (character: Character[]) => {
         if (character) {
           this.character = character;
           this.loadingCharacter = false;

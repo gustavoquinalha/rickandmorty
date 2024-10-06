@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiResponse } from '../interface/characters';
+import { ApiResponse, Episode } from '../interface/characters';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class RickAndMortyService {
 
   constructor(private http: HttpClient) { }
 
-  getCharacters(page: number = 1, name: string = '', specie: string = '', gender: string = '', status: string = '', favorites: number[] = []): Observable<ApiResponse> {
+  getCharacters(page: number = 1, name: string = '', specie: string = '', gender: string = '', status: string = '', favorites: number[] | object[] = []): Observable<ApiResponse> {
     const nameQuery = name ? `&name=${name}` : '';
     const specieQuery = specie ? `&species=${specie}` : '';
     const genderQuery = gender ? `&gender=${gender}` : '';
@@ -20,15 +20,15 @@ export class RickAndMortyService {
     return this.http.get<ApiResponse>(`${this.apiUrl}/character${favoriteQuery}?page=${page}${nameQuery}${specieQuery}${genderQuery}${statusQuery}`);
   }
 
-  getCharacterById(id: string | number[]): Observable<any> {
+  getCharacterById(id: string | number | number[]): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/character/${id}`);
   }
 
-  getLocationById(id: string): Observable<any> {
+  getLocationById(id: string | number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/location/${id}`);
   }
 
-  getLocation(apiUrl: any): Observable<any> {
+  getLocation(apiUrl: string): Observable<any> {
     return this.http.get<any>(`${apiUrl}`);
   }
 
@@ -36,11 +36,11 @@ export class RickAndMortyService {
     return this.http.get<any>(`${this.apiUrl}/location/${ids}`);
   }
 
-  getEpisodeById(id: any): Observable<any> {
+  getEpisodeById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/episode/${id}`);
   }
 
-  getEpisodes(ids: number[]): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/episode/${ids}`);
+  getEpisodes(ids: number[]): Observable<Episode[]> {
+    return this.http.get<Episode[]>(`${this.apiUrl}/episode/${ids}`);
   }
 }

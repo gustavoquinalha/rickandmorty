@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from '../loading/loading.component';
-import { Character } from '../../interface/characters';
+import { Character, Location } from '../../interface/characters';
 import { AvatarCharactersComponent } from '../avatar-characters/avatar-characters.component';
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
 import { CardLocationComponent } from '../card-location/card-location.component';
@@ -17,8 +17,8 @@ import { TopbarActionsComponent } from '../topbar-actions/topbar-actions.compone
   styleUrl: './location.component.scss'
 })
 export class LocationComponent {
-  locationId: any;
-  location?: any;
+  locationId: number = 0;
+  location?: Location;
   maxLocation = 126;
   loadingLocation = true;
   loadingCharacter = true;
@@ -33,7 +33,7 @@ export class LocationComponent {
       this.loadingLocation = true;
       this.locationId = Number(params.get('id'));
       this.rickAndMortyService.getLocationById(this.locationId!).subscribe({
-        next: (location) => {
+        next: (location: Location) => {
           this.location = location;
           this.loadingLocation = false;
 
@@ -47,17 +47,17 @@ export class LocationComponent {
     });
   }
 
-  getCharacters(residents: number[]) {
+  getCharacters(residents: string[]) {
     this.loadingCharacter = true;
 
-    const ids = residents.map((id: any) => {
+    const ids = residents.map((id: string) => {
       const parts = id.split('/');
       return parseInt(parts[parts.length - 1], 10);
     });
 
     if (ids.length) {
       this.rickAndMortyService.getCharacterById(ids).subscribe({
-        next: (character: any) => {
+        next: (character: Character) => {
           if (character) {
             this.character = character instanceof Array ? character : [character];
             this.loadingCharacter = false;

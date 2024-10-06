@@ -14,17 +14,21 @@ export class TopbarActionsComponent {
   constructor(private router: Router) { }
 
   @Input() type?: string;
-  @Input() id: number = 0;
-  @Input() maxId: number = 0;
+  @Input() id?: number | string;
+  @Input() maxId?: number | string;
+
+  get isPreviousDisabled(): boolean {
+    return Number(this.id) <= 1;
+  }
 
   goToPrevious() {
-    if (this.id > 1) {
+    if (Number(this.id!) > 1) {
       this.router.navigate([`/${this.type}`, Number(this.id) - 1]);
     }
   }
 
   goToNext() {
-    if (this.id < this.maxId) {
+    if (Number(this.id!) < Number(this.maxId!)) {
       this.router.navigate([`/${this.type}`, Number(this.id) + 1]);
     }
   }

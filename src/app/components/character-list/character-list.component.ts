@@ -51,7 +51,7 @@ export class CharacterListComponent implements OnInit {
 
     const favoritesList = this.favoriteService.getFavorites();
 
-    const favorites: any[] = this.showFavorites
+    const favorites: number[] | object[] = this.showFavorites
       ? favoritesList.length ? favoritesList : [{}]
       : [];
 

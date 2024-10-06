@@ -1,6 +1,6 @@
 <ng-container *ngIf="location">
   <a
-    [routerLink]="['/location', location?.id]"
+    [routerLink]="['/location', location.id]"
     [ngClass]="{
       'hover:border-foreground/30 hover:bg-input/80': !showTitle
     }"
@@ -31,7 +31,7 @@
           >Name:</span
         >
         <span class="text-lg leading-none min-w-6 text-center mr-2">📍</span>
-        <span class="text-sm">{{ location?.name }}</span>
+        <span class="text-sm">{{ location.name }}</span>
       </div>
 
       <div
@@ -46,7 +46,7 @@
           >Type:</span
         >
         <span class="text-lg leading-none min-w-6 text-center mr-2">🪐</span>
-        <span class="text-sm">{{ location?.type }}</span>
+        <span class="text-sm">{{ location.type }}</span>
       </div>
 
       <div
@@ -61,7 +61,7 @@
           >Dimension:</span
         >
         <span class="text-lg leading-none min-w-6 text-center mr-2">🚀</span>
-        <span class="text-sm">{{ location?.dimension }}</span>
+        <span class="text-sm">{{ location.dimension }}</span>
       </div>
 
       <div
@@ -76,7 +76,7 @@
           >Residents:</span
         >
         <span class="text-lg leading-none min-w-6 text-center mr-2">👽</span>
-        <span class="text-sm">{{ location?.residents?.length }}</span>
+        <span class="text-sm">{{ location.residents?.length }}</span>
       </div>
     </div>
   </a>

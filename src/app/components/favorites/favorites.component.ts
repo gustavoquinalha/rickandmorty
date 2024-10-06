@@ -6,6 +6,7 @@ import { FavoriteService } from '../../services/favorite.service';
 import { CardCharacterComponent } from '../card-character/card-character.component';
 import { LoadingComponent } from '../loading/loading.component';
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
+import { Character } from '../../interface/characters';
 
 @Component({
   selector: 'app-favorites',
@@ -14,7 +15,7 @@ import { EmptyResultComponent } from '../empty-result/empty-result.component';
   templateUrl: './favorites.component.html',
 })
 export class FavoritesComponent implements OnInit {
-  favoriteItems: any[] = [];
+  favoriteItems: Character[] = [];
   loadingFavorites = true;
 
   constructor(private favoriteService: FavoriteService, private rickAndMortyService: RickAndMortyService) { }
@@ -38,7 +39,7 @@ export class FavoritesComponent implements OnInit {
     const requests = favoriteIds.map(id => this.rickAndMortyService.getCharacterById(id.toString()));
     this.loadingFavorites = true;
     forkJoin(requests).subscribe({
-      next: (characters) => {
+      next: (characters: Character[]) => {
         this.favoriteItems = characters;
         this.loadingFavorites = false;
       },

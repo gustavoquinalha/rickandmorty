@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Character } from '../../interface/characters';
 
 @Component({
   selector: 'app-avatar-characters',
@@ -10,5 +11,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './avatar-characters.component.scss'
 })
 export class AvatarCharactersComponent {
-  @Input() avatar?: any;
+  @Input() character?: Character;
 }

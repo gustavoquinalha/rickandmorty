@@ -11,7 +11,10 @@
       else loading
     "
   >
-    <div *ngIf="character; else empty" class="container px-4 md:px-8 py-4 md:py-8">
+    <div
+      *ngIf="character; else empty"
+      class="container px-4 md:px-8 py-4 md:py-8"
+    >
       <div class="max-w-2xl mx-auto flex flex-col gap-4">
         <app-card-character-detail [character]="character" />
 
@@ -32,8 +35,11 @@
             <span>Episodes</span>
           </h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-auto">
-            <ng-container *ngFor="let episode of episodes">
-              <app-card-episode [episode]="episode" />
+            <ng-container *ngIf="episodes">
+              <app-card-episode
+                *ngFor="let episode of episodes"
+                [episode]="episode"
+              />
             </ng-container>
           </div>
         </div>

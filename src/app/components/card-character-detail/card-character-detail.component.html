@@ -9,23 +9,23 @@
       class="w-full h-auto md:w-48 min-w-48 md:h-48 rounded-xl border"
     />
 
-    <button
-      *ngIf="character"
-      (click)="toggleFavorite($event, character.id)"
-      class="absolute top-2 right-2 btn bg-background/60 backdrop-blur-sm h-10 w-10 text-lg leading-none border"
-    >
-      {{ isFavorite(character.id) ? "❤️" : "🤍" }}
-    </button>
-
     <div
       class="overflow-hidden truncate w-full h-full flex gap-2 flex-col justify-end"
     >
-      <div class="w-full">
+      <div class="w-full flex items-center gap-2 justify-between">
         <h3
           class="text-3xl font-bold text-foreground tracking-widest font-creepster whitespace-normal"
         >
           {{ character.name }}
         </h3>
+
+        <button
+          *ngIf="character"
+          (click)="toggleFavorite($event, character.id)"
+          class="btn bg-background/60 backdrop-blur-sm h-10 w-10 text-lg leading-none border"
+        >
+          {{ isFavorite(character.id) ? "❤️" : "🤍" }}
+        </button>
       </div>
 
       <div class="flex flex-col">
@@ -117,7 +117,7 @@
 
         <div
           class="whitespace-normal capitalize hover:bg-input/50 transition-all rounded-lg px-2 py-1"
-          title="location"
+          title="Location"
           *ngIf="character.location"
         >
           <span

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FavoriteService } from '../../services/favorite.service';
+import { Character } from '../../interface/characters';
 
 @Component({
   selector: 'app-card-character-detail',
@@ -11,10 +12,10 @@ import { FavoriteService } from '../../services/favorite.service';
   styleUrl: './card-character-detail.component.scss'
 })
 export class CardCharacterDetailComponent {
-  @Input() character?: any;
+  @Input() character?: Character;
   constructor(private favoriteService: FavoriteService) { }
 
-  toggleFavorite(event: any, itemId: number): void {
+  toggleFavorite(event: Event, itemId: number): void {
     event.stopPropagation();
     event.preventDefault();
     this.favoriteService.toggleFavorite(itemId);

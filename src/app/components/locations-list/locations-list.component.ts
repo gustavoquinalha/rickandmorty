@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
 import { CardLocationComponent } from '../card-location/card-location.component';
+import { Location } from '../../interface/characters';
 
 @Component({
   selector: 'app-locations-list',
@@ -14,7 +15,7 @@ import { CardLocationComponent } from '../card-location/card-location.component'
   styleUrl: './locations-list.component.scss'
 })
 export class LocationsListComponent {
-  locations?: any;
+  locations?: Location[];
   loadingLocations = true;
   count = 0;
   pages = 1;
@@ -28,10 +29,11 @@ export class LocationsListComponent {
   getLocations() {
     this.loadingLocations = true;
 
+    const arrayId: number[] = []
     this.rickAndMortyService
-      .getLocations([])
+      .getLocations(arrayId)
       .subscribe({
-        next: (response: any) => {
+        next: (response) => {
           if (response) {
             this.count = response.info.count;
             this.pages = response.info.pages;

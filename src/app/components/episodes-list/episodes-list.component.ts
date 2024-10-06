@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { CardEpisodeComponent } from "../card-episode/card-episode.component";
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
+import { ApiResponse, Episode } from '../../interface/characters';
 
 @Component({
   selector: 'app-episodes-list',
@@ -14,10 +15,8 @@ import { EmptyResultComponent } from '../empty-result/empty-result.component';
   styleUrl: './episodes-list.component.scss'
 })
 export class EpisodesListComponent {
-  episodes?: any;
+  episodes?: Episode[];
   loadingEpisodes = true;
-  count = 0;
-  pages = 1;
 
   constructor(private rickAndMortyService: RickAndMortyService,) { }
 
@@ -33,8 +32,6 @@ export class EpisodesListComponent {
       .subscribe({
         next: (response: any) => {
           if (response) {
-            this.count = response.info.count;
-            this.pages = response.info.pages;
             this.episodes = response.results;
             this.loadingEpisodes = false;
           }
