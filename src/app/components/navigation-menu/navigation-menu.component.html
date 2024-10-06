@@ -13,8 +13,7 @@
       </a>
 
       <a
-        class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
-        routerLinkActive="!bg-red-200"
+        class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto hidde"
         [routerLink]="'/'"
         [routerLinkActive]="[
           '!text-background',
@@ -29,7 +28,6 @@
 
       <a
         class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
-        routerLinkActive="!bg-red-200"
         [routerLink]="'/episodes'"
         [routerLinkActive]="[
           '!text-background',
@@ -44,7 +42,6 @@
 
       <a
         class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
-        routerLinkActive="!bg-red-200"
         [routerLink]="'/locations'"
         [routerLinkActive]="[
           '!text-background',
@@ -67,14 +64,14 @@
           'router-active'
         ]"
         [routerLinkActiveOptions]="{ exact: true }"
-        class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
+        class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto hidden sm:flex"
       >
         <span class="text-lg">🗯️</span>
         <span class="hidden lg:block">Feedback</span>
       </a>
 
       <a
-        class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
+        class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto hidden sm:flex"
         href="https://github.com/gustavoquinalha/rickandmorty"
         target="_blank"
       >
@@ -154,6 +151,51 @@
                 <span class="text-lg">👩‍🚀</span>
                 <span class="text-sm">Rick and Morty</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="group relative inline-block sm:hidden text-left z-50">
+        <div>
+          <button
+            class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
+            id="theme-button"
+          >
+            <span class="text-lg">🍔</span>
+            <span class="text-xs hidden lg:block">▼</span>
+          </button>
+        </div>
+
+        <div
+          class="hidden group-hover:block absolute right-0 z-[60] w-56 origin-top-right"
+        >
+          <div
+            class="rounded-xl mt-2 border bg-background backdrop-blur-sm shadow-lg"
+          >
+            <div class="p-2 flex flex-col gap-1">
+              <a
+                [routerLink]="'/feedback'"
+                [routerLinkActive]="[
+                  '!text-background',
+                  '!bg-foreground',
+                  'router-active'
+                ]"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
+              >
+                <span class="text-lg">🗯️</span>
+                <span class="text-sm">Feedback</span>
+              </a>
+
+              <a
+                href="https://github.com/gustavoquinalha/rickandmorty"
+                target="_blank"
+                class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
+              >
+                <span class="text-lg">⭐</span>
+                <span class="text-sm">Github</span>
+              </a>
             </div>
           </div>
         </div>
