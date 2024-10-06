@@ -1,15 +1,9 @@
-import { EpisodesListComponent } from './components/episodes-list/episodes-list.component';
-import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./components/character-list/character-list.component').then(m => m.CharacterListComponent)
-  },
-  {
-    path: 'favorites',
-    loadComponent: () => import('./components/favorites/favorites.component').then(m => m.FavoritesComponent)
   },
   {
     path: 'feedback',

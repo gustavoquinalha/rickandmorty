@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { FavoriteService } from '../../services/favorite.service';
+import { FilterService } from '../../services/filter.service';
 
 @Component({
   standalone: true,
@@ -17,23 +18,17 @@ export class FilterListComponent {
   @Input() selectedGender: string = '';
   @Input() selectedSpecies: string = '';
   @Input() selectedStatus: string = '';
-  @Input() showFavorites?: boolean = false;
-
-  @Output() searchTermChange = new EventEmitter<string>();
-  @Output() genderChange = new EventEmitter<string>();
-  @Output() speciesChange = new EventEmitter<string>();
-  @Output() statusChange = new EventEmitter<string>();
-  @Output() favoritesToggle = new EventEmitter<boolean>();
-  @Output() resetFilters = new EventEmitter<void>();
+  @Input() showFavorites: boolean = false;
 
   private searchTermSubject: Subject<string> = new Subject<string>();
 
-  constructor(private favoriteService: FavoriteService) {
+  constructor(private favoriteService: FavoriteService, private filterService: FilterService) {
     this.searchTermSubject.pipe(
       debounceTime(1000),
       distinctUntilChanged()
-    ).subscribe((searchTerm: string | undefined) => {
-      this.searchTermChange.emit(searchTerm);
+    ).subscribe((searchTerm: string) => {
+      this.searchTerm = searchTerm;
+      this.updateFilter();
     });
   }
 
@@ -43,40 +38,45 @@ export class FilterListComponent {
 
   selectGender(gender: string) {
     this.selectedGender = this.selectedGender !== gender ? gender : '';
-    this.genderChange.emit(gender);
+    this.updateFilter();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   selectSpecie(specie: string) {
     this.selectedSpecies = this.selectedSpecies !== specie ? specie : '';
-    this.speciesChange.emit(this.selectedSpecies);
+    this.updateFilter();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   selectStatus(status: string) {
     this.selectedStatus = this.selectedStatus !== status ? status : '';
-    this.statusChange.emit(this.selectedStatus);
+    this.updateFilter();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   loadFavoriteItems() {
     this.showFavorites = !this.showFavorites;
-    this.favoritesToggle.emit(this.showFavorites);
+    this.updateFilter();
+  }
+
+  updateFilter() {
+    this.filterService.updateFilter({
+      favorite: this.showFavorites,
+      search: this.searchTerm,
+      gender: this.selectedGender,
+      specie: this.selectedSpecies,
+      status: this.selectedStatus,
+    });
   }
 
   resetFilter() {
-    this.resetSelects();
-    this.showFavorites = false;
-    this.favoritesToggle.emit(this.showFavorites);
-    this.resetFilters.emit();
-  }
-
-  resetSelects() {
     this.searchTerm = '';
-    this.searchTermChange.emit(this.searchTerm);
-    this.selectGender('');
-    this.selectSpecie('');
-    this.selectStatus('');
+    this.selectedGender = '';
+    this.selectedSpecies = '';
+    this.selectedStatus = '';
+    this.showFavorites = false;
+
+    this.updateFilter();
   }
 
   get getFavoritesLength() {

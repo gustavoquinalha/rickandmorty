@@ -54,3 +54,11 @@ export interface Location {
   url: string;
   created: string;
 }
+
+export interface Filter {
+  favorite: boolean;
+  search: string;
+  gender: string;
+  specie: string;
+  status: string
+}

@@ -9,6 +9,8 @@ import { CardCharacterComponent } from '../card-character/card-character.compone
 import { LoadingComponent } from "../loading/loading.component";
 import { FilterListComponent } from "../filter-list/filter-list.component";
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
+import { FilterService } from '../../services/filter.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -32,8 +34,9 @@ export class CharacterListComponent implements OnInit {
   pagesArray: number[] = [];
   showFavorites = false;
   showGrid = true;
+  private filterSubscription?: Subscription;
 
-  constructor(private rickAndMortyService: RickAndMortyService, private favoriteService: FavoriteService) { }
+  constructor(private rickAndMortyService: RickAndMortyService, private favoriteService: FavoriteService, private filterService: FilterService) { }
 
   @HostListener('window:scroll', [])
   onScroll(): void {
@@ -44,13 +47,22 @@ export class CharacterListComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchCharacters(this.currentPage);
+
+    this.filterSubscription = this.filterService.filter$.subscribe((filter) => {
+      this.applyFilter(filter);
+    });
+  }
+
+  applyFilter(filter: any) {
+    this.showFavorites = filter.favorite;
+    this.fetchCharacters(1, filter.search, filter.specie, filter.gender, filter.status, false);
+
   }
 
   fetchCharacters(page: number, name: string = '', specie: string = '', gender: string = '', status: string = '', append: boolean = false): void {
     this.loadingCharacters = true;
 
     const favoritesList = this.favoriteService.getFavorites();
-
     const favorites: number[] | object[] = this.showFavorites
       ? favoritesList.length ? favoritesList : [{}]
       : [];
@@ -95,72 +107,14 @@ export class CharacterListComponent implements OnInit {
     }
   }
 
-  loadFavoriteItems(value: boolean): void {
-    this.showFavorites = value;
-    this.searchTerm = ''
-    this.selectedSpecies = ''
-    this.selectedGender = ''
-    this.selectedStatus = ''
-    this.fetchCharacters(1, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
-  }
-
-  nextPage(): void {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
-    }
-  }
-
-  previousPage(): void {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
-    }
-  }
-
-  onSearchChange(term: string): void {
-    this.searchTerm = term;
-    this.fetchCharacters(this.currentPage, this.searchTerm);
-  }
-
-  selectSpecie(specie: string) {
-    this.selectedSpecies = specie;
-    this.fetchCharacters(1, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
-  }
-
-  selectGender(gender: string) {
-    this.selectedGender = gender;
-    this.fetchCharacters(1, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
-  }
-
-  selectStatus(status: string) {
-    this.selectedStatus = status;
-    this.fetchCharacters(1, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
-  }
-
-  onPageSelect(event: Event): void {
-    const selectedPage = +(event.target as HTMLSelectElement).value;
-    this.currentPage = selectedPage;
-    this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
-  }
-
-  resetFilter() {
-    this.showFavorites = false;
-    this.currentPage == 1;
-    this.searchTerm = '';
-    this.selectedSpecies = '';
-    this.selectedGender = '';
-    this.selectedStatus = '';
-    this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
-  }
 
   get getFavoritesLength() {
     return this.favoriteService.getFavorites().length
   }
 
-  favoriteChange(_id: number) {
-    if (this.showFavorites) {
-      this.fetchCharacters(this.currentPage, this.searchTerm, this.selectedSpecies, this.selectedGender, this.selectedStatus);
+  ngOnDestroy() {
+    if (this.filterSubscription) {
+      this.filterSubscription.unsubscribe();
     }
   }
 }
