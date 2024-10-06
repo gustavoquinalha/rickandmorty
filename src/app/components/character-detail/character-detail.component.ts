@@ -9,10 +9,11 @@ import { CardEpisodeComponent } from '../card-episode/card-episode.component';
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
 import { CardLocationComponent } from "../card-location/card-location.component";
 import { CardCharacterDetailComponent } from "../card-character-detail/card-character-detail.component";
+import { TopbarActionsComponent } from "../topbar-actions/topbar-actions.component";
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent, CardEpisodeComponent, EmptyResultComponent, CardLocationComponent, CardLocationComponent, CardCharacterDetailComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, CardEpisodeComponent, EmptyResultComponent, CardLocationComponent, CardLocationComponent, CardCharacterDetailComponent, TopbarActionsComponent],
   selector: 'app-character-detail',
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.scss'],

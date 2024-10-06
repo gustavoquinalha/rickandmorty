@@ -1,0 +1,49 @@
+<div
+  class="flex justify-center items-center fixed md:sticky top-[calc(100%-4rem)] md:top-0 left-0 z-50 border-t md:border-t-0 border-b-0 md:border-b w-full backdrop-blur-sm bg-background/95"
+>
+  <div
+    class="container px-4 md:px-8 flex justify-between items-center gap-2 h-16"
+  >
+    <div class="flex items-center gap-2">
+      <a
+        [routerLink]="
+          type === 'location'
+            ? ['/locations']
+            : type === 'episode'
+            ? ['/episodes']
+            : ['/']
+        "
+        class="btn btn-border"
+      >
+        <span class="text-lg leading-none">👈</span>
+        <span class="hidden md:block">Back</span>
+      </a>
+
+      <span
+        class="capitalize text-sm md:ml-2 truncate whitespace-nowrap block text-muted-foreground"
+      >
+        {{ type }} {{ id }}</span
+      >
+    </div>
+
+    <div class="flex justify-between items-center gap-2">
+      <button
+        [ngClass]="{ disabled: id <= 1 }"
+        (click)="goToPrevious()"
+        class="btn btn-border w-10 md:w-auto px-0 md:px-3"
+      >
+        <span class="text-lg leading-none">👈</span>
+        <span class="hidden md:block">Previous {{ type }}</span>
+      </button>
+
+      <button
+        [ngClass]="{ disabled: id >= maxId }"
+        (click)="goToNext()"
+        class="btn btn-border w-10 md:w-auto px-0 md:px-3"
+      >
+        <span class="hidden md:block">Next {{ type }}</span>
+        <span class="text-lg leading-none">👉</span>
+      </button>
+    </div>
+  </div>
+</div>

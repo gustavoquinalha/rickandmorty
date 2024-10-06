@@ -7,11 +7,12 @@ import { Character } from '../../interface/characters';
 import { AvatarCharactersComponent } from '../avatar-characters/avatar-characters.component';
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
 import { CardLocationComponent } from '../card-location/card-location.component';
+import { TopbarActionsComponent } from '../topbar-actions/topbar-actions.component';
 
 @Component({
   selector: 'app-location',
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent, AvatarCharactersComponent, EmptyResultComponent, CardLocationComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, AvatarCharactersComponent, EmptyResultComponent, CardLocationComponent, TopbarActionsComponent],
   templateUrl: './location.component.html',
   styleUrl: './location.component.scss'
 })

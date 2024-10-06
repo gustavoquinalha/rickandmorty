@@ -7,11 +7,12 @@ import { Character } from '../../interface/characters';
 import { AvatarCharactersComponent } from '../avatar-characters/avatar-characters.component';
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
 import { CardEpisodeComponent } from "../card-episode/card-episode.component";
+import { TopbarActionsComponent } from '../topbar-actions/topbar-actions.component';
 
 @Component({
   selector: 'app-episode',
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent, AvatarCharactersComponent, EmptyResultComponent, CardEpisodeComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, AvatarCharactersComponent, EmptyResultComponent, CardEpisodeComponent, TopbarActionsComponent],
   templateUrl: './episode.component.html',
   styleUrl: './episode.component.scss'
 })
