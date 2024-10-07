@@ -11,10 +11,11 @@ import { FilterListComponent } from "../filter-list/filter-list.component";
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
 import { FilterService } from '../../services/filter.service';
 import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, CardCharacterComponent, LoadingComponent, FilterListComponent, EmptyResultComponent],
+  imports: [CommonModule, RouterModule, FormsModule, CardCharacterComponent, LoadingComponent, FilterListComponent, EmptyResultComponent, TranslateModule],
   selector: 'app-character-list',
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.scss'],

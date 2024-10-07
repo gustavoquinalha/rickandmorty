@@ -1,0 +1,25 @@
+{
+  "HOME": {
+    "CHARACTERS": "キャラクター",
+    "EPISODES": "エピソード",
+    "LOCATIONS": "場所",
+    "FEEDBACK": "フィードバック",
+    "LIGHT": "ライト",
+    "DARK": "ダーク",
+    "FAVORITES": "お気に入り",
+    "RESET": "リセット",
+    "SEARCH_BY_NAME": "名前で検索...",
+    "RICK_AND_MORTY_CHARACTERS": "リックとモーティのキャラクター",
+    "YOUR_FAVORITE_CHARACTERS": "お気に入りのキャラクター",
+    "CREATED_WITH": "で作成",
+    "BY": "作成者",
+    "SELECT_THEME": "テーマを選択",
+    "SELECT_LANGUAGE": "言語を選択",
+    "RICK_AND_MORTY": "リックとモーティ",
+    "PICKLE_RICK": "ピクルス・リック",
+    "PORTUGUES": "ポルトガル語",
+    "ESPANHOL": "スペイン語",
+    "INGLES": "英語",
+    "JAPONES": "日本語"
+  }
+}

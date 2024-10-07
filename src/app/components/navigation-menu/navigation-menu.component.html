@@ -23,7 +23,7 @@
         [routerLinkActiveOptions]="{ exact: true }"
       >
         <span class="text-lg">🛸</span>
-        <span class="hidden lg:block">Characters</span>
+        <span class="hidden lg:block">{{ "HOME.CHARACTERS" | translate }}</span>
       </a>
 
       <a
@@ -37,7 +37,7 @@
         [routerLinkActiveOptions]="{ exact: true }"
       >
         <span class="text-lg">📽️</span>
-        <span class="hidden lg:block">Episodes</span>
+        <span class="hidden lg:block">{{ "HOME.EPISODES" | translate }}</span>
       </a>
 
       <a
@@ -51,7 +51,7 @@
         [routerLinkActiveOptions]="{ exact: true }"
       >
         <span class="text-lg">📌</span>
-        <span class="hidden lg:block">Locations</span>
+        <span class="hidden lg:block">{{ "HOME.LOCATIONS" | translate }}</span>
       </a>
     </div>
 
@@ -67,7 +67,7 @@
         class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto hidden sm:flex"
       >
         <span class="text-lg">🗯️</span>
-        <span class="hidden lg:block">Feedback</span>
+        <span class="hidden lg:block">{{ "HOME.FEEDBACK" | translate }}</span>
       </a>
 
       <a
@@ -86,7 +86,9 @@
             id="theme-button"
           >
             <span class="text-lg">🎨</span>
-            <span class="hidden lg:block capitalize">{{ selectedTheme }}</span>
+            <span class="hidden lg:block capitalize">{{
+              "HOME." + selectedTheme.name | translate
+            }}</span>
             <span class="text-xs hidden lg:block">▼</span>
           </button>
         </div>
@@ -100,56 +102,70 @@
             <div class="p-2 flex flex-col gap-1">
               <div class="px-4 py-1 flex gap-2 items-center">
                 <span class="text-lg">🖌️</span>
-                <span class="text-sm text-muted-foreground">Select theme</span>
+                <span class="text-sm text-muted-foreground">{{
+                  "HOME.SELECT_THEME" | translate
+                }}</span>
               </div>
               <div
+                *ngFor="let item of themes"
                 class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
-                (click)="onThemeSelect('dark')"
+                (click)="onThemeSelect(item)"
                 [ngClass]="{
                   '!bg-foreground !text-background border-border':
-                    selectedTheme === 'dark'
+                    selectedTheme.value === item.value
                 }"
-                title="Dark"
+                [title]="'HOME.' + item.name | translate"
                 selected
               >
-                <span class="text-lg">🌑</span>
-                <span class="text-sm">Dark</span>
+                <span class="text-lg">{{ item.icon }}</span>
+                <span class="text-sm">{{
+                  "HOME." + item.name | translate
+                }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="group relative inline-block text-left z-50">
+        <div>
+          <button
+            class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
+            id="theme-button"
+          >
+            <span class="text-lg">{{ selectedLang.icon }}</span>
+            <span class="text-xs hidden lg:block">▼</span>
+          </button>
+        </div>
+
+        <div
+          class="hidden group-hover:block absolute right-0 z-[60] w-56 origin-top-right"
+        >
+          <div
+            class="rounded-xl mt-2 border bg-background backdrop-blur-sm shadow-lg"
+          >
+            <div class="p-2 flex flex-col gap-1">
+              <div class="px-4 py-1 flex gap-2 items-center">
+                <span class="text-lg">🗣️</span>
+                <span class="text-sm text-muted-foreground">{{
+                  "HOME.SELECT_LANGUAGE" | translate
+                }}</span>
               </div>
               <div
+                *ngFor="let item of langs"
                 class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
-                (click)="onThemeSelect('light')"
+                (click)="changeLanguage(item)"
                 [ngClass]="{
                   '!bg-foreground !text-background border-border':
-                    selectedTheme === 'light'
+                    selectedLang.value === item.value
                 }"
-                title="Light"
+                [title]="'HOME.' + item.value | translate"
+                selected
               >
-                <span class="text-lg">☀️</span>
-                <span class="text-sm">Light</span>
-              </div>
-              <div
-                class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
-                (click)="onThemeSelect('pickle-rick')"
-                [ngClass]="{
-                  '!bg-foreground !text-background border-border':
-                    selectedTheme === 'pickle-rick'
-                }"
-                title="Pickle Rick"
-              >
-                <span class="text-lg">🥒</span>
-                <span class="text-sm">Pickle Rick</span>
-              </div>
-              <div
-                class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
-                (click)="onThemeSelect('rick-and-morty')"
-                [ngClass]="{
-                  '!bg-foreground !text-background border-border':
-                    selectedTheme === 'rick-and-morty'
-                }"
-                title="Rick and Morty"
-              >
-                <span class="text-lg">👩‍🚀</span>
-                <span class="text-sm">Rick and Morty</span>
+                <span class="text-lg">{{ item.icon }}</span>
+                <span class="text-sm">{{
+                  "HOME." + item.name | translate
+                }}</span>
               </div>
             </div>
           </div>
@@ -185,7 +201,7 @@
                 class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
               >
                 <span class="text-lg">🗯️</span>
-                <span class="text-sm">Feedback</span>
+                <span class="text-sm">{{ "HOME.FEEDBACK" | translate }}</span>
               </a>
 
               <a

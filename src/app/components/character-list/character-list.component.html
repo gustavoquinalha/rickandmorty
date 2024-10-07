@@ -19,13 +19,16 @@
             class="text-xl font-medium tracking-widest font-creepster"
             *ngIf="showFavorites"
           >
-            ❤️ Your Favorite Characters ({{ getFavoritesLength }})
+            ❤️ {{ "HOME.YOUR_FAVORITE_CHARACTERS" | translate }} ({{
+              getFavoritesLength
+            }})
           </h2>
+
           <h2
             class="text-xl font-medium tracking-widest font-creepster"
             *ngIf="!showFavorites"
           >
-            🛸 Rick and Morty characters
+            🛸 {{ "HOME.RICK_AND_MORTY_CHARACTERS" | translate }}
           </h2>
 
           <div

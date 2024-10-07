@@ -1,0 +1,25 @@
+{
+  "HOME": {
+    "CHARACTERS": "Characters",
+    "EPISODES": "Episodes",
+    "LOCATIONS": "Locations",
+    "FEEDBACK": "Feedback",
+    "LIGHT": "Light",
+    "DARK": "Dark",
+    "FAVORITES": "Favorites",
+    "RESET": "Reset",
+    "SEARCH_BY_NAME": "Search by name...",
+    "RICK_AND_MORTY_CHARACTERS": "Rick and Morty characters",
+    "YOUR_FAVORITE_CHARACTERS": "Your Favorite Characters",
+    "CREATED_WITH": "Created with",
+    "BY": "by",
+    "SELECT_THEME": "Select theme",
+    "SELECT_LANGUAGE": "Select language",
+    "RICK_AND_MORTY": "Rick and Morty",
+    "PICKLE_RICK": "Pickle Rick",
+    "PORTUGUES": "Português",
+    "ESPANHOL": "Español",
+    "INGLES": "English",
+    "JAPONES": "日本語"
+  }
+}
