@@ -41,21 +41,25 @@ export class CharacterDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.characterId = Number(params.get('id'));
-      this.loadingCharacter = true;
-      this.rickAndMortyService.getCharacterById(this.characterId).subscribe({
-        next: (character: Character) => {
-          if (character) {
-            this.character = character;
-            this.getLocation(character?.location?.url)
-            this.getEpisodes(character)
-            this.loadingCharacter = false;
-          }
-        },
-        error: (_err) => {
-          this.character = null;
+      this.getCharacter();
+    });
+  }
+
+  getCharacter() {
+    this.loadingCharacter = true;
+    this.rickAndMortyService.getCharacterById(this.characterId!).subscribe({
+      next: (character: Character) => {
+        if (character) {
+          this.character = character;
+          this.getLocation(this.character.location.url)
+          this.getEpisodes(this.character)
           this.loadingCharacter = false;
-        },
-      });
+        }
+      },
+      error: (_err) => {
+        this.character = null;
+        this.loadingCharacter = false;
+      },
     });
   }
 
@@ -78,14 +82,8 @@ export class CharacterDetailComponent implements OnInit {
 
   getEpisodes(character: Character) {
     this.loadingEpisodes = true;
-
-    const ids = character.episode.map((url: string) => {
-      const parts = url.split('/');
-      return parseInt(parts[parts.length - 1], 10);
-    });
-
     this.rickAndMortyService
-      .getEpisodes(ids)
+      .getEpisodes(this.getCharactersIds(character))
       .subscribe({
         next: (response: Episode[]) => {
           if (response) {
@@ -97,6 +95,13 @@ export class CharacterDetailComponent implements OnInit {
           this.loadingEpisodes = false;
         },
       });
+  }
+
+  getCharactersIds(character: Character) {
+    return character.episode.map((url: string) => {
+      const parts = url.split('/');
+      return parseInt(parts[parts.length - 1], 10);
+    });
   }
 
   formatDate(isoString: string): string {

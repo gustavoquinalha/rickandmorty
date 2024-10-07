@@ -13,7 +13,7 @@
       <div class="max-w-2xl mx-auto flex flex-col gap-4">
         <app-card-character-detail [character]="character" />
 
-        <ng-container *ngIf="!loadingLocation; else loading2">
+        <ng-container *ngIf="!loadingLocation; else loadingSmall">
           <app-card-location
             *ngIf="location"
             class="w-full"
@@ -21,7 +21,7 @@
           />
         </ng-container>
 
-        <ng-container *ngIf="!loadingEpisodes; else loading2">
+        <ng-container *ngIf="!loadingEpisodes; else loadingSmall">
           <app-character-episodes-card *ngIf="episodes" [episodes]="episodes" />
         </ng-container>
       </div>
@@ -42,6 +42,6 @@
   <app-loading />
 </ng-template>
 
-<ng-template #loading2>
+<ng-template #loadingSmall>
   <app-loading [fullscreen]="false" />
 </ng-template>

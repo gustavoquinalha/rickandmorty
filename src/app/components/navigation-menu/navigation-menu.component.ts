@@ -41,7 +41,7 @@ export class NavigationMenuComponent implements OnInit {
       value: "rick-and-morty",
       icon: "👩‍🚀",
     },
-  ]
+  ];
 
   selectedLang = {
     name: 'INGLES',
