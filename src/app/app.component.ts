@@ -22,8 +22,11 @@ export class AppComponent {
     this.routeSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.renderer.removeClass(document.body, 'pb-16');
+        this.renderer.removeClass(document.body, 'md:pb-0');
+
         if (event.url === '/' || event.url.includes('/episode/') || event.url.includes('/location/') || event.url.includes('/character/')) {
           this.renderer.addClass(document.body, 'pb-16');
+          this.renderer.addClass(document.body, 'md:pb-0');
         }
       }
 
