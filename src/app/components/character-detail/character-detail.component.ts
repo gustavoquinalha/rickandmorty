@@ -1,3 +1,4 @@
+import { CharacterEpisodesCardComponent } from './../character-episodes-card/character-episodes-card.component';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -13,7 +14,7 @@ import { TopbarActionsComponent } from "../topbar-actions/topbar-actions.compone
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent, CardEpisodeComponent, EmptyResultComponent, CardLocationComponent, CardLocationComponent, CardCharacterDetailComponent, TopbarActionsComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, CardEpisodeComponent, EmptyResultComponent, CardLocationComponent, CardLocationComponent, CardCharacterDetailComponent, TopbarActionsComponent, CharacterEpisodesCardComponent],
   selector: 'app-character-detail',
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.scss'],
@@ -53,8 +54,6 @@ export class CharacterDetailComponent implements OnInit {
         error: (_err) => {
           this.character = null;
           this.loadingCharacter = false;
-          this.loadingLocation = false;
-          this.loadingEpisodes = false;
         },
       });
     });

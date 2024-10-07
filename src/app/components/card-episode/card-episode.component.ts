@@ -34,7 +34,6 @@ export class CardEpisodeComponent {
     });
 
     const randomId = ids[Math.floor(Math.random() * ids.length)];
-
     this.rickAndMortyService.getCharacterById([randomId]).subscribe({
       next: (character: Character) => {
         if (character) {

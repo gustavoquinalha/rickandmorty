@@ -3,12 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-
-export interface Theme {
-  name: string;
-  value: string;
-  icon: string;
-}
+import { Theme } from '../../interface/characters';
 
 @Component({
   selector: 'app-navigation-menu',
@@ -17,7 +12,6 @@ export interface Theme {
   templateUrl: './navigation-menu.component.html',
   styleUrls: ['./navigation-menu.component.scss']
 })
-
 
 export class NavigationMenuComponent implements OnInit {
   selectedTheme: Theme = {
@@ -64,9 +58,23 @@ export class NavigationMenuComponent implements OnInit {
 
   constructor(private translate: TranslateService) { }
   ngOnInit(): void {
+    this.initializeTheme();
+    this.initializeLanguage();
+  }
+
+  private initializeTheme(): void {
     const savedTheme = localStorage.getItem('theme-rickandmorty');
     if (savedTheme) {
       this.onThemeSelect(JSON.parse(savedTheme));
+    }
+  }
+
+  private initializeLanguage(): void {
+    const savedLang = localStorage.getItem('lang-rickandmorty');
+    if (savedLang) {
+      this.changeLanguage(JSON.parse(savedLang));
+    } else {
+      this.changeLanguage(this.selectedTheme);
     }
   }
 
@@ -81,5 +89,7 @@ export class NavigationMenuComponent implements OnInit {
   changeLanguage(lang: { name: string, value: string, icon: string }) {
     this.selectedLang = lang;
     this.translate.use(lang.value);
+
+    localStorage.setItem('lang-rickandmorty', JSON.stringify(this.selectedLang));
   }
 }

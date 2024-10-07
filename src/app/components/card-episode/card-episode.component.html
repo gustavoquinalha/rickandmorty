@@ -1,6 +1,6 @@
 <ng-container *ngIf="episode">
   <a
-    [routerLink]="!showInfo ? ['/episode', episode?.id] : null"
+    [routerLink]="!showInfo ? ['/episode', episode.id] : null"
     [ngClass]="showInfo ? 'mb-4' : ''"
     class="group relative block text-center border hover:border-foreground bg-input rounded-xl overflow-hidden"
   >
@@ -11,14 +11,14 @@
         *ngIf="imageCharacter"
         [src]="imageCharacter"
         class="w-full aspect-video h-full object-cover absolute top-0 left-0 select-none group-hover:scale-110 transition-all brightness-[40%] group-hover:brightness-[50%]"
-        [alt]="episode?.episode"
+        [alt]="episode.episode"
         loading="lazy"
       />
 
       <span
         class="absolute text-left top-4 left-4 text-sm capitalize text-white transition-all z-10"
       >
-        {{ episode?.episode }} - {{ episode?.name }}
+        {{ episode.episode }} - {{ episode.name }}
       </span>
       <span
         class="text-muted-foreground group-hover:scale-125 transition-all delay-150 text-3xl md:text-4xl z-10"
@@ -35,7 +35,7 @@
     <div class="flex items-center justify-center gap-2">
       <span class="text-muted-foreground text-lg">📺</span>
       <span class="text-xs text-muted-foreground capitalize">{{
-        episode?.air_date
+        episode.air_date
       }}</span>
     </div>
 
@@ -47,7 +47,7 @@
         [href]="
           'https://www.netflix.com/search?q=' +
           'Rick and Morty ' +
-          episode?.name
+          episode.name
         "
         class="btn btn-border w-auto px-3"
       >
@@ -58,7 +58,7 @@
         [href]="
           'https://www.primevideo.com/search/ref=atv_nb_sug?ie=UTF8&phrase=' +
           'Rick and Morty ' +
-          episode?.name
+          episode.name
         "
         class="btn btn-border w-auto px-3"
       >
@@ -69,7 +69,7 @@
         [href]="
           'https://play.max.com/search/result?q=' +
           'Rick and Morty ' +
-          episode?.name
+          episode.name
         "
         class="btn btn-border w-auto px-3"
       >

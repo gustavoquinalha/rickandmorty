@@ -62,3 +62,19 @@ export interface Filter {
   specie: string;
   status: string
 }
+
+
+export interface FetchCharacters {
+  page: number;
+  name: string;
+  specie: string;
+  gender: string;
+  status: string;
+  append: boolean;
+}
+
+export interface Theme {
+  name: string;
+  value: string;
+  icon: string;
+}

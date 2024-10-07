@@ -7,6 +7,8 @@ bootstrapApplication(AppComponent, appConfig)
   .then(appRef => {
     const translateService = appRef.injector.get(TranslateService);
     translateService.setDefaultLang('en');
-    translateService.use('en');
+
+    const savedLang = localStorage.getItem('lang-rickandmorty');
+    translateService.use(savedLang ? JSON.parse(savedLang).value : 'en');
   })
   .catch((err) => console.error(err));

@@ -63,13 +63,8 @@ export class CharacterListComponent implements OnInit {
   fetchCharacters(page: number, name: string = '', specie: string = '', gender: string = '', status: string = '', append: boolean = false): void {
     this.loadingCharacters = true;
 
-    const favoritesList = this.favoriteService.getFavorites();
-    const favorites: number[] | object[] = this.showFavorites
-      ? favoritesList.length ? favoritesList : [{}]
-      : [];
-
     this.rickAndMortyService
-      .getCharacters(page, name, specie, gender, status, favorites)
+      .getCharacters(page, name, specie, gender, status, this.verifyFavorites())
       .subscribe({
         next: (response: ApiResponse) => {
           if (response) {
@@ -85,10 +80,21 @@ export class CharacterListComponent implements OnInit {
       });
   }
 
-  validateResponse(response: any, append: boolean) {
-    this.filteredCharacters = append
-      ? [...this.filteredCharacters, ...response.results]
-      : response.results ? response.results : response instanceof Array ? (response as any) : [response];
+  verifyFavorites(): number[] | object[] {
+    const favoritesList = this.favoriteService.getFavorites();
+    return this.showFavorites
+      ? favoritesList.length ? favoritesList : [{}]
+      : [];
+  }
+
+  validateResponse(response: ApiResponse, append: boolean) {
+    console.log('validateResponse');
+
+    if (append) {
+      this.filteredCharacters = [...this.filteredCharacters, ...response.results];
+    } else {
+      this.filteredCharacters = response.results || (Array.isArray(response) ? response : [response]);
+    }
     this.characters = this.filteredCharacters;
   }
 
@@ -97,7 +103,7 @@ export class CharacterListComponent implements OnInit {
     this.currentPage = page;
     this.pagesArray = Array.from(
       { length: this.totalPages },
-      (_, i) => i + 1
+      (_, index) => index + 1
     );
   }
 
