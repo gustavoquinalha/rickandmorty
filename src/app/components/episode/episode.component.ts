@@ -32,11 +32,11 @@ export class EpisodeComponent {
     this.route.paramMap.subscribe(params => {
       this.loadingEpisode = true;
       this.episodeId = Number(params.get('id'));
+
       this.rickAndMortyService.getEpisodeById(this.episodeId!).subscribe({
         next: (episode: Episode) => {
           this.episode = episode;
           this.loadingEpisode = false;
-
           this.getCharacters(episode.characters);
         },
         error: (_err) => {

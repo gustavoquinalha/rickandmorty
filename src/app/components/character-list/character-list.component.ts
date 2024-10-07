@@ -72,18 +72,9 @@ export class CharacterListComponent implements OnInit {
       .getCharacters(page, name, specie, gender, status, favorites)
       .subscribe({
         next: (response: ApiResponse) => {
-
           if (response) {
-            this.filteredCharacters = append
-              ? [...this.filteredCharacters, ...response.results]
-              : response.results ? response.results : response instanceof Array ? (response as any) : [response];
-            this.characters = this.filteredCharacters;
-            this.totalPages = response?.info?.pages ?? 1;
-            this.currentPage = page;
-            this.pagesArray = Array.from(
-              { length: this.totalPages },
-              (_, i) => i + 1
-            );
+            this.validateResponse(response, append);
+            this.setConfigs(response?.info?.pages ?? 1, page);
             this.loadingCharacters = false;
           }
         },
@@ -92,6 +83,22 @@ export class CharacterListComponent implements OnInit {
           this.loadingCharacters = false;
         },
       });
+  }
+
+  validateResponse(response: any, append: boolean) {
+    this.filteredCharacters = append
+      ? [...this.filteredCharacters, ...response.results]
+      : response.results ? response.results : response instanceof Array ? (response as any) : [response];
+    this.characters = this.filteredCharacters;
+  }
+
+  setConfigs(pages: number, page: number): void {
+    this.totalPages = pages;
+    this.currentPage = page;
+    this.pagesArray = Array.from(
+      { length: this.totalPages },
+      (_, i) => i + 1
+    );
   }
 
   loadMore(): void {

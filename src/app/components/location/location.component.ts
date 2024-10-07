@@ -32,11 +32,11 @@ export class LocationComponent {
     this.route.paramMap.subscribe(params => {
       this.loadingLocation = true;
       this.locationId = Number(params.get('id'));
+
       this.rickAndMortyService.getLocationById(this.locationId!).subscribe({
         next: (location: Location) => {
           this.location = location;
           this.loadingLocation = false;
-
           this.getCharacters(location.residents);
         },
         error: (_err) => {
