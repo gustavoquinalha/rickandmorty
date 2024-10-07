@@ -41,7 +41,7 @@ export class LocationsListComponent {
             this.loadingLocations = false;
           }
         },
-        error: (_err) => {
+        error: () => {
           this.loadingLocations = false;
         },
       });

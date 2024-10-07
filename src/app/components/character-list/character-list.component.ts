@@ -73,7 +73,7 @@ export class CharacterListComponent implements OnInit {
             this.loadingCharacters = false;
           }
         },
-        error: (_err) => {
+        error: () => {
           this.filteredCharacters = [];
           this.loadingCharacters = false;
         },
@@ -88,8 +88,6 @@ export class CharacterListComponent implements OnInit {
   }
 
   validateResponse(response: ApiResponse, append: boolean) {
-    console.log('validateResponse');
-
     if (append) {
       this.filteredCharacters = [...this.filteredCharacters, ...response.results];
     } else {

@@ -21,25 +21,32 @@ export class CardEpisodeComponent {
   ) { }
 
   ngOnInit() {
-    if (this.episode) {
-      this.getFavoritesLength(this.episode.characters);
-    }
+    this.getFavoritesLength(this.episode?.characters!);
   }
 
   getFavoritesLength(characters: string[]) {
+    console.log('getFavoritesLength', characters);
 
-    const ids = characters.map((id: string) => {
-      const parts = id.split('/');
-      return parseInt(parts[parts.length - 1], 10);
-    });
-
-    const randomId = ids[Math.floor(Math.random() * ids.length)];
-    this.rickAndMortyService.getCharacterById([randomId]).subscribe({
+    this.rickAndMortyService.getCharacterById([this.generateRandomId(characters)]).subscribe({
       next: (character: Character) => {
         if (character) {
           this.imageCharacter = character.image;
         }
-      }
+      }, error: () => {
+        this.imageCharacter = '';
+      },
+    });
+  }
+
+  generateRandomId(characters: string[]): number {
+    const ids = this.getIds(characters);
+    return ids[Math.floor(Math.random() * ids.length)];
+  }
+
+  getIds(characters: string[]): number[] {
+    return characters.map((id: string) => {
+      const parts = id.split('/');
+      return parseInt(parts[parts.length - 1], 10);
     });
   }
 }

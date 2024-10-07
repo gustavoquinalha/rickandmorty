@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from '../loading/loading.component';
@@ -8,6 +8,7 @@ import { AvatarCharactersComponent } from '../avatar-characters/avatar-character
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
 import { CardLocationComponent } from '../card-location/card-location.component';
 import { TopbarActionsComponent } from '../topbar-actions/topbar-actions.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-location',
@@ -23,47 +24,45 @@ export class LocationComponent {
   loadingLocation = true;
   loadingCharacter = true;
   character?: Character[];
+  private routeSubscription: Subscription = new Subscription();
   constructor(
     private route: ActivatedRoute,
     private rickAndMortyService: RickAndMortyService,
-    private router: Router,
   ) { }
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.loadingLocation = true;
+    this.routeSubscription = this.route.paramMap.subscribe(params => {
       this.locationId = Number(params.get('id'));
-
-      this.rickAndMortyService.getLocationById(this.locationId!).subscribe({
-        next: (location: Location) => {
-          this.location = location;
-          this.loadingLocation = false;
-          this.getCharacters(location.residents);
-        },
-        error: (_err) => {
-          this.loadingLocation = false;
-          this.loadingCharacter = false;
-        }
-      });
+      this.getLocationById();
     });
   }
 
-  getCharacters(residents: string[]) {
-    this.loadingCharacter = true;
-
-    const ids = residents.map((id: string) => {
-      const parts = id.split('/');
-      return parseInt(parts[parts.length - 1], 10);
+  getLocationById() {
+    this.loadingLocation = true;
+    this.rickAndMortyService.getLocationById(this.locationId!).subscribe({
+      next: (location: Location) => {
+        this.location = location;
+        this.loadingLocation = false;
+      },
+      error: () => {
+        this.loadingLocation = false;
+      }
+    }).add(() => {
+      this.getResidents(this.location?.residents!);
     });
+  }
 
+  getResidents(residents: string[]) {
+    this.loadingCharacter = true;
+    const ids = this.getIds(residents);
     if (ids.length) {
-      this.rickAndMortyService.getCharacterById(ids).subscribe({
+      this.rickAndMortyService.getCharacterById(ids!).subscribe({
         next: (character: Character) => {
           if (character) {
             this.character = character instanceof Array ? character : [character];
             this.loadingCharacter = false;
           }
         },
-        error: (_err) => {
+        error: () => {
           this.loadingCharacter = false;
         },
       });
@@ -73,16 +72,14 @@ export class LocationComponent {
     }
   }
 
-  goToPreviousLocation() {
-    if (this.locationId > 1) {
-      this.router.navigate(['/location', Number(this.locationId) - 1]);
-    }
+  getIds(residents: string[]) {
+    return residents.map((id: string) => {
+      const parts = id.split('/');
+      return parseInt(parts[parts.length - 1], 10);
+    });
   }
 
-  goToNextLocation() {
-    if (this.locationId < this.maxLocation) {
-      this.router.navigate(['/location', Number(this.locationId) + 1]);
-    }
+  ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
   }
-
 }

@@ -36,7 +36,7 @@ export class EpisodesListComponent {
             this.loadingEpisodes = false;
           }
         },
-        error: (_err) => {
+        error: () => {
           this.loadingEpisodes = false;
         },
       });

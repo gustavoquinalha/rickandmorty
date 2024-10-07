@@ -7,27 +7,29 @@
 
   <div class="container px-4 md:px-8 py-4 md:py-8">
     <div
-      *ngIf="!loadingLocation && !loadingCharacter; else loading"
+      *ngIf="!loadingLocation; else loading"
       class="max-w-2xl mx-auto flex flex-col gap-4"
     >
       <app-card-location *ngIf="location; else empty" [location]="location" />
 
-      <div
-        *ngIf="character?.length; else emptyResidents"
-        class="max-w-2xl mx-auto w-full relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
-      >
-        <h3
-          class="font-semibold text-xl text-center md:text-left tracking-widest font-creepster flex items-center gap-2"
+      <ng-container *ngIf="!loadingCharacter; else loadingSmall">
+        <div
+          *ngIf="character?.length; else emptyResidents"
+          class="max-w-2xl mx-auto w-full relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
         >
-          <span class="text-xl">🐄</span>
-          <span>Residents</span>
-        </h3>
-        <div class="text-sm flex gap-2 flex-wrap items-center">
-          <ng-container *ngFor="let resident of character">
-            <app-avatar-characters [character]="resident" />
-          </ng-container>
+          <h3
+            class="font-semibold text-xl text-center md:text-left tracking-widest font-creepster flex items-center gap-2"
+          >
+            <span class="text-xl">🐄</span>
+            <span>Residents</span>
+          </h3>
+          <div class="text-sm flex gap-2 flex-wrap items-center">
+            <ng-container *ngFor="let resident of character">
+              <app-avatar-characters [character]="resident" />
+            </ng-container>
+          </div>
         </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </div>
@@ -57,4 +59,8 @@
 
 <ng-template #loading>
   <app-loading />
+</ng-template>
+
+<ng-template #loadingSmall>
+  <app-loading [fullscreen]="false" />
 </ng-template>

@@ -7,7 +7,7 @@
 
   <div
     class="container px-4 md:px-8 py-4 md:py-8 flex flex-col gap-4"
-    *ngIf="!loadingEpisode && !loadingCharacter; else loading"
+    *ngIf="!loadingEpisode; else loading"
   >
     <ng-container *ngIf="episode; else empty">
       <div
@@ -20,29 +20,31 @@
             class="font-semibold text-xl text-center md:text-left tracking-widest font-creepster flex items-center gap-2"
           >
             <span class="text-xl">📽️</span>
-            <span>Episode {{ episode?.episode }}</span>
+            <span>Episode {{ episode.episode }}</span>
           </h3>
         </div>
 
         <app-card-episode [episode]="episode" [showInfo]="true" />
       </div>
 
-      <div
-        *ngIf="character"
-        class="w-full max-w-2xl mx-auto relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
-      >
-        <h3
-          class="font-semibold text-xl text-center md:text-left tracking-widest font-creepster flex items-center gap-2"
+      <ng-container *ngIf="!loadingCharacter; else loadingSmall">
+        <div
+          *ngIf="character"
+          class="w-full max-w-2xl mx-auto relative border rounded-xl overflow-hidden text-foreground transition-all p-6 flex flex-col gap-6 bg-input/50"
         >
-          <span class="text-xl">👨‍🚀</span>
-          <span>Characters</span>
-        </h3>
-        <div class="text-sm flex gap-2 flex-wrap items-center">
-          <ng-container *ngFor="let resident of character">
-            <app-avatar-characters [character]="resident" />
-          </ng-container>
+          <h3
+            class="font-semibold text-xl text-center md:text-left tracking-widest font-creepster flex items-center gap-2"
+          >
+            <span class="text-xl">👨‍🚀</span>
+            <span>Characters</span>
+          </h3>
+          <div class="text-sm flex gap-2 flex-wrap items-center">
+            <ng-container *ngFor="let resident of character">
+              <app-avatar-characters [character]="resident" />
+            </ng-container>
+          </div>
         </div>
-      </div>
+      </ng-container>
     </ng-container>
   </div>
 </div>
@@ -58,4 +60,8 @@
 
 <ng-template #loading>
   <app-loading />
+</ng-template>
+
+<ng-template #loadingSmall>
+  <app-loading [fullscreen]="false" />
 </ng-template>
