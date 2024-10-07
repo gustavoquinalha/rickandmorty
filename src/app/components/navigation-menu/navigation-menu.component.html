@@ -79,7 +79,7 @@
         <span class="hidden lg:block">Github</span>
       </a>
 
-      <div class="group relative inline-block text-left z-50">
+      <div class="hidden sm:inline-block group relative text-left z-50">
         <div>
           <button
             class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
@@ -127,7 +127,7 @@
         </div>
       </div>
 
-      <div class="group relative inline-block text-left z-50">
+      <div class="hidden sm:inline-block group relative text-left z-50">
         <div>
           <button
             class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
@@ -184,7 +184,7 @@
         </div>
 
         <div
-          class="hidden group-hover:block absolute right-0 z-[60] w-56 origin-top-right"
+          class="hidden group-hover:block absolute right-0 z-[60] w-60 origin-top-right"
         >
           <div
             class="rounded-xl mt-2 border bg-background backdrop-blur-sm shadow-lg"
@@ -212,6 +212,56 @@
                 <span class="text-lg">⭐</span>
                 <span class="text-sm">Github</span>
               </a>
+
+              <div class="border-t p-2 flex flex-col gap-1">
+                <div class="px-4 py-1 flex gap-2 items-center">
+                  <span class="text-lg">🗣️</span>
+                  <span class="text-sm text-muted-foreground">{{
+                    "HOME.SELECT_LANGUAGE" | translate
+                  }}</span>
+                </div>
+                <div
+                  *ngFor="let item of langs"
+                  class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
+                  (click)="changeLanguage(item)"
+                  [ngClass]="{
+                    '!bg-foreground !text-background border-border':
+                      selectedLang.value === item.value
+                  }"
+                  [title]="'HOME.' + item.value | translate"
+                  selected
+                >
+                  <span class="text-lg">{{ item.icon }}</span>
+                  <span class="text-sm">{{
+                    "HOME." + item.name | translate
+                  }}</span>
+                </div>
+              </div>
+
+              <div class="border-t p-2 flex flex-col gap-1">
+                <div class="px-4 py-1 flex gap-2 items-center">
+                  <span class="text-lg">🖌️</span>
+                  <span class="text-sm text-muted-foreground">{{
+                    "HOME.SELECT_THEME" | translate
+                  }}</span>
+                </div>
+                <div
+                  *ngFor="let item of themes"
+                  class="px-4 py-2 hover:bg-foreground/10 border border-transparent rounded-lg flex gap-2 items-center transition-all cursor-pointer"
+                  (click)="onThemeSelect(item)"
+                  [ngClass]="{
+                    '!bg-foreground !text-background border-border':
+                      selectedTheme.value === item.value
+                  }"
+                  [title]="'HOME.' + item.name | translate"
+                  selected
+                >
+                  <span class="text-lg">{{ item.icon }}</span>
+                  <span class="text-sm">{{
+                    "HOME." + item.name | translate
+                  }}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
