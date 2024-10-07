@@ -128,21 +128,21 @@
     @apply bg-background text-foreground;
   }
 
-  ::-webkit-scrollbar {
-    @apply w-2.5 h-2.5;
-  }
+  // ::-webkit-scrollbar {
+  //   @apply w-2.5 h-2.5;
+  // }
 
-  ::-webkit-scrollbar-track {
-    @apply bg-border/50;
-  }
+  // ::-webkit-scrollbar-track {
+  //   @apply bg-border/50;
+  // }
 
-  ::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-border/70;
-  }
+  // ::-webkit-scrollbar-thumb {
+  //   @apply rounded-full bg-border/70;
+  // }
 
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-border/100;
-  }
+  // ::-webkit-scrollbar-thumb:hover {
+  //   @apply bg-border/100;
+  // }
 
   .btn {
     @apply transition-all cursor-pointer appearance-none outline-none text-sm h-10 flex items-center justify-center gap-2 px-3 py-3 rounded-xl font-medium bg-background text-foreground hover:bg-background/80;
