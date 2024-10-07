@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs';
 import { FavoriteService } from '../../services/favorite.service';
 import { FilterService } from '../../services/filter.service';
 
@@ -21,9 +21,10 @@ export class FilterListComponent {
   @Input() showFavorites: boolean = false;
 
   private searchTermSubject: Subject<string> = new Subject<string>();
+  private searchSubscription: Subscription;
 
   constructor(private favoriteService: FavoriteService, private filterService: FilterService) {
-    this.searchTermSubject.pipe(
+    this.searchSubscription = this.searchTermSubject.pipe(
       debounceTime(1000),
       distinctUntilChanged()
     ).subscribe((searchTerm: string) => {
@@ -89,5 +90,11 @@ export class FilterListComponent {
 
   get getFavoritesLength() {
     return this.favoriteService.getFavorites().length
+  }
+
+  ngOnDestroy(): void {
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
   }
 }

@@ -25,8 +25,6 @@ export class CardEpisodeComponent {
   }
 
   getFavoritesLength(characters: string[]) {
-    console.log('getFavoritesLength', characters);
-
     this.rickAndMortyService.getCharacterById([this.generateRandomId(characters)]).subscribe({
       next: (character: Character) => {
         if (character) {

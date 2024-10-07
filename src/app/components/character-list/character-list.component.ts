@@ -70,7 +70,6 @@ export class CharacterListComponent implements OnInit {
           if (response) {
             this.validateResponse(response, append);
             this.setConfigs(response?.info?.pages ?? 1, page);
-            this.loadingCharacters = false;
           }
         },
         error: () => {
@@ -94,6 +93,7 @@ export class CharacterListComponent implements OnInit {
       this.filteredCharacters = response.results || (Array.isArray(response) ? response : [response]);
     }
     this.characters = this.filteredCharacters;
+    this.loadingCharacters = false;
   }
 
   setConfigs(pages: number, page: number): void {
