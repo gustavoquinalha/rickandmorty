@@ -32,7 +32,7 @@
           type="text"
           [(ngModel)]="searchTerm"
           (ngModelChange)="onSearchChange()"
-          placeholder="Search by name..."
+          placeholder=" {{ 'HOME.SEARCH_BY_NAME' | translate }}"
           class="input w-full h-14 min-w-56 pl-12"
         />
       </div>
@@ -94,7 +94,7 @@
             title="Remove"
             >⛔</span
           >
-          <div class="leading-none block w-full mb-1">🌳</div>
+          <div class="leading-none block w-full mb-1">🌈</div>
           <div class="text-xs truncate leading-none">Genderless</div>
         </button>
 
