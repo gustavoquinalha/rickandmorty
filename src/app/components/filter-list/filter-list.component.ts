@@ -56,6 +56,14 @@ export class FilterListComponent {
 
   loadFavoriteItems() {
     this.showFavorites = !this.showFavorites;
+
+    if (this.showFavorites) {
+      this.searchTerm = '';
+      this.selectedGender = '';
+      this.selectedSpecies = '';
+      this.selectedStatus = '';
+    }
+
     this.updateFilter();
   }
 
