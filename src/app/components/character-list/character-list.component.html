@@ -7,70 +7,70 @@
     [showFavorites]="showFavorites"
   />
 
-  <ng-container *ngIf="filteredCharacters.length; else empty">
-    <ng-container *ngIf="!loadingCharacters; else loading">
+  <ng-container *ngIf="!loadingCharacters; else loading">
+    <div
+      class="container px-4 md:px-8 py-4 md:py-8 min-h-[calc(100dvh-4rem-5rem)]"
+    >
       <div
-        class="container px-4 md:px-8 py-4 md:py-8 min-h-[calc(100dvh-4rem-5rem)]"
+        class="flex flex-col md:flex-row text-center md:text-inherit items-center gap-4 justify-between mb-4"
       >
-        <div
-          class="flex flex-col md:flex-row text-center md:text-inherit items-center gap-4 justify-between mb-4"
+        <h2
+          class="text-xl font-medium tracking-widest font-creepster"
+          *ngIf="showFavorites"
         >
-          <h2
-            class="text-xl font-medium tracking-widest font-creepster"
-            *ngIf="showFavorites"
-          >
-            ❤️ {{ "HOME.YOUR_FAVORITE_CHARACTERS" | translate }} ({{
-              getFavoritesLength
-            }})
-          </h2>
+          ❤️ {{ "HOME.YOUR_FAVORITE_CHARACTERS" | translate }} ({{
+            getFavoritesLength
+          }})
+        </h2>
 
-          <h2
-            class="text-xl font-medium tracking-widest font-creepster"
-            *ngIf="!showFavorites"
-          >
-            🛸 {{ "HOME.RICK_AND_MORTY_CHARACTERS" | translate }}
-          </h2>
-
-          <div
-            class="hidden md:flex gap-1 items-center border bg-input/50 rounded-xl p-1"
-          >
-            <button
-              class="!block btn btn-square w-10 h-10 min-w-10 px-2 border-none bg-transparent hover:bg-input rounded-lg"
-              title="Grid"
-              [ngClass]="{ '!bg-foreground !text-background': showGrid }"
-              (click)="showGrid = true"
-            >
-              <div class="leading-none block w-full text-base">🪟</div>
-            </button>
-            <button
-              class="!block btn btn-square w-10 h-10 min-w-10 px-2 border-none bg-transparent hover:bg-input rounded-lg"
-              title="List"
-              [ngClass]="{ '!bg-foreground !text-background': !showGrid }"
-              (click)="showGrid = false"
-            >
-              <div class="leading-none block w-full text-base">📰</div>
-            </button>
-          </div>
-        </div>
+        <h2
+          class="text-xl font-medium tracking-widest font-creepster"
+          *ngIf="!showFavorites"
+        >
+          🛸 {{ "HOME.RICK_AND_MORTY_CHARACTERS" | translate }}
+        </h2>
 
         <div
-          [ngClass]="
-            showGrid
-              ? 'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'
-              : 'grid-cols-1 lg:grid-cols-2'
-          "
-          class="grid gap-4"
+          *ngIf="filteredCharacters.length"
+          class="hidden md:flex gap-1 items-center border bg-input/50 rounded-xl p-1"
         >
-          <ng-container *ngFor="let character of filteredCharacters">
-            <app-card-character
-              [character]="character"
-              [showGrid]="showGrid"
-              [showFavorites]="showFavorites"
-            ></app-card-character>
-          </ng-container>
+          <button
+            class="!block btn btn-square w-10 h-10 min-w-10 px-2 border-none bg-transparent hover:bg-input rounded-lg"
+            title="Grid"
+            [ngClass]="{ '!bg-foreground !text-background': showGrid }"
+            (click)="showGrid = true"
+          >
+            <div class="leading-none block w-full text-base">🪟</div>
+          </button>
+          <button
+            class="!block btn btn-square w-10 h-10 min-w-10 px-2 border-none bg-transparent hover:bg-input rounded-lg"
+            title="List"
+            [ngClass]="{ '!bg-foreground !text-background': !showGrid }"
+            (click)="showGrid = false"
+          >
+            <div class="leading-none block w-full text-base">📰</div>
+          </button>
         </div>
       </div>
-    </ng-container>
+
+      <div
+        *ngIf="filteredCharacters.length; else empty"
+        [ngClass]="
+          showGrid
+            ? 'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'
+            : 'grid-cols-1 lg:grid-cols-2'
+        "
+        class="grid gap-4"
+      >
+        <ng-container *ngFor="let character of filteredCharacters">
+          <app-card-character
+            [character]="character"
+            [showGrid]="showGrid"
+            [showFavorites]="showFavorites"
+          ></app-card-character>
+        </ng-container>
+      </div>
+    </div>
   </ng-container>
 </ng-container>
 
