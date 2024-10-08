@@ -6,10 +6,12 @@ import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs'
 import { FavoriteService } from '../../services/favorite.service';
 import { FilterService } from '../../services/filter.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { TooltipDirective } from '../../directives/tooltip.directive';
+import { CardFilterComponent } from '../card-filter/card-filter.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, TranslateModule],
+  imports: [CommonModule, RouterModule, FormsModule, TranslateModule, TooltipDirective, CardFilterComponent],
   selector: 'app-filter-list',
   templateUrl: './filter-list.component.html',
   styleUrls: ['./filter-list.component.scss'],
