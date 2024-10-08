@@ -9,11 +9,13 @@
       <div class="flex gap-1 items-center border bg-input/50 rounded-xl p-1">
         <button
           class="group !block btn btn-square w-auto h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
-          appTooltip="Favorites"
+          [appTooltip]="'HOME.FAVORITES' | translate"
           [ngClass]="{ '!bg-foreground !text-background': showFavorites }"
           (click)="loadFavoriteItems()"
         >
-          <span class="text-base absolute -top-2 -right-2 z-20" *ngIf="showFavorites"
+          <span
+            class="text-base absolute -top-2 -right-2 z-20"
+            *ngIf="showFavorites"
             >⛔</span
           >
           <div class="leading-none block w-full mb-1 text-xl">❤️</div>
@@ -42,6 +44,7 @@
       >
         <app-card-filter
           [title]="'female'"
+          [key]="'FEMALE'"
           [icon]="'👩'"
           [selected]="selectedGender"
           (selectedEvent)="selectGender('female')"
@@ -49,6 +52,7 @@
 
         <app-card-filter
           [title]="'male'"
+          [key]="'MALE'"
           [icon]="'👨'"
           [selected]="selectedGender"
           (selectedEvent)="selectGender('male')"
@@ -56,6 +60,7 @@
 
         <app-card-filter
           [title]="'genderless'"
+          [key]="'GENDERLESS'"
           [icon]="'🌈'"
           [selected]="selectedGender"
           (selectedEvent)="selectGender('genderless')"
@@ -63,6 +68,7 @@
 
         <app-card-filter
           [title]="'unknown'"
+          [key]="'UNKNOWN'"
           [icon]="'🤔'"
           [selected]="selectedGender"
           (selectedEvent)="selectGender('unknown')"
@@ -75,54 +81,63 @@
       >
         <app-card-filter
           [title]="'Human'"
+          [key]="'HUMAN'"
           [icon]="'🌎'"
           [selected]="selectedSpecies"
           (selectedEvent)="selectSpecie('Human')"
         />
         <app-card-filter
           [title]="'Alien'"
+          [key]="'ALIEN'"
           [icon]="'👽'"
           [selected]="selectedSpecies"
           (selectedEvent)="selectSpecie('Alien')"
         />
         <app-card-filter
           [title]="'Robot'"
+          [key]="'ROBOT'"
           [icon]="'🤖'"
           [selected]="selectedSpecies"
           (selectedEvent)="selectSpecie('Robot')"
         />
         <app-card-filter
           [title]="'Animal'"
+          [key]="'ANIMAL'"
           [icon]="'🐶'"
           [selected]="selectedSpecies"
           (selectedEvent)="selectSpecie('Animal')"
         />
         <app-card-filter
           [title]="'Cronenberg'"
+          [key]="'CRONENBERG'"
           [icon]="'🐙'"
           [selected]="selectedSpecies"
           (selectedEvent)="selectSpecie('Cronenberg')"
         />
         <app-card-filter
           [title]="'Humanoid'"
+          [key]="'HUMANOID'"
           [icon]="'🐲'"
           [selected]="selectedSpecies"
           (selectedEvent)="selectSpecie('Humanoid')"
         />
         <app-card-filter
           [title]="'Poopybutthole'"
+          [key]="'POOPYBUTTHOLE'"
           [icon]="'🥒'"
           [selected]="selectedSpecies"
           (selectedEvent)="selectSpecie('Poopybutthole')"
         />
         <app-card-filter
           [title]="'Mythological Creature'"
+          [key]="'MYTHOLOGICAL_CREATURE'"
           [icon]="'🪄'"
           [selected]="selectedSpecies"
           (selectedEvent)="selectSpecie('Mythological Creature')"
         />
         <app-card-filter
           [title]="'unknown'"
+          [key]="'UNKNOWN'"
           [icon]="'🤔'"
           [selected]="selectedSpecies"
           (selectedEvent)="selectSpecie('unknown')"
@@ -135,18 +150,21 @@
       >
         <app-card-filter
           [title]="'alive'"
+          [key]="'ALIVE'"
           [icon]="'😄'"
           [selected]="selectedStatus"
           (selectedEvent)="selectStatus('alive')"
         />
         <app-card-filter
           [title]="'dead'"
+          [key]="'DEAD'"
           [icon]="'😵'"
           [selected]="selectedStatus"
           (selectedEvent)="selectStatus('dead')"
         />
         <app-card-filter
           [title]="'unknown'"
+          [key]="'UNKNOWN'"
           [icon]="'🤔'"
           [selected]="selectedStatus"
           (selectedEvent)="selectStatus('unknown')"
@@ -163,11 +181,13 @@
       >
         <button
           class="group !block btn btn-square w-12 h-12 min-w-12 px-2 border-none bg-transparent hover:bg-foreground/10 rounded-lg py-0 relative overflow-visible"
-          appTooltip="Reset"
+          [appTooltip]="'HOME.RESET' | translate"
           (click)="resetFilter()"
         >
           <div class="leading-none block w-full mb-1 text-xl">⛔</div>
-          <div class="text-xs truncate leading-none hidden">Reset</div>
+          <div class="text-xs truncate leading-none hidden">
+            {{ "HOME.RESET" | translate }}
+          </div>
         </button>
       </div>
     </div>

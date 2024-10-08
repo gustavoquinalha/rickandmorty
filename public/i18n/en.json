@@ -6,8 +6,6 @@
     "FEEDBACK": "Feedback",
     "LIGHT": "Light",
     "DARK": "Dark",
-    "FAVORITES": "Favorites",
-    "RESET": "Reset",
     "SEARCH_BY_NAME": "Search by name...",
     "RICK_AND_MORTY_CHARACTERS": "Rick and Morty characters",
     "YOUR_FAVORITE_CHARACTERS": "Your Favorite Characters",
@@ -20,6 +18,22 @@
     "PORTUGUES": "Português",
     "ESPANHOL": "Español",
     "INGLES": "English",
-    "JAPONES": "日本語"
+    "JAPONES": "日本語",
+    "FAVORITES": "Favorites",
+    "FEMALE": "Female",
+    "MALE": "Male",
+    "GENDERLESS": "Genderless",
+    "UNKNOWN": "Unknown",
+    "HUMAN": "Human",
+    "ALIEN": "Alien",
+    "ROBOT": "Robot",
+    "ANIMAL": "Animal",
+    "CRONENBERG": "Cronenberg",
+    "HUMANOID": "Humanoid",
+    "POOPYBUTTHOLE": "Poopybutthole",
+    "MYTHOLOGICAL_CREATURE": "Mythological Creature",
+    "ALIVE": "Alive",
+    "DEAD": "Dead",
+    "RESET": "Reset"
   }
 }
