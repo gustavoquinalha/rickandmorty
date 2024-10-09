@@ -16,7 +16,11 @@
     *ngIf="locations; else empty"
   >
     <ng-container *ngFor="let location of locations">
-      <app-card-location *ngIf="location; else empty" [location]="location" [showTitle]="false" />
+      <app-card-location
+        *ngIf="location; else empty"
+        [location]="location"
+        [showTitle]="false"
+      />
     </ng-container>
   </div>
 </div>
@@ -24,8 +28,8 @@
 <ng-template #empty>
   <app-empty-result
     [icons]="'🌎😭💔'"
-    [title]="'No locations found!'"
-    [subtitle]="'Please try searching again.'"
+    [title]="'HOME.NO_LOCATIONS_FOUND' | translate"
+    [subtitle]="'HOME.TRY_SEARCH_AGAIN' | translate"
     [back]="true"
   />
 </ng-template>

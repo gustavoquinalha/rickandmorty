@@ -39,8 +39,8 @@
 <ng-template #empty>
   <app-empty-result
     [icons]="'🌎😭💔'"
-    [title]="'No location found!'"
-    [subtitle]="'Please try searching again.'"
+    [title]="'HOME.NO_LOCATIONS_FOUND' | translate"
+    [subtitle]="'HOME.TRY_SEARCH_AGAIN' | translate"
     [back]="true"
   />
 </ng-template>
@@ -51,7 +51,7 @@
   >
     <app-empty-result
       [icons]="'👽'"
-      [title]="'No residents!'"
+      [title]="'HOME.NO_RESIDENTS' | translate"
       [subtitle]="''"
       [back]="false"
       [fullScreen]="false"

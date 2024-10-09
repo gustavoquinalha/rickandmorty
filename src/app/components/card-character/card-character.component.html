@@ -40,7 +40,7 @@
         <div
           [ngClass]="{ '!w-8 !h-8 min-w-8 !px-0 !py-0 !text-lg': showGrid }"
           class="badge w-auto px-2 py-1 h-auto text-sm"
-          [title]="'Gender: ' + character.gender"
+          [title]="character.gender"
           *ngIf="character.gender"
         >
           {{
@@ -60,7 +60,7 @@
         <div
           [ngClass]="{ '!w-8 !h-8 min-w-8 !px-0 !py-0 !text-lg': showGrid }"
           class="badge w-auto px-2 py-1 h-auto text-sm"
-          [title]="'Status: ' + character.status"
+          [title]="character.status"
           *ngIf="character.status"
         >
           {{
@@ -78,7 +78,7 @@
         <div
           [ngClass]="{ '!w-8 !h-8 min-w-8 !px-0 !py-0 !text-lg': showGrid }"
           class="badge w-auto px-2 py-1 h-auto text-sm"
-          [title]="'Specie: ' + character.species"
+          [title]="character.species"
           *ngIf="character.species"
         >
           {{
@@ -110,7 +110,7 @@
         <div
           [ngClass]="{ '!w-8 !h-8 min-w-8 !px-0 !py-0 !text-lg': showGrid }"
           class="badge w-auto px-2 py-1 h-auto text-sm"
-          [title]="'Type: ' + character.type"
+          [title]="character.type"
           *ngIf="character.type"
         >
           🔎
@@ -122,7 +122,7 @@
         <div
           [ngClass]="{ '!w-8 !h-8 min-w-8 !px-0 !py-0 !text-lg': showGrid }"
           class="badge w-auto px-2 py-1 h-auto text-sm"
-          [title]="'Location: ' + character.location.name"
+          [title]="character.location.name"
           *ngIf="character.location.name"
         >
           📌
@@ -133,7 +133,7 @@
         <div
           [ngClass]="{ '!w-8 !h-8 min-w-8 !px-0 !py-0 !text-lg': showGrid }"
           class="badge w-auto px-2 py-1 h-auto text-sm"
-          [title]="'Origin: ' + character.origin.name"
+          [title]="character.origin.name"
           *ngIf="character.origin.name"
         >
           👶

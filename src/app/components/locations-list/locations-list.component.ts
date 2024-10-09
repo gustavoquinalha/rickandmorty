@@ -6,11 +6,12 @@ import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
 import { CardLocationComponent } from '../card-location/card-location.component';
 import { Location } from '../../interface/characters';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-locations-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent, EmptyResultComponent, CardLocationComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, EmptyResultComponent, CardLocationComponent, TranslateModule],
   templateUrl: './locations-list.component.html',
   styleUrl: './locations-list.component.scss'
 })

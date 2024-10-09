@@ -34,6 +34,15 @@
     "MYTHOLOGICAL_CREATURE": "神話上の生き物",
     "ALIVE": "生存",
     "DEAD": "死亡",
-    "RESET": "リセット"
+    "RESET": "リセット",
+    "NO_LOCATIONS_FOUND": "場所が見つかりません！",
+    "TRY_SEARCH_AGAIN": "もう一度検索してください。",
+    "NO_RESIDENTS": "住民がいません！",
+    "NO_EPISODES_FOUND": "エピソードが見つかりません！",
+    "NOTHING_FOUND": "何も見つかりませんでした！",
+    "NO_FAVORITES": "お気に入りがまだありません！",
+    "GO_BACK_HOME": "ホームページに戻って、あなたに合ったものを選んでください。",
+    "NO_CHARACTER_FOUND": "キャラクターが見つかりません！",
+    "BACK_TO_LIST": "リストに戻る"
   }
 }

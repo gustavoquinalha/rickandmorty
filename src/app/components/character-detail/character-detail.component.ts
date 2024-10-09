@@ -11,10 +11,11 @@ import { CardLocationComponent } from "../card-location/card-location.component"
 import { CardCharacterDetailComponent } from "../card-character-detail/card-character-detail.component";
 import { TopbarActionsComponent } from "../topbar-actions/topbar-actions.component";
 import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent, CardEpisodeComponent, EmptyResultComponent, CardLocationComponent, CardLocationComponent, CardCharacterDetailComponent, TopbarActionsComponent, CharacterEpisodesCardComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, CardEpisodeComponent, EmptyResultComponent, CardLocationComponent, CardLocationComponent, CardCharacterDetailComponent, TopbarActionsComponent, CharacterEpisodesCardComponent, TranslateModule],
   selector: 'app-character-detail',
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.scss'],

@@ -6,11 +6,12 @@ import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { CardEpisodeComponent } from "../card-episode/card-episode.component";
 import { EmptyResultComponent } from '../empty-result/empty-result.component';
 import { ApiResponse, Episode } from '../../interface/characters';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-episodes-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent, CardEpisodeComponent, EmptyResultComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, CardEpisodeComponent, EmptyResultComponent, TranslateModule],
   templateUrl: './episodes-list.component.html',
   styleUrl: './episodes-list.component.scss'
 })

@@ -9,11 +9,12 @@ import { EmptyResultComponent } from '../empty-result/empty-result.component';
 import { CardEpisodeComponent } from "../card-episode/card-episode.component";
 import { TopbarActionsComponent } from '../topbar-actions/topbar-actions.component';
 import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-episode',
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent, AvatarCharactersComponent, EmptyResultComponent, CardEpisodeComponent, TopbarActionsComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, AvatarCharactersComponent, EmptyResultComponent, CardEpisodeComponent, TopbarActionsComponent, TranslateModule],
   templateUrl: './episode.component.html',
   styleUrl: './episode.component.scss'
 })

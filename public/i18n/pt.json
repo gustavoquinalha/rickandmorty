@@ -34,6 +34,15 @@
     "MYTHOLOGICAL_CREATURE": "Criatura Mitológica",
     "ALIVE": "Vivo",
     "DEAD": "Morto",
-    "RESET": "Redefinir"
+    "RESET": "Redefinir",
+    "NO_LOCATIONS_FOUND": "Nenhuma localização encontrada!",
+    "TRY_SEARCH_AGAIN": "Tente pesquisar novamente.",
+    "NO_RESIDENTS": "Sem residentes!",
+    "NO_EPISODES_FOUND": "Nenhum episódio encontrado!",
+    "NOTHING_FOUND": "Nada foi encontrado!",
+    "NO_FAVORITES": "Parece que você ainda não tem nenhum favorito!",
+    "GO_BACK_HOME": "Volte para a página inicial e escolha os melhores para você.",
+    "NO_CHARACTER_FOUND": "Nenhum personagem encontrado!",
+    "BACK_TO_LIST": "Voltar à lista"
   }
 }

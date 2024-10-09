@@ -9,11 +9,12 @@ import { EmptyResultComponent } from '../empty-result/empty-result.component';
 import { CardLocationComponent } from '../card-location/card-location.component';
 import { TopbarActionsComponent } from '../topbar-actions/topbar-actions.component';
 import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-location',
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingComponent, AvatarCharactersComponent, EmptyResultComponent, CardLocationComponent, TopbarActionsComponent],
+  imports: [CommonModule, RouterModule, LoadingComponent, AvatarCharactersComponent, EmptyResultComponent, CardLocationComponent, TopbarActionsComponent, TranslateModule],
   templateUrl: './location.component.html',
   styleUrl: './location.component.scss'
 })

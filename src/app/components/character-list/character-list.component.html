@@ -82,16 +82,16 @@
   <app-empty-result
     *ngIf="!showFavorites"
     [icons]="'😭💔'"
-    [title]="'Nothing was found!'"
-    [subtitle]="'Please try searching again.'"
+    [title]="'HOME.NOTHING_FOUND' | translate"
+    [subtitle]="'HOME.TRY_SEARCH_AGAIN' | translate"
     [back]="true"
   />
 
   <app-empty-result
     *ngIf="showFavorites"
     [icons]="'😭💔'"
-    [title]="'Looks like you don\'t have any favorites yet!'"
-    [subtitle]="'Go back to the home page and choose the best ones for you.'"
+    [title]="'HOME.NO_FAVORITES' | translate"
+    [subtitle]="'HOME.GO_BACK_HOME' | translate"
     [back]="true"
   />
 </ng-template>
