@@ -85,7 +85,7 @@
             class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
             id="theme-button"
           >
-            <span class="text-lg">🎨</span>
+            <span class="text-lg">{{ selectedTheme.icon }}</span>
             <span class="hidden lg:block capitalize">{{
               "HOME." + selectedTheme.name | translate
             }}</span>
@@ -131,7 +131,7 @@
         <div>
           <button
             class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
-            id="theme-button"
+            id="translate-button"
           >
             <span class="text-lg">{{ selectedLang.icon }}</span>
             <span class="text-xs hidden lg:block">▼</span>
@@ -176,7 +176,7 @@
         <div>
           <button
             class="btn btn-border px-0 py-0 md:px-3 md:py-3 min-w-10 w-10 md:min-w-auto md:w-auto"
-            id="theme-button"
+            id="menu-button"
           >
             <span class="text-lg">🍔</span>
             <span class="text-xs hidden lg:block">▼</span>
