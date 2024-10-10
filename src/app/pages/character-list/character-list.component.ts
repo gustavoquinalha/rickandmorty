@@ -5,10 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { Character, ApiResponse } from '../../interface/characters';
 import { FavoriteService } from '../../services/favorite.service';
-import { CardCharacterComponent } from '../card-character/card-character.component';
-import { LoadingComponent } from "../loading/loading.component";
-import { FilterListComponent } from "../filter-list/filter-list.component";
-import { EmptyResultComponent } from '../empty-result/empty-result.component';
+import { CardCharacterComponent } from '../../components/card-character/card-character.component';
+import { LoadingComponent } from "../../components/loading/loading.component";
+import { FilterListComponent } from "../../components/filter-list/filter-list.component";
+import { EmptyResultComponent } from '../../components/empty-result/empty-result.component';
 import { FilterService } from '../../services/filter.service';
 import { Subscription } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
@@ -36,6 +36,7 @@ export class CharacterListComponent implements OnInit {
   showFavorites = false;
   showGrid = true;
   private filterSubscription?: Subscription;
+  private subscription?: Subscription;
 
   constructor(private rickAndMortyService: RickAndMortyService, private favoriteService: FavoriteService, private filterService: FilterService) { }
 
@@ -62,8 +63,7 @@ export class CharacterListComponent implements OnInit {
 
   fetchCharacters(page: number, name: string = '', specie: string = '', gender: string = '', status: string = '', append: boolean = false): void {
     this.loadingCharacters = true;
-
-    this.rickAndMortyService
+    this.subscription = this.rickAndMortyService
       .getCharacters(page, name, specie, gender, status, this.verifyFavorites())
       .subscribe({
         next: (response: ApiResponse) => {
@@ -106,7 +106,7 @@ export class CharacterListComponent implements OnInit {
   }
 
   loadMore(): void {
-    if (this.currentPage < this.totalPages) {
+    if (!this.loadingCharacters && this.currentPage < this.totalPages) {
       this.currentPage++;
       this.fetchCharacters(
         this.currentPage,
@@ -127,6 +127,10 @@ export class CharacterListComponent implements OnInit {
   ngOnDestroy() {
     if (this.filterSubscription) {
       this.filterSubscription.unsubscribe();
+    }
+
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 }

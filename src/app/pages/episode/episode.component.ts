@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { CommonModule } from '@angular/common';
-import { LoadingComponent } from '../loading/loading.component';
 import { Character, Episode } from '../../interface/characters';
-import { AvatarCharactersComponent } from '../avatar-characters/avatar-characters.component';
-import { EmptyResultComponent } from '../empty-result/empty-result.component';
-import { CardEpisodeComponent } from "../card-episode/card-episode.component";
-import { TopbarActionsComponent } from '../topbar-actions/topbar-actions.component';
 import { Subscription } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
+import { AvatarCharactersComponent } from '../../components/avatar-characters/avatar-characters.component';
+import { CardEpisodeComponent } from '../../components/card-episode/card-episode.component';
+import { EmptyResultComponent } from '../../components/empty-result/empty-result.component';
+import { LoadingComponent } from '../../components/loading/loading.component';
+import { TopbarActionsComponent } from '../../components/topbar-actions/topbar-actions.component';
 
 @Component({
   selector: 'app-episode',

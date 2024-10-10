@@ -2,10 +2,10 @@
   [routerLink]="['/character', character.id]"
   *ngIf="character"
   [ngClass]="showGrid ? '' : ''"
-  class="group block relative text-center border hover:border-foreground bg-input rounded-xl overflow-hidden"
+  class="group block relative text-center border hover:border-foreground bg-input rounded-xl overflow-hidden aspect-square"
 >
   <div
-    class="min-h-64 w-full justify-end items-start flex flex-col gap-1 text-center transition-all"
+    class="aspect-square w-full justify-end items-start flex flex-col gap-1 text-center transition-all"
   >
     <div class="absolute top-2 right-2 z-10 flex items-center gap-1">
       <button
@@ -20,7 +20,7 @@
       *ngIf="character.image"
       [src]="character.image"
       [ngClass]="showGrid ? 'aspect-square' : ''"
-      class="w-full h-full object-cover absolute top-0 left-0 select-none group-hover:scale-110 transition-all brightness-[60%] group-hover:brightness-[70%]"
+      class="w-full h-full aspect-square object-cover absolute top-0 left-0 select-none group-hover:scale-110 transition-all brightness-[60%] group-hover:brightness-[70%]"
       [alt]="character.name"
       loading="lazy"
     />

@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { CommonModule } from '@angular/common';
-import { LoadingComponent } from '../loading/loading.component';
+import { LoadingComponent } from '../../components/loading/loading.component';
 import { Character, Location } from '../../interface/characters';
-import { AvatarCharactersComponent } from '../avatar-characters/avatar-characters.component';
-import { EmptyResultComponent } from '../empty-result/empty-result.component';
-import { CardLocationComponent } from '../card-location/card-location.component';
-import { TopbarActionsComponent } from '../topbar-actions/topbar-actions.component';
+import { AvatarCharactersComponent } from '../../components/avatar-characters/avatar-characters.component';
+import { EmptyResultComponent } from '../../components/empty-result/empty-result.component';
+import { CardLocationComponent } from '../../components/card-location/card-location.component';
+import { TopbarActionsComponent } from '../../components/topbar-actions/topbar-actions.component';
 import { Subscription } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 

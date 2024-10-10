@@ -1,17 +1,17 @@
-import { CharacterEpisodesCardComponent } from './../character-episodes-card/character-episodes-card.component';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { Character, Episode, Location } from '../../interface/characters';
-import { LoadingComponent } from '../loading/loading.component';
-import { CardEpisodeComponent } from '../card-episode/card-episode.component';
-import { EmptyResultComponent } from '../empty-result/empty-result.component';
-import { CardLocationComponent } from "../card-location/card-location.component";
-import { CardCharacterDetailComponent } from "../card-character-detail/card-character-detail.component";
-import { TopbarActionsComponent } from "../topbar-actions/topbar-actions.component";
 import { Subscription } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
+import { CardCharacterDetailComponent } from '../../components/card-character-detail/card-character-detail.component';
+import { CardEpisodeComponent } from '../../components/card-episode/card-episode.component';
+import { CardLocationComponent } from '../../components/card-location/card-location.component';
+import { CharacterEpisodesCardComponent } from '../../components/character-episodes-card/character-episodes-card.component';
+import { EmptyResultComponent } from '../../components/empty-result/empty-result.component';
+import { LoadingComponent } from '../../components/loading/loading.component';
+import { TopbarActionsComponent } from '../../components/topbar-actions/topbar-actions.component';
 
 @Component({
   standalone: true,

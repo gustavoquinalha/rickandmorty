@@ -1,8 +1,9 @@
 <div class="container px-4 md:px-8 text-center">
   <div
     [ngClass]="{ 'min-h-[calc(100dvh-4rem-5rem)] p-10': fullscreen }"
-    class="text-muted-foreground flex justify-center items-center"
+    class="text-muted-foreground flex gap-4 flex-col text-center justify-center items-center"
   >
-    <img src="/loading.gif" width="280" alt="" />
+    <img src="/loading.webp" width="280" loading="lazy" alt="Loading..." />
+    <span class="text-sm text-foreground">Loading...</span>
   </div>
 </div>

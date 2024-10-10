@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { LoadingComponent } from '../loading/loading.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
-import { CardEpisodeComponent } from "../card-episode/card-episode.component";
-import { EmptyResultComponent } from '../empty-result/empty-result.component';
 import { ApiResponse, Episode } from '../../interface/characters';
 import { TranslateModule } from '@ngx-translate/core';
+import { CardEpisodeComponent } from '../../components/card-episode/card-episode.component';
+import { EmptyResultComponent } from '../../components/empty-result/empty-result.component';
+import { LoadingComponent } from '../../components/loading/loading.component';
 
 @Component({
   selector: 'app-episodes-list',

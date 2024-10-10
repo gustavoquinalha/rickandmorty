@@ -1,0 +1,96 @@
+<app-filter-list
+  [searchTerm]="searchTerm"
+  [selectedGender]="selectedGender"
+  [selectedSpecies]="selectedSpecies"
+  [selectedStatus]="selectedStatus"
+  [showFavorites]="showFavorites"
+/>
+
+<div
+  class="container px-4 md:px-8 py-4 md:py-8 min-h-[calc(100dvh-4rem-5rem)] relative"
+>
+  <div
+    class="flex flex-col md:flex-row text-center md:text-inherit items-center gap-4 justify-between mb-4"
+  >
+    <h2
+      class="text-xl font-medium tracking-widest font-creepster"
+      *ngIf="showFavorites"
+    >
+      ❤️ {{ "HOME.YOUR_FAVORITE_CHARACTERS" | translate }} ({{
+        getFavoritesLength
+      }})
+    </h2>
+
+    <h2
+      class="text-xl font-medium tracking-widest font-creepster"
+      *ngIf="!showFavorites"
+    >
+      🛸 {{ "HOME.RICK_AND_MORTY_CHARACTERS" | translate }}
+    </h2>
+
+    <div
+      *ngIf="filteredCharacters.length"
+      class="hidden md:flex gap-1 items-center border bg-input/50 rounded-xl p-1"
+    >
+      <button
+        class="!block btn btn-square w-10 h-10 min-w-10 px-2 border-none bg-transparent hover:bg-input rounded-lg"
+        title="Grid"
+        [ngClass]="{ '!bg-foreground !text-background': showGrid }"
+        (click)="showGrid = true"
+      >
+        <div class="leading-none block w-full text-base">🪟</div>
+      </button>
+      <button
+        class="!block btn btn-square w-10 h-10 min-w-10 px-2 border-none bg-transparent hover:bg-input rounded-lg"
+        title="List"
+        [ngClass]="{ '!bg-foreground !text-background': !showGrid }"
+        (click)="showGrid = false"
+      >
+        <div class="leading-none block w-full text-base">📰</div>
+      </button>
+    </div>
+  </div>
+
+  <ng-container *ngIf="filteredCharacters.length; else empty">
+    <div
+      [ngClass]="
+        showGrid
+          ? 'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'
+          : 'grid-cols-1 lg:grid-cols-2'
+      "
+      class="grid gap-4"
+    >
+      <app-card-character
+        *ngFor="let character of filteredCharacters"
+        [character]="character"
+        [showGrid]="showGrid"
+        [showFavorites]="showFavorites"
+      ></app-card-character>
+    </div>
+  </ng-container>
+
+  <div
+    class="bg-background/50 backdrop-blur-sm fixed w-full h-full top-0 left-0 flex justify-center items-center z-30"
+    *ngIf="loadingCharacters"
+  >
+    <app-loading [fullscreen]="false" />
+  </div>
+</div>
+
+<ng-template #empty>
+  <app-empty-result
+    *ngIf="!showFavorites && !loadingCharacters"
+    [icons]="'😭💔'"
+    [title]="'HOME.NOTHING_FOUND' | translate"
+    [subtitle]="'HOME.TRY_SEARCH_AGAIN' | translate"
+    [back]="true"
+  />
+
+  <app-empty-result
+    *ngIf="showFavorites && !loadingCharacters"
+    [icons]="'😭💔'"
+    [title]="'HOME.NO_FAVORITES' | translate"
+    [subtitle]="'HOME.GO_BACK_HOME' | translate"
+    [back]="true"
+  />
+</ng-template>
