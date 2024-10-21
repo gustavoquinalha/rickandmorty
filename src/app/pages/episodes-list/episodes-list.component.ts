@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CardEpisodeComponent } from '../../components/card-episode/card-episode.component';
 import { EmptyResultComponent } from '../../components/empty-result/empty-result.component';
 import { LoadingComponent } from '../../components/loading/loading.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-episodes-list',
@@ -16,7 +17,7 @@ import { LoadingComponent } from '../../components/loading/loading.component';
   styleUrl: './episodes-list.component.scss'
 })
 export class EpisodesListComponent {
-  episodes?: Episode[];
+  episodes = new BehaviorSubject<Episode[]>([]);
   loadingEpisodes = true;
 
   constructor(private rickAndMortyService: RickAndMortyService,) { }
@@ -33,13 +34,18 @@ export class EpisodesListComponent {
       .subscribe({
         next: (response: any) => {
           if (response) {
-            this.episodes = response.results;
+            this.episodes.next(response.results);
             this.loadingEpisodes = false;
           }
         },
         error: () => {
+          this.episodes.next([]);
           this.loadingEpisodes = false;
         },
       });
+  }
+
+  trackByEpisode(_index: number, episode: Episode): number {
+    return episode.id;
   }
 }

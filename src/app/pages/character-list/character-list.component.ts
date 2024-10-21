@@ -10,7 +10,7 @@ import { LoadingComponent } from "../../components/loading/loading.component";
 import { FilterListComponent } from "../../components/filter-list/filter-list.component";
 import { EmptyResultComponent } from '../../components/empty-result/empty-result.component';
 import { FilterService } from '../../services/filter.service';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -22,8 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
   providers: [RickAndMortyService]
 })
 export class CharacterListComponent implements OnInit {
-  characters: Character[] = [];
-  filteredCharacters: Character[] = [];
+  filteredCharacters = new BehaviorSubject<Character[]>([]);
   favoriteItems: Character[] = [];
   currentPage: number = 1;
   totalPages: number = 1;
@@ -73,10 +72,25 @@ export class CharacterListComponent implements OnInit {
           }
         },
         error: () => {
-          this.filteredCharacters = [];
+          this.filteredCharacters.next([]);
           this.loadingCharacters = false;
         },
       });
+  }
+
+  validateResponse(response: ApiResponse, append: boolean) {
+    let updatedCharacters;
+    if (append) {
+      updatedCharacters = [...this.filteredCharacters.value, ...response.results];
+    } else {
+      updatedCharacters = response.results || (Array.isArray(response) ? response : [response]);
+    }
+    this.filteredCharacters.next(updatedCharacters);
+    this.loadingCharacters = false;
+  }
+
+  trackByCharacter(_index: number, character: Character): number {
+    return character.id;
   }
 
   verifyFavorites(): number[] | object[] {
@@ -84,16 +98,6 @@ export class CharacterListComponent implements OnInit {
     return this.showFavorites
       ? favoritesList.length ? favoritesList : [{}]
       : [];
-  }
-
-  validateResponse(response: ApiResponse, append: boolean) {
-    if (append) {
-      this.filteredCharacters = [...this.filteredCharacters, ...response.results];
-    } else {
-      this.filteredCharacters = response.results || (Array.isArray(response) ? response : [response]);
-    }
-    this.characters = this.filteredCharacters;
-    this.loadingCharacters = false;
   }
 
   setConfigs(pages: number, page: number): void {

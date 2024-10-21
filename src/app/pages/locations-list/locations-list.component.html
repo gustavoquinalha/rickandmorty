@@ -13,9 +13,9 @@
 
   <div
     class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-    *ngIf="locations; else empty"
+    *ngIf="locations | async as locationList; else empty"
   >
-    <ng-container *ngFor="let location of locations">
+    <ng-container *ngFor="let location of locationList; trackBy: trackByLocation">
       <app-card-location
         *ngIf="location; else empty"
         [location]="location"

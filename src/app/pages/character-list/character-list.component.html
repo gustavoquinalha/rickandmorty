@@ -29,7 +29,7 @@
     </h2>
 
     <div
-      *ngIf="filteredCharacters.length"
+      *ngIf="filteredCharacters | async"
       class="hidden md:flex gap-1 items-center border bg-input/50 rounded-xl p-1"
     >
       <button
@@ -51,7 +51,9 @@
     </div>
   </div>
 
-  <ng-container *ngIf="filteredCharacters.length; else empty">
+  <ng-container
+    *ngIf="filteredCharacters | async as charactersList; else empty"
+  >
     <div
       [ngClass]="
         showGrid
@@ -61,7 +63,7 @@
       class="grid gap-4"
     >
       <app-card-character
-        *ngFor="let character of filteredCharacters"
+        *ngFor="let character of charactersList; trackBy: trackByCharacter"
         [character]="character"
         [showGrid]="showGrid"
         [showFavorites]="showFavorites"

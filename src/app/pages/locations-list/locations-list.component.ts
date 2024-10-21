@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CardLocationComponent } from '../../components/card-location/card-location.component';
 import { EmptyResultComponent } from '../../components/empty-result/empty-result.component';
 import { LoadingComponent } from '../../components/loading/loading.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-locations-list',
@@ -16,10 +17,8 @@ import { LoadingComponent } from '../../components/loading/loading.component';
   styleUrl: './locations-list.component.scss'
 })
 export class LocationsListComponent {
-  locations?: Location[];
+  locations = new BehaviorSubject<Location[]>([]);
   loadingLocations = true;
-  count = 0;
-  pages = 1;
 
   constructor(private rickAndMortyService: RickAndMortyService,) { }
 
@@ -36,15 +35,18 @@ export class LocationsListComponent {
       .subscribe({
         next: (response) => {
           if (response) {
-            this.count = response.info.count;
-            this.pages = response.info.pages;
-            this.locations = response.results;
+            this.locations.next(response.results);
             this.loadingLocations = false;
           }
         },
         error: () => {
+          this.locations.next([]);
           this.loadingLocations = false;
         },
       });
+  }
+
+  trackByLocation(_index: number, location: Location): number {
+    return location.id;
   }
 }
